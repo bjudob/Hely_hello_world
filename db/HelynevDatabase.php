@@ -6,6 +6,8 @@
  * Time: 12:41
  */
 
+require ("domain/Tajegyseg.php");
+
 class HelynevDatabase
 {
     private $conn;
@@ -30,10 +32,17 @@ class HelynevDatabase
         while($row=mysqli_fetch_array($result)){
             $id=$row['ID'];
             $nev=$row['Nev'];
+            $isactive=$row['Is_Active'];
+
+            $tajegyseg=new Tajegyseg();
+            $tajegyseg->setValues($id, $nev, $isactive);
+
+            $tajegysegek[] = $tajegyseg;
 
         }
 
         $this->disconnect();
+        return $tajegysegek;
     }
 
     private function connect(){

@@ -20,7 +20,7 @@ class Tajegyseg
     }
 
 
-    public function construct($id, $nev, $isactive)
+    public function setValues($id, $nev, $isactive)
     {
         $this->id = $id;
         $this->nev = $nev;
