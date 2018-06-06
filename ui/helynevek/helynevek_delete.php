@@ -54,7 +54,7 @@
 <head>
     <title>Helynevek</title>
     <link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
-    <link rel="stylesheet" type="text/css" href="../../mainpage.css">
+    <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 
     <script src="jquery-3.2.1.min.js"></script>
     <script type='text/javascript'>

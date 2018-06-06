@@ -28,7 +28,7 @@
 ?>
 <head>
 	<title>Törlés</title>
-	<link rel="stylesheet" type="text/css" href="../../mainpage.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 </head>
 <body>
 	<div id="container">

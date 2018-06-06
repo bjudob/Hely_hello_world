@@ -1,6 +1,0 @@
-
-----torles-re hover s valtozzon meg a torlendo szine
-----egy szep ora valahova :D
-++++magyar abc
-----resize-nal a gombok elcsusznak
-----helynevek show-nem kell megye
