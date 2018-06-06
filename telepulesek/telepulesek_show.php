@@ -6,7 +6,7 @@
 
 <head>
 	<title>Települések</title>
-    <link rel="stylesheet" type="text/css" href="style/telepulesek.css">
+    <link rel="stylesheet" type="text/css" href="../css/telepulesek.css">
     <link rel="stylesheet" type="text/css" href="../mainpage.css">
 </head>
 <body>
