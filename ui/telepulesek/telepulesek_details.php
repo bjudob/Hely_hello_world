@@ -74,7 +74,7 @@
 ?>
 <head>
 	<title>Törlés</title>
-	<link rel="stylesheet" type="text/css" href="../mainpage.css">
+	<link rel="stylesheet" type="text/css" href="../../mainpage.css">
 	<link rel="stylesheet" type="text/css" href="./helynevek_show.css">
 </head>
 <body>

@@ -34,7 +34,7 @@
 <head>
 	<title>Helynevek</title>
 	<link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
-	<link rel="stylesheet" type="text/css" href="../mainpage.css">
+	<link rel="stylesheet" type="text/css" href="../../mainpage.css">
 
 </head>
 <body>
