@@ -1,0 +1,13 @@
+#container80{
+    width:50%;
+    margin:auto;
+}
+
+#updatescontainer{
+	font-size: 150%;
+}
+
+#update{
+	border-radius: 5px;
+    border: 4px solid green;
+}

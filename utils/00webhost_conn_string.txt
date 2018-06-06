@@ -1,0 +1,6 @@
+$con = mysqli_connect('localhost', 'id2643544_boti', '32tr56prs', 'id2643544_training_db');
+
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', 'id2643544_boti');
+   define('DB_PASSWORD', '32tr56prs');
+   define('DB_DATABASE', 'id2643544_training_db');

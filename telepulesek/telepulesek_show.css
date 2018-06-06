@@ -1,0 +1,32 @@
+
+/*Table*/
+
+table{
+    font-family: "Arial Black";
+    width: 70%;
+    margin:auto;
+    font-size: 150%;
+    table-layout:fixed;
+    border-collapse: collapse;
+}
+
+table tr:hover {
+      background-color: #42f465;
+}
+
+table, th, td {
+    border: 3px solid #175203;
+}
+
+tbody {
+    display: block;   /*scrollable*/
+    height: 400px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+thead, tbody tr {
+    display:table;
+    width: 100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
