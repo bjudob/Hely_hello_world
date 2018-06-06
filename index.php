@@ -20,7 +20,7 @@
       if($count == 1) {
          $_SESSION['login_user'] = $myusername;
          
-         header("location: ./helynevek/helynevek_menu.php");
+         header("location: ./ui/helynevek/helynevek_menu.php");
       }else {
          $error = "Helytelen felhasználónév vagy jelszó!";
       }
