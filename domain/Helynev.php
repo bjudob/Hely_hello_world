@@ -30,7 +30,7 @@ class Helynev
     }
 
     //all args constructor
-    public function setValues($telepules, $standard, $ejtes, $helyfajta, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok)
+    public function construct($telepules, $standard, $ejtes, $helyfajta, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok)
     {
         $this->telepules = $telepules;
         $this->standard = $standard;

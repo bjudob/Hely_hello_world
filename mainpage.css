@@ -6,7 +6,7 @@
 }
 
 body{
-	background-image: url("green_background.jpg");
+	background-image: url("img/green_background.jpg");
     /*background-color: #00FF00;*/
 }
 
@@ -62,8 +62,6 @@ body{
   background-image: -ms-linear-gradient(top, #08c224, #91f03e);
   background-image: -o-linear-gradient(top, #08c224, #91f03e);
   background-image: linear-gradient(to bottom, #08c224, #91f03e);
-  -webkit-border-radius: 23;
-  -moz-border-radius: 23;
   border-radius: 23px;
   -webkit-box-shadow: 5px 1px 3px #666666;
   -moz-box-shadow: 5px 1px 3px #666666;
@@ -101,7 +99,7 @@ select{
 /*List*/
 nav ul{
     height:400px;
-    width:30%%;
+    width:30%;
     margin:auto;
     list-style-type: none;
 }

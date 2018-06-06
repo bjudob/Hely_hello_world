@@ -20,6 +20,14 @@ class Tajegyseg
     }
 
 
+    public function construct($id, $nev, $isactive)
+    {
+        $this->id = $id;
+        $this->nev = $nev;
+        $this->isactive = $isactive;
+    }
+
+
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;

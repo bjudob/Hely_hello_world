@@ -22,10 +22,7 @@
         <tbody>
     		<?php
         		include("../config.php");
-                mysqli_set_charset($con,"UTF8");
-        		if(!$con){
-                    die('Az adatbázis nem elérhető!');
-                }
+
                 $query="SELECT * 
         			    FROM tajegyseg";
                 $result=mysqli_query($con,$query) or die('Hiba tortent');
