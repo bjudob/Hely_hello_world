@@ -22,6 +22,32 @@ class Helynev
     private $helyinfo;
     private $nevvaltozatok;
 
+    /**
+     * Helynev constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    //all args constructor
+    public function setValues($telepules, $standard, $ejtes, $helyfajta, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok)
+    {
+        $this->telepules = $telepules;
+        $this->standard = $standard;
+        $this->ejtes = $ejtes;
+        $this->helyfajta = $helyfajta;
+        $this->terkepszam = $terkepszam;
+        $this->ragosalak = $ragosalak;
+        $this->nyelv = $nyelv;
+        $this->forrasmunkaadat = $forrasmunkaadat;
+        $this->forrasmunkaev = $forrasmunkaev;
+        $this->forrasmunkatipus = $forrasmunkatipus;
+        $this->objektuminfo = $objektuminfo;
+        $this->helyinfo = $helyinfo;
+        $this->nevvaltozatok = $nevvaltozatok;
+    }
+
+
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;
