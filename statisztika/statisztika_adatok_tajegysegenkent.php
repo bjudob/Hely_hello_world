@@ -5,7 +5,7 @@
 ?>
 <head>
     <title>Statisztika</title>
-    <link rel="stylesheet" type="text/css" href="statisztika_show.css">
+    <link rel="stylesheet" type="text/css" href="statisztika.css">
     <link rel="stylesheet" type="text/css" href="../mainpage.css">
 </head>
 <body>

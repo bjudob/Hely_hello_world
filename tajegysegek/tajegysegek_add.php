@@ -20,7 +20,7 @@
 ?>
 <head>
 	<title>Tájegységek</title>
-	<link rel="stylesheet" type="text/css" href="tajegysegek_show.css">
+	<link rel="stylesheet" type="text/css" href="tajegysegek.css">
 	<link rel="stylesheet" type="text/css" href="../mainpage.css">
 
 </head>
