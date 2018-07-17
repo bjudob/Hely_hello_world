@@ -7,7 +7,7 @@
 ?>
 
 <head>
-	<title>Települések</title>
+    <title>Települések</title>
     <link rel="stylesheet" type="text/css" href="../../css/telepulesek.css">
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 </head>
@@ -25,9 +25,7 @@
         </thead>
         <tbody>
             <?php
-                $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-                
-                require ("$root\helynevek\db\HelynevDatabase.php");
+                require ("../../db/HelynevDatabase.php");
                 
                 $db=new HelynevDatabase();
                 

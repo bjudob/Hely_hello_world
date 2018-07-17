@@ -23,9 +23,7 @@
         </thead>
         <tbody>
             <?php
-    		$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-                
-                require ("$root\helynevek\db\HelynevDatabase.php");
+    		require ("../../db/HelynevDatabase.php");
                 
                 $db=new HelynevDatabase();
                 
