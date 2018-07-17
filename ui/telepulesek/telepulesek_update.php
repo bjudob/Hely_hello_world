@@ -22,29 +22,29 @@
         </tr>
         </thead>
         <tbody>
-		<?php
+            <?php
     		include("../../config.php");
-            mysqli_set_charset($con,"UTF8");
+                mysqli_set_charset($con,"UTF8");
     		if(!$con){
-                die('Az adatbázis nem elérhető!');
-            }
-            $query="SELECT * 
-    			    FROM telepules";
-            $result=mysqli_query($con,$query) or die('error');
-           
-            while($row=mysqli_fetch_array($result)){
-                $nev=$row['Nev'];
-                $id=$row['ID'];
+                    die('Az adatbázis nem elérhető!');
+                }
+                $query="SELECT * 
+                                FROM telepules";
+                $result=mysqli_query($con,$query) or die('error');
 
-                echo '<tr>';
-                echo '<td>';
-                echo $nev;
-                echo '</td>';
-                echo "<td><a href='update.php?id=".$row['ID']."&name=".$row['Nev']."'>Átnevez</a></td>";
-                echo '</tr>';
+                while($row=mysqli_fetch_array($result)){
+                    $nev=$row['Nev'];
+                    $id=$row['ID'];
 
-            }
-            mysqli_close($con);
+                    echo '<tr>';
+                    echo '<td>';
+                    echo $nev;
+                    echo '</td>';
+                    echo "<td><a href='update.php?id=".$row['ID']."&name=".$row['Nev']."'>Átnevez</a></td>";
+                    echo '</tr>';
+
+                }
+                mysqli_close($con);
 	    ?>
         </tbody>
         </table>

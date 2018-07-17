@@ -24,25 +24,22 @@
         </tr>
         </thead>
         <tbody>
-		<?php
-    		include("../../config.php");
-            mysqli_set_charset($con,"UTF8");
-    		if(!$con){
-                die('Az adatbázis nem elérhető!');
-            }
-            $query="SELECT * 
-    			    FROM telepules";
-            $result=mysqli_query($con,$query) or die('error');
-           
-            while($row=mysqli_fetch_array($result)){
-                $nev=$row['Nev'];
-                $id=$row['ID'];
-
+            <?php
+                $root = realpath($_SERVER["DOCUMENT_ROOT"]);
+                
+                require ("$root\helynevek\db\HelynevDatabase.php");
+                
+                $db=new HelynevDatabase();
+                
+                $telepulesek = $db->getAllTelepules();
+                
+                foreach ($telepulesek as &$telepules) {
+            
                 echo '<tr>';
                 echo '<td>';
-                echo $nev;
+                echo $telepules->nev;
                 echo '</td>';
-                echo "<td><a href='delete.php?id=".$row['ID']."&name=".$row['Nev']."'>Törlés</a></td>";
+                echo "<td><a href='delete.php?id=".$telepules->id."&name=".$telepules->nev."'>Törlés</a></td>";
                 echo '</tr>';
 
             }

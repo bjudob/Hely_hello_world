@@ -30,10 +30,6 @@
 		</div>
 		<br>
 		<div id="menuOption">
-		<input id="btn" type="button" value="Átnevezés" onclick="window.location.href='telepulesek_update.php'">
-		</div>
-		<br>
-		<div id="menuOption">
 		<input id="btn" type="button" value="Törlés" onclick="window.location.href='telepulesek_delete.php'">
 		</div>
 		<br>
