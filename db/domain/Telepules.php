@@ -16,6 +16,24 @@ class Telepules
     private $nyelv;
     private $isactive;
 
+    
+    
+    public function __construct()
+    {
+    }
+
+
+    public function setValues($id, $nev, $megye, $tajegyseg, $telepulestipus, $nyelv, $isactive)
+    {
+        $this->id = $id;
+        $this->nev = $nev;
+        $this->megye = $megye;
+        $this->tajegyseg = $tajegyseg;
+        $this->telepulestipus = $telepulestipus;
+        $this->nyelv = $nyelv;
+        $this->isactive = $isactive;
+    }
+    
     public function __get($property) {
         if (property_exists($this, $property)) {
             return $this->$property;

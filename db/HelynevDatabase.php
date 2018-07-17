@@ -59,4 +59,29 @@ class HelynevDatabase
         return $tajegysegek;
     }
     
+    public function getAllTelepules(){
+        $telepulesek = array();
+        //$array[$key] = "item"
+
+        $this->connect();
+
+        $query="SELECT * FROM tajegyseg";
+        $result=mysqli_query($this->con,$query) or die('Hiba tortent');
+
+        while($row=mysqli_fetch_array($result)){
+            $id=$row['ID'];
+            $nev=$row['Nev'];
+            $isactive=$row['Is_Active'];
+
+            $tajegyseg=new Tajegyseg();
+            $tajegyseg->setValues($id, $nev, $isactive);
+
+            $tajegysegek[] = $tajegyseg;
+
+        }
+
+        $this->disconnect();
+        return $tajegysegek;
+    }
+    
 }
