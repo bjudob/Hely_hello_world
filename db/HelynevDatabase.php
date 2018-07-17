@@ -10,11 +10,9 @@ require ("domain/Tajegyseg.php");
 
 class HelynevDatabase
 {
+    private static $instance;
     private $conn;
 
-    /**
-     * HelynevDatabase constructor.
-     */
     public function __construct()
     {
     }
@@ -25,8 +23,7 @@ class HelynevDatabase
 
         $this->connect();
 
-        $query="SELECT * 
-        			    FROM tajegyseg";
+        $query="SELECT * FROM tajegyseg";
         $result=mysqli_query($this->con,$query) or die('Hiba tortent');
 
         while($row=mysqli_fetch_array($result)){

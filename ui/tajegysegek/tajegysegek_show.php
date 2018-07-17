@@ -20,23 +20,23 @@
         </tr>
         </thead>
         <tbody>
-    		<?php
-        		include("../../config.php");
-
-                $query="SELECT * 
-        			    FROM tajegyseg";
-                $result=mysqli_query($con,$query) or die('Hiba tortent');
-               
-                while($row=mysqli_fetch_array($result)){
-                    $nev=$row['Nev'];
+            <?php
+                $root = realpath($_SERVER["DOCUMENT_ROOT"]);
+                
+                require ("$root\helynevek\db\HelynevDatabase.php");
+                
+                $db=new HelynevDatabase();
+                
+                $tajegysegek = $db->getAllTajegyseg();
+                
+                foreach ($tajegysegek as &$tajegyseg) {
                     echo '<tr>';
                     echo '<td>';
-                    echo $nev;
+                    echo $tajegyseg->nev;
                     echo '</td>';
                     echo '</tr>';
-                }
-
-                mysqli_close($con);
+                }  
+                
     	    ?>
         </tbody>
         </table>
