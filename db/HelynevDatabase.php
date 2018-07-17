@@ -36,43 +36,54 @@ class HelynevDatabase
 
     
     public function getHelynev(){
-        $telepulesek = array();
+        $helynevek = array();
         //$array[$key] = "item"
 
         $this->connect();
-
-        $query="SELECT * FROM tajegyseg";
-        $result=mysqli_query($this->con,$query) or die('Hiba tortent');
-
-        $query="SELECT 
-                    telepules.ID as id,
-                    telepules.Nev as nev,
-                    megye.Nev as megye,
-                    tajegyseg.Nev as tajegyseg,
-                    telepulestipus.Nev as telepulestipus,
-                    nyelv.Nev as nyelv,
-                    telepules.Is_Active as isactive
-
-                    FROM telepules
-                    INNER JOIN megye ON megye.ID=telepules.Megye
-                    INNER JOIN tajegyseg ON tajegyseg.ID=telepules.Tajegyseg
-                    INNER JOIN telepulestipus ON telepulestipus.ID=telepules.Telepules_Tipus
-                    INNER JOIN nyelv ON nyelv.ID=telepules.Nyelv";
+        
+        $query = "SELECT
+            helynev.ID, 
+            Standard,
+            Telepules,
+            Ejtes,
+            helyfajta.Nev as helyfajtaNev,
+            helyfajta.Kod as helyfajtaKod,
+            Terkepszam,
+            Ragos_Alak,
+            nyelv.Nev as nyelvNev,
+            Forras_Adat,
+            Forras_Ev,
+            Forras_Tipus,
+            Objektum_Info,
+            Nev_Info,
+            Nevvarians,
+            Is_Active
+            FROM `helynev` 
+            INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
         $result=mysqli_query($this->con,$query) or die('Hiba tortent');
         
         while($row=mysqli_fetch_array($result)){
-            $id=$row['id'];
-            $nev=$row['nev'];
-            $megye=$row['megye'];
-            $tajegyseg=$row['tajegyseg'];
-            $telepulestipus=$row['telepulestipus'];
-            $nyelv=$row['nyelv'];
-            $isactive=$row['isactive'];
+            $standard=$row['Standard'];
+            $telepules=$row['Telepules'];
+            $ejtes=$row['Ejtes'];
+            $helyfajtaNev=$row['helyfajtaNev'];
+            $helyfajtaKod=$row['helyfajtaKod'];
+            $terkepszam=$row['Terkepszam'];
+            $ragosalak=$row['Ragos_Alak'];
+            $nyelv=$row['nyelvNev'];
+            $forrasmunkaadat=$row['Forras_Adat'];
+            $forrasmunkaev=$row['Forras_Ev'];
+            $forrasmunkatipus=$row['Forras_Tipus'];
+            $objektuminfo=$row['Objektum_Info'];
+            $helyinfo=$row['Nev_Info'];
+            $nevvaltozatok=$row['Nevvarians'];
+            $isactive=$row['Is_Active'];
 
-            $telepules=new Tajegyseg();
-            $telepules->setValues($id, $nev, $megye, $tajegyseg, $telepulestipus, $nyelv, $isactive);
+            $helynev=new Helynev();
+            $helynev->setValues($standard, $telepules, $ejtes, $helyfajtaNev, $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $isactive);
 
-            $telepulesek[] = $telepules;
+            $helynevek[] = $helynev;
 
         }
 
@@ -86,9 +97,6 @@ class HelynevDatabase
 
         $this->connect();
 
-        $query="SELECT * FROM tajegyseg";
-        $result=mysqli_query($this->con,$query) or die('Hiba tortent');
-
         $query="SELECT 
                     telepules.ID as id,
                     telepules.Nev as nev,
@@ -114,7 +122,7 @@ class HelynevDatabase
             $nyelv=$row['nyelv'];
             $isactive=$row['isactive'];
 
-            $telepules=new Tajegyseg();
+            $telepules=new Telepules();
             $telepules->setValues($id, $nev, $megye, $tajegyseg, $telepulestipus, $nyelv, $isactive);
 
             $telepulesek[] = $telepules;

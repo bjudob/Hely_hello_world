@@ -8,10 +8,11 @@
 
 class Helynev
 {
-    private $telepules;
     private $standard;
+    private $telepules;
     private $ejtes;
-    private $helyfajta;
+    private $helyfajtaNev;
+    private $helyfajtaKod;
     private $terkepszam;
     private $ragosalak;
     private $nyelv;
@@ -31,12 +32,13 @@ class Helynev
     }
 
     //all args constructor
-    public function setValues($telepules, $standard, $ejtes, $helyfajta, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $isactive)
+    public function setValues($standard, $telepules, $ejtes, $helyfajtaNev, $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $isactive)
     {
-        $this->telepules = $telepules;
         $this->standard = $standard;
+        $this->telepules = $telepules;
         $this->ejtes = $ejtes;
-        $this->helyfajta = $helyfajta;
+        $this->helyfajtaNev = $helyfajtaNev;
+        $this->helyfajtaKod = $helyfajtaKod;
         $this->terkepszam = $terkepszam;
         $this->ragosalak = $ragosalak;
         $this->nyelv = $nyelv;
