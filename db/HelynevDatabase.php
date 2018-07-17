@@ -68,20 +68,40 @@ class HelynevDatabase
         $query="SELECT * FROM tajegyseg";
         $result=mysqli_query($this->con,$query) or die('Hiba tortent');
 
+        $query="SELECT 
+                    telepules.ID as id,
+                    telepules.Nev as nev,
+                    megye.Nev as megye,
+                    tajegyseg.Nev as tajegyseg,
+                    telepulestipus.Nev as telepulestipus,
+                    nyelv.Nev as nyelv,
+                    telepules.Is_Active as isactive
+
+                    FROM telepules
+                    INNER JOIN megye ON megye.ID=telepules.Megye
+                    INNER JOIN tajegyseg ON tajegyseg.ID=telepules.Tajegyseg
+                    INNER JOIN telepulestipus ON telepulestipus.ID=telepules.Telepules_Tipus
+                    INNER JOIN nyelv ON nyelv.ID=telepules.Nyelv";
+        $result=mysqli_query($this->con,$query) or die('Hiba tortent');
+        
         while($row=mysqli_fetch_array($result)){
-            $id=$row['ID'];
-            $nev=$row['Nev'];
-            $isactive=$row['Is_Active'];
+            $id=$row['id'];
+            $nev=$row['nev'];
+            $megye=$row['megye'];
+            $tajegyseg=$row['tajegyseg'];
+            $telepulestipus=$row['telepulestipus'];
+            $nyelv=$row['nyelv'];
+            $isactive=$row['isactive'];
 
-            $tajegyseg=new Tajegyseg();
-            $tajegyseg->setValues($id, $nev, $isactive);
+            $telepules=new Tajegyseg();
+            $telepules->setValues($id, $nev, $megye, $tajegyseg, $telepulestipus, $nyelv, $isactive);
 
-            $tajegysegek[] = $tajegyseg;
+            $telepulesek[] = $telepules;
 
         }
 
         $this->disconnect();
-        return $tajegysegek;
+        return $telepulesek;
     }
     
 }
