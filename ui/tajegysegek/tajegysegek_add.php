@@ -2,7 +2,7 @@
    include("../../config.php");
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      $myname = mysqli_real_escape_string($con,$_POST['nev']); 
+          $myname = mysqli_real_escape_string($con,$_POST['nev']); 
 
 	  $query = "INSERT INTO tajegyseg(`Nev`) VALUES ('$myname')";
 	  mysqli_query($con, $query);
