@@ -22,29 +22,25 @@
         </tr>
         </thead>
         <tbody>
-		<?php
-    		include("../../config.php");
-            mysqli_set_charset($con,"UTF8");
-    		if(!$con){
-                die('Az adatbázis nem elérhető!');
-            }
-            $query="SELECT * 
-    			    FROM tajegyseg";
-            $result=mysqli_query($con,$query) or die('error');
-           
-            while($row=mysqli_fetch_array($result)){
-                $nev=$row['Nev'];
-                $id=$row['ID'];
+            <?php
+    		$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+                
+                require ("$root\helynevek\db\HelynevDatabase.php");
+                
+                $db=new HelynevDatabase();
+                
+                $tajegysegek = $db->getAllTajegyseg();
+                
+                foreach ($tajegysegek as &$tajegyseg) {
 
                 echo '<tr>';
                 echo '<td>';
-                echo $nev;
+                echo $tajegyseg->nev;
                 echo '</td>';
-                echo "<td><a href='delete.php?id=".$row['ID']."&name=".$row['Nev']."'>Törlés</a></td>";
+                echo "<td><a href='delete.php?id=".$tajegyseg->id."&name=".$tajegyseg->nev."'>Törlés</a></td>";
                 echo '</tr>';
 
-            }
-            mysqli_close($con);
+                }
 	    ?>
         </tbody>
         </table>
