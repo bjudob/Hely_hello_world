@@ -7,6 +7,8 @@
  */
 
 require ("domain/Tajegyseg.php");
+require ("domain/Telepules.php");
+require ("domain/Helynev.php");
 
 class HelynevDatabase
 {
