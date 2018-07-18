@@ -37,7 +37,7 @@ class HelynevDatabase
     }
 
     
-    public function getHelynev(){
+    public function getAllHelynev(){
         $helynevek = array();
         //$array[$key] = "item"
 
@@ -90,7 +90,7 @@ class HelynevDatabase
         }
 
         $this->disconnect();
-        return $telepulesek;
+        return $helynevek;
     }
     
     public function getAllTelepules(){
