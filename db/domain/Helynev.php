@@ -8,6 +8,7 @@
 
 class Helynev
 {
+    private $id;
     private $standard;
     private $telepules;
     private $ejtes;

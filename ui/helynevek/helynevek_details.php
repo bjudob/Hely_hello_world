@@ -17,10 +17,12 @@
         $new_objektuminfo = mysqli_real_escape_string($con, $_POST['objektuminfo']);
         $new_helyinfo = mysqli_real_escape_string($con, $_POST['helyinfo']);
         $new_nevvaltozatok = mysqli_real_escape_string($con, $_POST['nevvaltozatok']);
-
-
+        $new_termeszetes = mysqli_real_escape_string($con, $_POST['termeszetes']);
+        $new_mikro = mysqli_real_escape_string($con, $_POST['mikro']);
+        
         $sql = "UPDATE helynev 
-                SET Standard = '$new_standard',
+                SET 
+                Standard = '$new_standard',
                 Ejtes = '$new_ejtes',
                 Terkepszam = '$new_terkepszam',
                 Ragos_Alak = '$new_ragosalak',
@@ -29,7 +31,9 @@
                 Forras_Tipus = '$new_forrasmunkatipus',
                 Objektum_Info = '$new_objektuminfo',
                 Nev_Info = '$new_helyinfo',
-                Nevvarians = '$new_nevvaltozatok'
+                Nevvarians = '$new_nevvaltozatok',
+                Termeszetes = '$new_termeszetes',
+                Mikro = '$new_mikro'
 
                 WHERE ID = '$myid'";
 
@@ -58,44 +62,10 @@
         //no button pressed
     }
 
-    $query = "SELECT
-        helynev.ID, 
-        Standard,
-        telepules.Nev as joinTelepules,
-        Ejtes,
-        helyfajta.Nev as joinHelyfajta,
-        Terkepszam,
-        Ragos_Alak,
-        nyelv.Nev as joinNyelv,
-        Forras_Adat,
-        Forras_Ev,
-        Forras_Tipus,
-        Objektum_Info,
-        Nev_Info,
-        Nevvarians
-        FROM `helynev` 
-        INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
-        INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-        INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
-        WHERE `helynev`.ID=".$_GET["id"];
-    mysqli_query($con, $query);
-    $result=mysqli_query($con,$query) or die('hiba');
-    $row=mysqli_fetch_array($result);
-
-    $id=$row['ID'];
-    $standard=$row['Standard'];
-    $ejtes=$row['Ejtes'];
-    $telepules=$row['joinTelepules'];
-    $helyfajta=$row['joinHelyfajta'];
-    $terkepszam=$row['Terkepszam'];
-    $ragos_alak=$row['Ragos_Alak'];
-    $nyelv=$row['joinNyelv'];
-    $forras_adat=$row['Forras_Adat'];
-    $forras_ev=$row['Forras_Ev'];
-    $forras_tipus=$row['Forras_Tipus'];
-    $objektum_info=$row['Objektum_Info'];
-    $nev_info=$row['Nev_Info'];
-    $nevvarians=$row['Nevvarians'];
+    require ("../../db/HelynevDatabase.php");
+    $db=new HelynevDatabase();
+                
+    $helynev=$db->getHelynev($_GET["id"]);
 ?>
 
 <!DOCTYPE html>
@@ -113,11 +83,11 @@
         <br><br>
         <div id="item">
             <form action = "" method = "post">
-                <label id="smallLabel">Standard:</label><input type = "text" name = "standard" class="inputfield" value="<?php if(isset($standard)) echo $standard; ?>"/>
+                <label id="smallLabel">Standard:</label><input type = "text" name = "standard" class="inputfield" value="<?php echo $helynev->standard; ?>"/>
                 <br>
-                <label id="smallLabel">Település:</label><input type = "text" name = "telepules" class="inputfield" value="<?php if(isset($telepules)) echo $telepules; ?>" disabled/>
+                <label id="smallLabel">Település:</label><input type = "text" name = "telepules" class="inputfield" value="<?php echo $helynev->telepules; ?>" disabled/>
                 <br>
-                <label id="smallLabel">Ejtés:</label><input type = "text" name = "ejtes" class="inputfield" value="<?php if(isset($ejtes)) echo $ejtes; ?>"/>
+                <label id="smallLabel">Ejtés:</label><input type = "text" name = "ejtes" class="inputfield" value="<?php echo $helynev->ejtes; ?>"/>
                 <br>
                 <label id="smallLabel">Helyfajta:</label>
                 <select name="helyfajta">
@@ -137,7 +107,7 @@
                             if (strpos($kod, '.') == false) {
                                 $bold="boldoption";
                             }
-                            if($helyfajta_option==$helyfajta){
+                            if($helyfajta_option==$helynev->helyfajtaNev){
                                 echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$helyfajta_option."</option>";
                             }
                             else{
@@ -147,9 +117,9 @@
                     ?>
                 </select>
                 <br>
-                <label id="smallLabel">Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield" value="<?php if(isset($terkepszam)) echo $terkepszam; ?>"/>
+                <label id="smallLabel">Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield" value="<?php echo $helynev->terkepszam; ?>"/>
                 <br>
-                <label id="smallLabel">Ragos alak:</label><input type = "text" name = "ragosalak" class="inputfield" value="<?php if(isset($ragos_alak)) echo $ragos_alak; ?>"/>
+                <label id="smallLabel">Ragos alak:</label><input type = "text" name = "ragosalak" class="inputfield" value="<?php echo $helynev->ragosalak; ?>"/>
                 <br>
                 <label id="smallLabel">Nyelv:</label>
                 <select name="nyelv">
@@ -163,7 +133,7 @@
                             $id=$row['ID'];
                             $nyelv_option=$row['Nev'];
 
-                            if($nyelv_option==$nyelv){
+                            if($nyelv_option==$helynev->nyelv){
                                     echo "<option selected='selected' value=".$id.">".$nyelv_option."</option>";
                             }
                             else{
@@ -176,17 +146,46 @@
                     ?>
                 </select>
                 <br>
-                <label id="smallLabel">Forrás adat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield" value="<?php if(isset($forras_adat)) echo $forras_adat; ?>"/>
+                <label id="smallLabel">Forrás adat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield" value="<?php echo $helynev->forrasmunkaadat; ?>"/>
                 <br>
-                <label id="smallLabel">Forrás év:</label><input type = "text" name = "forrasmunkaev" class="inputfield" value="<?php if(isset($forras_ev)) echo $forras_ev; ?>"/>
+                <label id="smallLabel">Forrás év:</label><input type = "text" name = "forrasmunkaev" class="inputfield" value="<?php  echo $helynev->forrasmunkaev; ?>"/>
                 <br>
-                <label id="smallLabel">Forrás típus:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" value="<?php if(isset($forras_tipus)) echo $forras_tipus; ?>"/>
+                <label id="smallLabel">Forrás típus:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" value="<?php  echo $helynev->forrasmunkatipus; ?>"/>
                 <br>
-                <label id="smallLabel">Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" value="<?php if(isset($objektum_info)) echo $objektum_info; ?>"/>
+                <label id="smallLabel">Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" value="<?php  echo $helynev->objektuminfo; ?>"/>
                 <br>
-                <label id="smallLabel">Név info:</label><input type = "text" name = "helyinfo" class="inputfield" value="<?php if(isset($nev_info)) echo $nev_info; ?>"/>
+                <label id="smallLabel">Név info:</label><input type = "text" name = "helyinfo" class="inputfield" value="<?php  echo $helynev->helyinfo; ?>"/>
                 <br>
-                <label id="smallLabel">Névváltozatok:</label><input type = "text" name = "nevvaltozatok" value="<?php if(isset($nevvarians)) echo $nevvarians; ?>"/>
+                <label id="smallLabel">Névváltozatok:</label><input type = "text" name = "nevvaltozatok" value="<?php  echo $helynev->nevvaltozatok; ?>"/>
+                <br>
+                <label>Természetes:</label>
+                <select name="termeszetes">
+                    <?php
+                        if($helynev->termeszetes!=0){
+                            echo "<option selected='selected' value=1>Természetes</option>".
+                                  "<option value=0>Mesterséges</option>";
+                        }
+                        else{
+                            echo "<option value=1>Természetes</option>".
+                                 "<option selected='selected' value=0>Mesterséges</option>";
+                        }
+                    ?>
+                </select>
+                <br>
+                <label>Mikro/makro:</label>
+                <select name="mikro">
+                    <?php
+                        if($helynev->mikro!=0){
+                            echo "<option selected='selected' value=1>Mikronév</option>".
+                                  "<option value=0>Makronév</option>";
+                        }
+                        else{
+                            echo "<option value=1>Mikronév</option>".
+                                  "<option selected='selected' value=0>Makronév</option>";
+                        }
+                    ?>
+                    
+                </select>
                 <br>
                 <br>
                 <input id="btn" type = "submit"  name="update_button" value = " Módosítás "/>

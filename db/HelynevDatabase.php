@@ -93,6 +93,64 @@ class HelynevDatabase
         return $helynevek;
     }
     
+    public function getHelynev($id){
+        $helynev=new Helynev();
+        
+        $this->connect();
+        
+        $query = "SELECT
+            helynev.ID, 
+            Standard,
+            telepules.Nev as telepules,
+            Ejtes,
+            helyfajta.Nev as helyfajtaNev,
+            helyfajta.Kod as helyfajtaKod,
+            Terkepszam,
+            Ragos_Alak,
+            nyelv.Nev as joinNyelv,
+            Forras_Adat,
+            Forras_Ev,
+            Forras_Tipus,
+            Objektum_Info,
+            Nev_Info,
+            Nevvarians,
+            Termeszetes,
+            Mikro
+            FROM `helynev` 
+            INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
+            INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            WHERE `helynev`.ID=".$id;
+        
+        $result=mysqli_query($this->con,$query) or die('hiba');
+        $row=mysqli_fetch_array($result);
+
+        $id=$row['ID'];
+        $standard=$row['Standard'];
+        $ejtes=$row['Ejtes'];
+        $telepules=$row['telepules'];
+        $helyfajtaNev=$row['helyfajtaNev'];
+        $helyfajtaKod=$row['helyfajtaKod'];
+        $terkepszam=$row['Terkepszam'];
+        $ragosalak=$row['Ragos_Alak'];
+        $nyelv=$row['joinNyelv'];
+        $forrasmunkaadat=$row['Forras_Adat'];
+        $forrasmunkaev=$row['Forras_Ev'];
+        $forrasmunkatipus=$row['Forras_Tipus'];
+        $objektuminfo=$row['Objektum_Info'];
+        $helyinfo=$row['Nev_Info'];
+        $nevvaltozatok=$row['Nevvarians'];
+        $termeszetes=$row['Termeszetes'];
+        $mikro=$row['Mikro'];
+        
+        $helynev->setValues($standard, $telepules, $ejtes, $helyfajtaNev, $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro, 1);
+        $helynev->id=$id;
+                
+        $this->disconnect();
+        
+        return $helynev;
+    }
+            
     public function addHelynev($helynev){
         $this->connect();
         
