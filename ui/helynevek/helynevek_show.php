@@ -6,7 +6,6 @@
     
     $query = "SELECT * FROM `tajegyseg`";
           /*WHERE Is_Active=1";*/
-    mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
 
     while($row=mysqli_fetch_array($result)){
@@ -18,7 +17,6 @@
 
     $query = "SELECT * FROM `telepules`";
           /*WHERE Is_Active=1";*/
-    mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
 
     while($row=mysqli_fetch_array($result)){
@@ -30,7 +28,7 @@
 
     $db=new HelynevDatabase();
 
-    $telepulesek = $db->getAllTelepules();
+    //$telepulesek = $db->getAllTelepules();
 
     $query = "SELECT
             helynev.ID, 
