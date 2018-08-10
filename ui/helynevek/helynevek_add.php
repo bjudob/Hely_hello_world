@@ -20,7 +20,7 @@
         $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
 
         $helynev= new Helynev();
-        $helynev->setValues($standard, $telepules, $ejtes, "", $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro, 1);
+        $helynev->setValues($standard, $telepules, $ejtes, "", $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro);
                 
         $db=new HelynevDatabase();
                 

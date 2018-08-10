@@ -19,6 +19,7 @@ class HelynevDatabase
     {
     }
 
+    //DATABASE CONNECTION
     private function connect(){
         if (!defined('DB_SERVER')) define('DB_SERVER', 'localhost');
         if (!defined('DB_USERNAME')) define('DB_USERNAME', 'root');
@@ -36,7 +37,7 @@ class HelynevDatabase
         mysqli_close($this->con);
     }
 
-    
+    //HELYNEVEK
     public function getAllHelynev(){
         $helynevek = array();
         //$array[$key] = "item"
@@ -150,7 +151,7 @@ class HelynevDatabase
         
         return $helynev;
     }
-            
+   
     public function addHelynev($helynev){
         $this->connect();
         
@@ -177,6 +178,32 @@ class HelynevDatabase
         $this->disconnect();
     }
     
+    public function updateHelynev($helynev){
+        $this->connect();
+        
+        $query = "UPDATE helynev 
+                SET 
+                Standard = '$helynev->standard',
+                Ejtes = '$helynev->ejtes',
+                Terkepszam = '$helynev->terkepszam',
+                Ragos_Alak = '$helynev->ragosalak',
+                Forras_Adat = '$helynev->forrasmunkaadat',
+                Forras_Ev = '$helynev->forrasmunkaev',
+                Forras_Tipus = '$helynev->forrasmunkatipus',
+                Objektum_Info = '$helynev->objektuminfo',
+                Nev_Info = '$helynev->helyinfo',
+                Nevvarians = '$helynev->nevvaltozatok',
+                Termeszetes = '$helynev->termeszetes',
+                Mikro = '$helynev->mikro'
+
+                WHERE ID = '$helynev->id'";
+
+        mysqli_query($this->con, $query) or die('hiba');
+        
+        $this->disconnect();
+    }
+    
+    //TELEPULES, TAJEGYSEG
     public function getAllTelepules(){
         $telepulesek = array();
         //$array[$key] = "item"

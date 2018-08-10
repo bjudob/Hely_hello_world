@@ -51,8 +51,7 @@ class Helynev
             $helyinfo, 
             $nevvaltozatok, 
             $termeszetes,
-            $mikro,
-            $isactive)
+            $mikro)
     {
         $this->standard = $standard;
         $this->telepules = $telepules;
@@ -70,7 +69,6 @@ class Helynev
         $this->nevvaltozatok = $nevvaltozatok;
         $this->termeszetes = $termeszetes;
         $this->mikro = $mikro;
-        $this->isactive = $isactive;
     }
 
 

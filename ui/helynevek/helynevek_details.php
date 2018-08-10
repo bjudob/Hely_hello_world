@@ -1,44 +1,30 @@
 <?php
     include("../../config.php");
-
+    require ("../../db/HelynevDatabase.php");
+            
     if (isset($_POST['update_button'])) {
-        if ($con->connect_error) {
-          die("Az adatbázis nem elérhető: " . $conn->connect_error);
-        } 
-
-        $myid = mysqli_real_escape_string($con, $_GET['id']);;
-        $new_standard = mysqli_real_escape_string($con, $_POST['standard']);
-        $new_ejtes = mysqli_real_escape_string($con, $_POST['ejtes']);
-        $new_terkepszam = mysqli_real_escape_string($con, $_POST['terkepszam']);
-        $new_ragosalak = mysqli_real_escape_string($con, $_POST['ragosalak']);
-        $new_forrasmunkaadat = mysqli_real_escape_string($con, $_POST['forrasmunkaadat']);
-        $new_forrasmunkaev = mysqli_real_escape_string($con, $_POST['forrasmunkaev']);
-        $new_forrasmunkatipus = mysqli_real_escape_string($con, $_POST['forrasmunkatipus']);
-        $new_objektuminfo = mysqli_real_escape_string($con, $_POST['objektuminfo']);
-        $new_helyinfo = mysqli_real_escape_string($con, $_POST['helyinfo']);
-        $new_nevvaltozatok = mysqli_real_escape_string($con, $_POST['nevvaltozatok']);
-        $new_termeszetes = mysqli_real_escape_string($con, $_POST['termeszetes']);
-        $new_mikro = mysqli_real_escape_string($con, $_POST['mikro']);
         
-        $sql = "UPDATE helynev 
-                SET 
-                Standard = '$new_standard',
-                Ejtes = '$new_ejtes',
-                Terkepszam = '$new_terkepszam',
-                Ragos_Alak = '$new_ragosalak',
-                Forras_Adat = '$new_forrasmunkaadat',
-                Forras_Ev = '$new_forrasmunkaev',
-                Forras_Tipus = '$new_forrasmunkatipus',
-                Objektum_Info = '$new_objektuminfo',
-                Nev_Info = '$new_helyinfo',
-                Nevvarians = '$new_nevvaltozatok',
-                Termeszetes = '$new_termeszetes',
-                Mikro = '$new_mikro'
-
-                WHERE ID = '$myid'";
-
-        mysqli_query($con, $sql);
-
+        $id = mysqli_real_escape_string($con, $_GET['id']);;
+        $standard = mysqli_real_escape_string($con, $_POST['standard']);
+        $ejtes = mysqli_real_escape_string($con, $_POST['ejtes']);
+        $terkepszam = mysqli_real_escape_string($con, $_POST['terkepszam']);
+        $ragosalak = mysqli_real_escape_string($con, $_POST['ragosalak']);
+        $forrasmunkaadat = mysqli_real_escape_string($con, $_POST['forrasmunkaadat']);
+        $forrasmunkaev = mysqli_real_escape_string($con, $_POST['forrasmunkaev']);
+        $forrasmunkatipus = mysqli_real_escape_string($con, $_POST['forrasmunkatipus']);
+        $objektuminfo = mysqli_real_escape_string($con, $_POST['objektuminfo']);
+        $helyinfo = mysqli_real_escape_string($con, $_POST['helyinfo']);
+        $nevvaltozatok = mysqli_real_escape_string($con, $_POST['nevvaltozatok']);
+        $termeszetes = mysqli_real_escape_string($con, $_POST['termeszetes']);
+        $mikro = mysqli_real_escape_string($con, $_POST['mikro']);
+        
+        $helynev=new Helynev();
+        $helynev->setValues($standard, 0, $ejtes, 0, 0, $terkepszam, $ragosalak, 0, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro);
+        $helynev->id=$id;
+                
+        $db=new HelynevDatabase();
+        $db->updateHelynev($helynev);
+        
         header("location: helynevek_show.php");
     } 
     else if (isset($_POST['delete_button'])) {
@@ -62,7 +48,6 @@
         //no button pressed
     }
 
-    require ("../../db/HelynevDatabase.php");
     $db=new HelynevDatabase();
                 
     $helynev=$db->getHelynev($_GET["id"]);
