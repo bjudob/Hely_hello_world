@@ -22,6 +22,8 @@ class Helynev
     private $objektuminfo;
     private $helyinfo;
     private $nevvaltozatok;
+    private $termeszetes;
+    private $mikro;
     private $isactive;
 
     /**
@@ -32,7 +34,24 @@ class Helynev
     }
 
     //all args constructor
-    public function setValues($standard, $telepules, $ejtes, $helyfajtaNev, $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $isactive)
+    public function setValues(
+            $standard, 
+            $telepules, 
+            $ejtes, 
+            $helyfajtaNev, 
+            $helyfajtaKod, 
+            $terkepszam, 
+            $ragosalak, 
+            $nyelv, 
+            $forrasmunkaadat, 
+            $forrasmunkaev, 
+            $forrasmunkatipus, 
+            $objektuminfo, 
+            $helyinfo, 
+            $nevvaltozatok, 
+            $termeszetes,
+            $mikro,
+            $isactive)
     {
         $this->standard = $standard;
         $this->telepules = $telepules;
@@ -48,6 +67,8 @@ class Helynev
         $this->objektuminfo = $objektuminfo;
         $this->helyinfo = $helyinfo;
         $this->nevvaltozatok = $nevvaltozatok;
+        $this->termeszetes = $termeszetes;
+        $this->mikro = $mikro;
         $this->isactive = $isactive;
     }
 

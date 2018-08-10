@@ -16,9 +16,11 @@
         $objektuminfo = mysqli_real_escape_string($con,$_POST['objektuminfo']);
         $helyinfo = mysqli_real_escape_string($con,$_POST['helyinfo']);
         $nevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
+        $termeszetes = mysqli_real_escape_string($con,$_POST['termeszetes']);
+        $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
 
         $helynev= new Helynev();
-        $helynev->setValues($standard, $telepules, $ejtes, "", $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, 1);
+        $helynev->setValues($standard, $telepules, $ejtes, "", $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro, 1);
                 
         $db=new HelynevDatabase();
                 
