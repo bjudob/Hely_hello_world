@@ -1,28 +1,30 @@
 <?php
-   include("../../config.php");
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-	  $mytelepules = mysqli_real_escape_string($con,$_POST['telepules']);
-	  $mystandard = mysqli_real_escape_string($con,$_POST['standard']);
-	  $myejtes = mysqli_real_escape_string($con,$_POST['ejtes']);
-	  $myhelyfajta = mysqli_real_escape_string($con,$_POST['helyfajta']);
-	  $myterkepszam = mysqli_real_escape_string($con,$_POST['terkepszam']);
-	  $myragosalak = mysqli_real_escape_string($con,$_POST['ragosalak']);
-	  $mynyelv = mysqli_real_escape_string($con,$_POST['nyelv']);
-	  $myforrasmunkaadat = mysqli_real_escape_string($con,$_POST['forrasmunkaadat']);
-	  $myforrasmunkaev = mysqli_real_escape_string($con,$_POST['forrasmunkaev']);
-	  $myforrasmunkatipus = mysqli_real_escape_string($con,$_POST['forrasmunkatipus']);
-      $myobjektuminfo = mysqli_real_escape_string($con,$_POST['objektuminfo']);
-      $myhelyinfo = mysqli_real_escape_string($con,$_POST['helyinfo']);
-      $mynevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
+    include("../../config.php");
+    require ("../../db/HelynevDatabase.php");
+        
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+	$telepules = mysqli_real_escape_string($con,$_POST['telepules']);
+	$standard = mysqli_real_escape_string($con,$_POST['standard']);
+	$ejtes = mysqli_real_escape_string($con,$_POST['ejtes']);
+	$helyfajtaKod = mysqli_real_escape_string($con,$_POST['helyfajta']);
+	$terkepszam = mysqli_real_escape_string($con,$_POST['terkepszam']);
+	$ragosalak = mysqli_real_escape_string($con,$_POST['ragosalak']);
+	$nyelv = mysqli_real_escape_string($con,$_POST['nyelv']);
+	$forrasmunkaadat = mysqli_real_escape_string($con,$_POST['forrasmunkaadat']);
+	$forrasmunkaev = mysqli_real_escape_string($con,$_POST['forrasmunkaev']);
+	$forrasmunkatipus = mysqli_real_escape_string($con,$_POST['forrasmunkatipus']);
+        $objektuminfo = mysqli_real_escape_string($con,$_POST['objektuminfo']);
+        $helyinfo = mysqli_real_escape_string($con,$_POST['helyinfo']);
+        $nevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
 
-	  $query = "INSERT INTO helynev(`Standard`, `Telepules`,`Ejtes`,`Helyfajta`,`Terkepszam`,`Ragos_Alak`,`Nyelv`,`Forras_Adat`,`Forras_Ev`,`Forras_Tipus`,`Objektum_Info`,`Nev_Info`,`Nevvarians`) 
-	  VALUES ('$mystandard', '$mytelepules', '$myejtes','$myhelyfajta','$myterkepszam','$myragosalak','$mynyelv','$myforrasmunkaadat','$myforrasmunkaev','$myforrasmunkatipus','$myobjektuminfo','$myhelyinfo','$mynevvaltozatok')";
-
-	  $result=mysqli_query($con,$query) or die('hiba');
-
-	  mysqli_close($con);
-	  header("location: helynevek_add.php");
+        $helynev= new Helynev();
+        $helynev->setValues($standard, $telepules, $ejtes, "", $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, 1);
+                
+        $db=new HelynevDatabase();
+                
+        $db->addHelynev($helynev);
+          
+	header("location: helynevek_add.php");
 
    }
 ?>
@@ -38,107 +40,114 @@
 
 </head>
 <body>
-	<div id="container">
+    <div id="container">
+        <br>
+        <br>
+        <div id="item">
+            <form action = "" method = "post">
+                <label>Standardizált helynév:</label><input type = "text" name = "standard" class="inputfield"/>
+                <br>
+                <label>Település:</label>
+                <select name="telepules">
+                    <?php
+                        $query = "SELECT * FROM `telepules`";
+                                    /*WHERE Is_Active=1";*/
+                        mysqli_query($con, $query);
+                        $result=mysqli_query($con,$query) or die('hiba');
 
-		<br>
-		<br>
-		<div id="item">
-			<form action = "" method = "post">
-		      <label>Standardizált helynév:</label><input type = "text" name = "standard" class="inputfield"/>
-			  <br>
-			    
-			  <label>Település:</label>
-			  <select name="telepules">
-			  	<?php
-				    $query = "SELECT * FROM `telepules`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba');
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $megye=$row['Nev'];
+                            echo "<option value=".$id.">".$megye."</option>";
+                        }
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye=$row['Nev'];
+                    ?>
+                </select>
+                <br>
+                <label>Ejtés:</label><input type = "text" name = "ejtes" class="inputfield"/>
+                <br>
+                <label>Helyfajta:</label>
+                <select name="helyfajta">
+                    <?php
+                        $query = "SELECT * FROM `helyfajta`";
+                                    /*WHERE Is_Active=1";*/
+                        mysqli_query($con, $query);
+                        $result=mysqli_query($con,$query) or die('hiba');
 
-						echo "<option value=".$id.">".$megye."</option>";
-					}
+                        while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+                                $kod=$row['Kod'];
+                                $bold="none";
 
-				?>
-				</select>
-			  <br>
-			  <label>Ejtés:</label><input type = "text" name = "ejtes" class="inputfield"/>
-			  <br>
-			  <label>Helyfajta:</label>
-			  <select name="helyfajta">
-			  	<?php
-				    $query = "SELECT * FROM `helyfajta`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba');
+                                if (strpos($kod, '.') == false) {
+                                    $bold="boldoption";
+                                }
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $nev=$row['Nev'];
-		                $kod=$row['Kod'];
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
 
-		                $bold="none";
+                    ?>
+                </select>
+                <br>
+                <label>Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield"/>
+                <br>
+                <label>Ragos alak:</label><input type = "text" name = "ragosalak" class="inputfield"/>
+                <br>
+                <label>Nyelv:</label>
+                <select name="nyelv">
+                    <?php
+                        $query = "SELECT * FROM `nyelv`";
+                                    /*WHERE Is_Active=1";*/
+                        mysqli_query($con, $query);
+                        $result=mysqli_query($con,$query) or die('hiba');
 
-		               	if (strpos($kod, '.') == false) {
-						    $bold="boldoption";
-						}
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $megye=$row['Nev'];
 
-						echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-					}
+                            echo "<option value=".$id.">".$megye."</option>";
+                        }
 
-				?>
-				</select>
-			  <br>
-			  <label>Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield"/>
-			  <br>
-			  <label>Ragos alak:</label><input type = "text" name = "ragosalak" class="inputfield"/>
-			  <br>
-			  <label>Nyelv:</label>
-			  <select name="nyelv">
-			  	<?php
-				    $query = "SELECT * FROM `nyelv`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba');
-
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye=$row['Nev'];
-
-						echo "<option value=".$id.">".$megye."</option>";
-					}
-
-            		mysqli_close($con);
-
-				?>
-			  </select>
-			  <br>
-			  <label>Forrásmunka adat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
-			  <br>
-			  <label>Forrásmunka év:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
-			  <br>
-			  <label>Forrásmunka típus/év:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
-			  <br>
-			  <label>Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" />
-			  <br>
-			  <label>Név info:</label><input type = "text" name = "helyinfo" class="inputfield"/>
-			  <br>
-			  <label>Névváltozatok:</label><input type = "text" name = "nevvaltozatok"/>
-			  <br>
-
-			  <br>
-		      <input id="btn" type = "submit" value = " Hozzáad "/>
-			  <br>
-		   </form>
-	   </div>
-	   <br><br>
-	   <div id="menuOption"><input id="btn" type="button" value="Vissza"  onclick="window.location.href='./helynevek_menu.php'">
+                            mysqli_close($con);                 
+                    ?>
+                </select>
+                <br>
+                <label>Forrásmunka adat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
+                <br>
+                <label>Forrásmunka év:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
+                <br>
+                <label>Forrásmunka típus/év:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
+                <br>
+                <label>Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" />
+                <br>
+                <label>Név info:</label><input type = "text" name = "helyinfo" class="inputfield"/>
+                <br>
+                <label>Névváltozatok:</label><input type = "text" name = "nevvaltozatok"/>
+                <br>
+                <label>Természetes:</label>
+                <select name="termeszetes">
+                    <option value=1>Természetes</option>
+                    <option value=0>Mesterséges</option>
+                </select>
+                <br>
+                <label>Mikro/makro:</label>
+                <select name="mikro">
+                    <option value=1>Mikronév</option>
+                    <option value=0>Makronév</option>
+                </select>
+                <br>
+                <br>
+                <input id="btn" type = "submit" value = " Hozzáad "/>
+                <br>
+            </form>
         </div>
-	   <br>
-	   <br>
-   </div>
+        <br><br>
+        <div id="menuOption"
+            <input id="btn" type="button" value="Vissza"  onclick="window.location.href='./helynevek_menu.php'">
+        </div>
+    <br>
+    <br>
+    </div>
 </body>
 </html>

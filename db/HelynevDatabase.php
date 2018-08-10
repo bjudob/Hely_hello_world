@@ -93,6 +93,30 @@ class HelynevDatabase
         return $helynevek;
     }
     
+    public function addHelynev($helynev){
+        $this->connect();
+        
+        $query = "INSERT INTO helynev(`Standard`, `Telepules`,`Ejtes`,`Helyfajta`,`Terkepszam`,`Ragos_Alak`,`Nyelv`,`Forras_Adat`,`Forras_Ev`,`Forras_Tipus`,`Objektum_Info`,`Nev_Info`,`Nevvarians`) 
+	  VALUES (".
+            "'$helynev->standard',".
+            "'$helynev->telepules',".
+            "'$helynev->ejtes',".
+            "'$helynev->helyfajtaKod',".
+            "'$helynev->terkepszam',".
+            "'$helynev->ragosalak',".
+            "'$helynev->nyelv',".
+            "'$helynev->forrasmunkaadat',".
+            "'$helynev->forrasmunkaev',".
+            "'$helynev->forrasmunkatipus',".
+            "'$helynev->objektuminfo',".
+            "'$helynev->helyinfo',".
+            "'$helynev->nevvaltozatok')";
+
+	$result=mysqli_query($this->con,$query) or die('hiba');
+
+        $this->disconnect();
+    }
+    
     public function getAllTelepules(){
         $telepulesek = array();
         //$array[$key] = "item"
