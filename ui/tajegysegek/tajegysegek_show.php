@@ -4,7 +4,7 @@
     include('../../navbar_lvl1.php');
 ?>
 <head>
-	<title>Tájegységek</title>
+    <title>Tájegységek</title>
     <link rel="stylesheet" type="text/css" href="../../css/tajegysegek.css">
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 </head>

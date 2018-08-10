@@ -160,5 +160,44 @@ class HelynevDatabase
         return $tajegysegek;
     }
         
-    
+    public function getTelepulesByTajegyseg(){
+        $telepulesek = array();
+
+        $this->connect();
+
+        $query="SELECT 
+                    telepules.ID as id,
+                    telepules.Nev as nev,
+                    megye.Nev as megye,
+                    tajegyseg.Nev as tajegyseg,
+                    telepulestipus.Nev as telepulestipus,
+                    nyelv.Nev as nyelv,
+                    telepules.Is_Active as isactive
+
+                    FROM telepules
+                    INNER JOIN megye ON megye.ID=telepules.Megye
+                    INNER JOIN tajegyseg ON tajegyseg.ID=telepules.Tajegyseg
+                    INNER JOIN telepulestipus ON telepulestipus.ID=telepules.Telepules_Tipus
+                    INNER JOIN nyelv ON nyelv.ID=telepules.Nyelv";
+        $result=mysqli_query($this->con,$query) or die('Hiba tortent');
+        
+        while($row=mysqli_fetch_array($result)){
+            $id=$row['id'];
+            $nev=$row['nev'];
+            $megye=$row['megye'];
+            $tajegyseg=$row['tajegyseg'];
+            $telepulestipus=$row['telepulestipus'];
+            $nyelv=$row['nyelv'];
+            $isactive=$row['isactive'];
+
+            $telepules=new Telepules();
+            $telepules->setValues($id, $nev, $megye, $tajegyseg, $telepulestipus, $nyelv, $isactive);
+
+            $telepulesek[$tajegyseg] = $telepules;
+
+        }
+
+        $this->disconnect();
+        return $telepulesek;
+    }
 }

@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
 <?php
-  include("../../config.php");
-  $query = "SELECT * FROM `tajegyseg`";
+    require ("../../db/HelynevDatabase.php");
+    include("../../config.php");
+    
+    $query = "SELECT * FROM `tajegyseg`";
           /*WHERE Is_Active=1";*/
-  mysqli_query($con, $query);
-  $result=mysqli_query($con,$query) or die('hiba');
+    mysqli_query($con, $query);
+    $result=mysqli_query($con,$query) or die('hiba');
 
-  while($row=mysqli_fetch_array($result)){
-      $id=$row['ID'];
-      $nev=$row['Nev'];
+    while($row=mysqli_fetch_array($result)){
+        $id=$row['ID'];
+        $nev=$row['Nev'];
 
-      $tajegysegek[]=array("id"=>$id,"val"=>$nev);
+        $tajegysegek[]=array("id"=>$id,"val"=>$nev);
   }
 
-  $query = "SELECT * FROM `telepules`";
+    $query = "SELECT * FROM `telepules`";
           /*WHERE Is_Active=1";*/
-  mysqli_query($con, $query);
-  $result=mysqli_query($con,$query) or die('hiba');
+    mysqli_query($con, $query);
+    $result=mysqli_query($con,$query) or die('hiba');
 
-  while($row=mysqli_fetch_array($result)){
-      $id=$row['ID'];
-      $nev=$row['Nev'];
+    while($row=mysqli_fetch_array($result)){
+        $id=$row['ID'];
+        $nev=$row['Nev'];
 
-      $telepulesek[$row['Tajegyseg']][]=array("id"=>$id,"val"=>$nev);
-  }
+        $telepulesek[$row['Tajegyseg']][]=array("id"=>$id,"val"=>$nev);
+    }
 
-  $query = "SELECT
+    $db=new HelynevDatabase();
+
+    $telepulesek = $db->getAllTelepules();
+
+    $query = "SELECT
             helynev.ID, 
             Standard,
             Telepules,
@@ -46,25 +52,25 @@
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
           /*WHERE Is_Active=1";*/
-  mysqli_query($con, $query);
-  $result=mysqli_query($con,$query) or die('hiba');
+    mysqli_query($con, $query);
+    $result=mysqli_query($con,$query) or die('hiba');
 
-  while($row=mysqli_fetch_array($result)){
-      $id=$row['ID'];
-      $standard=$row['Standard'];
-      $ejtes=$row['Ejtes'];
-      $helyfajta=$row['helyfajtaKod']." ".$row['joinHelyfajta'];
-      $terkepszam=$row['Terkepszam'];
-      $ragos_alak=$row['Ragos_Alak'];
-      $nyelv=$row['joinNyelv'];
-      $forras_adat=$row['Forras_Adat'];
-      $forras_ev=$row['Forras_Ev'];
-      $forras_tipus=$row['Forras_Tipus'];
-      $objektum_info=$row['Objektum_Info'];
-      $nev_info=$row['Nev_Info'];
-      $nevvarians=$row['Nevvarians'];
+    while($row=mysqli_fetch_array($result)){
+        $id=$row['ID'];
+        $standard=$row['Standard'];
+        $ejtes=$row['Ejtes'];
+        $helyfajta=$row['helyfajtaKod']." ".$row['joinHelyfajta'];
+        $terkepszam=$row['Terkepszam'];
+        $ragos_alak=$row['Ragos_Alak'];
+        $nyelv=$row['joinNyelv'];
+        $forras_adat=$row['Forras_Adat'];
+        $forras_ev=$row['Forras_Ev'];
+        $forras_tipus=$row['Forras_Tipus'];
+        $objektum_info=$row['Objektum_Info'];
+        $nev_info=$row['Nev_Info'];
+        $nevvarians=$row['Nevvarians'];
 
-      $helynevek[$row['Telepules']][]=array(
+        $helynevek[$row['Telepules']][]=array(
           "id"=>$id,
           "standard"=>$standard,
           "ejtes"=>$ejtes,
@@ -81,9 +87,9 @@
           );
   }
 
-  $jsonTajegysegek = json_encode($tajegysegek);
-  $jsonTelepulesek = json_encode($telepulesek);
-  $jsonHelynevek = json_encode($helynevek);
+    $jsonTajegysegek = json_encode($tajegysegek);
+    $jsonTelepulesek = json_encode($telepulesek);
+    $jsonHelynevek = json_encode($helynevek);
 
 
 ?>
