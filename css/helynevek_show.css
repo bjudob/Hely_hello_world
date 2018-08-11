@@ -1,8 +1,20 @@
+label {
+  display: inline-block;
+  width: 300px;
+  text-align: right;
+}​
+
+select{
+  font-size: 40px;
+}
+
+
 
 
 #centered{
     margin:auto;
 }
+
 
 /*Table*/
 
@@ -39,3 +51,4 @@ thead, tbody tr {
 .boldoption{
     font-weight:bold;
 }
+

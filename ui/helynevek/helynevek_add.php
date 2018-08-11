@@ -37,8 +37,8 @@
 ?>
 <head>
 	<title>Helynevek</title>
+        <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 	<link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
-	<link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 
 </head>
 <body>
@@ -54,13 +54,13 @@
                     <?php
                         $query = "SELECT * FROM `telepules`";
                                     /*WHERE Is_Active=1";*/
-                        mysqli_query($con, $query);
+                        
                         $result=mysqli_query($con,$query) or die('hiba');
 
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
-                            $megye=$row['Nev'];
-                            echo "<option value=".$id.">".$megye."</option>";
+                            $nev=$row['Nev'];
+                            echo "<option value=".$id.">".$nev."</option>";
                         }
 
                     ?>
@@ -73,7 +73,7 @@
                     <?php
                         $query = "SELECT * FROM `helyfajta`";
                                     /*WHERE Is_Active=1";*/
-                        mysqli_query($con, $query);
+                        
                         $result=mysqli_query($con,$query) or die('hiba');
 
                         while($row=mysqli_fetch_array($result)){
@@ -101,17 +101,15 @@
                     <?php
                         $query = "SELECT * FROM `nyelv`";
                                     /*WHERE Is_Active=1";*/
-                        mysqli_query($con, $query);
+                        
                         $result=mysqli_query($con,$query) or die('hiba');
 
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
-                            $megye=$row['Nev'];
+                            $nev=$row['Nev'];
 
-                            echo "<option value=".$id.">".$megye."</option>";
-                        }
-
-                            mysqli_close($con);                 
+                            echo "<option value=".$id.">".$nev."</option>";
+                        }            
                     ?>
                 </select>
                 <br>
@@ -139,6 +137,25 @@
                     <option value=0>Makronév</option>
                 </select>
                 <br>
+                <label>Névszerkezettípus:</label>
+                <select name="nevszerkezettipus">
+                    <?php
+                        $query = "SELECT * FROM `nevszerkezettipus`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $egyreszes=$row['Egyreszes'];
+
+                            echo "<option value=".$id.">".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
                 <br>
                 <input id="btn" type = "submit" value = " Hozzáad "/>
                 <br>
@@ -153,3 +170,7 @@
     </div>
 </body>
 </html>
+
+<?php
+    mysqli_close($con);   
+?>

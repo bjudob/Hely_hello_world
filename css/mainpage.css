@@ -6,7 +6,7 @@
 }
 
 body{
-	background-image: url("../img/green_background.jpg");
+    background-image: url("../img/green_background.jpg");
     /*background-color: #00FF00;*/
 }
 
@@ -85,15 +85,18 @@ body{
 
 input[type="text"]
 {
-    font-size:18px;
+    font-size:20px;
+    width: 20%;
 }
 
 label{
   font-size: 24px;
+
 }
 
 select{
   font-size: 20px;
+  width: 20%;
 }
 
 /*List*/
