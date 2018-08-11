@@ -156,6 +156,101 @@
                     ?>
                 </select>
                 <br>
+                <label>Alaprész:</label>
+                <select name="alapresz">
+                    <?php
+                        $query = "SELECT * FROM `nevresz`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label>ALM</label>
+                <select name="alapresz_lex">
+                    <?php
+                        $query = "SELECT * FROM `lexikalis`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label>Bővítmény:</label>
+                <select name="bovitmeny">
+                    <?php
+                        $query = "SELECT * FROM `nevresz`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label>BLM</label>
+                <select name="bovitmeny_lex">
+                    <?php
+                        $query = "SELECT * FROM `lexikalis`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label>Névalkotási szabály:</label>
+                <select name="bovitmeny">
+                    <?php
+                        $query = "SELECT * FROM `nevalkotasszabaly`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
                 <br>
                 <input id="btn" type = "submit" value = " Hozzáad "/>
                 <br>
