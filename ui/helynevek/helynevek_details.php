@@ -32,12 +32,10 @@
             die("Az adatbázis nem elérhető: " . $conn->connect_error);
         }
 
-        $myid = mysqli_real_escape_string($con, $_GET['id']);;
+        $id = mysqli_real_escape_string($con, $_GET['id']);;
 
-        $sql = "DELETE FROM helynev 
-                WHERE ID = '$myid'";
-
-        mysqli_query($con, $sql);
+        $db=new HelynevDatabase();
+        $db->deleteHelynev($id);
 
         header("location: helynevek_show.php");
     } 

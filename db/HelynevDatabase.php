@@ -178,6 +178,17 @@ class HelynevDatabase
         $this->disconnect();
     }
     
+    public function deleteHelynev($id){
+        $this->connect();
+        
+        $query = "DELETE FROM helynev 
+        WHERE ID = '$id'";
+
+        mysqli_query($this->con, $query);
+        
+        $this->disconnect();
+    }
+    
     public function updateHelynev($helynev){
         $this->connect();
         
