@@ -39,7 +39,27 @@
 	<title>Helynevek</title>
         <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 	<link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
-
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script> 
+            $(document).ready(function(){
+                $("#ketreszes").hide();
+                
+                $('#nevszerkezet').on('change', function() {
+                  if ( this.options[this.selectedIndex].text.includes("+"))
+                  //.....................^.......
+                  {
+                    $("#ketreszes").show();
+                    $("#egyreszes").hide();
+                  }
+                  else
+                  {
+                    $("#ketreszes").hide();
+                    $("#egyreszes").show();
+                  }
+                });
+            });
+        </script>
+        
 </head>
 <body>
     <div id="container">
@@ -138,7 +158,7 @@
                 </select>
                 <br>
                 <label>Névszerkezettípus:</label>
-                <select name="nevszerkezettipus">
+                <select name="nevszerkezettipus" id="nevszerkezet">
                     <?php
                         $query = "SELECT * FROM `nevszerkezettipus`";
                                     /*WHERE Is_Active=1";*/
@@ -156,6 +176,47 @@
                     ?>
                 </select>
                 <br>
+                <div id="egyreszes" >
+                <label></label>
+                <select name="alapresz">
+                    <?php
+                        $query = "SELECT * FROM `nevresz`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label>LM</label>
+                <select name="alapresz_lex">
+                    <?php
+                        $query = "SELECT * FROM `lexikalis`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+
+                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                </div>
+                <div id="ketreszes" >
                 <label>Alaprész:</label>
                 <select name="alapresz">
                     <?php
@@ -232,6 +293,7 @@
                     ?>
                 </select>
                 <br>
+                </div>
                 <label>Névalkotási szabály:</label>
                 <select name="bovitmeny">
                     <?php
