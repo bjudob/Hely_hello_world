@@ -18,9 +18,39 @@
         $nevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
         $termeszetes = mysqli_real_escape_string($con,$_POST['termeszetes']);
         $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
+        $r = mysqli_real_escape_string($con,$_POST['r']);
+        $lm = mysqli_real_escape_string($con,$_POST['lm']);
+        $ar = mysqli_real_escape_string($con,$_POST['ar']);
+        $alm = mysqli_real_escape_string($con,$_POST['alm']);
+        $br = mysqli_real_escape_string($con,$_POST['br']);
+        $blm = mysqli_real_escape_string($con,$_POST['blm']);
+        $nevalkotasiszabaly = mysqli_real_escape_string($con,$_POST['nevalkotasiszabaly']);
 
         $helynev= new Helynev();
-        $helynev->setValues($standard, $telepules, $ejtes, "", $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro);
+        $helynev->setValues(
+                $standard, 
+                $telepules, 
+                $ejtes, 
+                "", 
+                $helyfajtaKod, 
+                $terkepszam, 
+                $ragosalak, 
+                $nyelv, 
+                $forrasmunkaadat,
+                $forrasmunkaev, 
+                $forrasmunkatipus, 
+                $objektuminfo, 
+                $helyinfo, 
+                $nevvaltozatok, 
+                $termeszetes, 
+                $mikro,
+                $r,
+                $lm,
+                $ar,
+                $alm,
+                $br,
+                $blm,
+                $nevalkotasiszabaly);
                 
         $db=new HelynevDatabase();
                 
@@ -178,7 +208,7 @@
                 <br>
                 <div id="egyreszes" >
                 <label></label>
-                <select name="alapresz">
+                <select name="r">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
                                     /*WHERE Is_Active=1";*/
@@ -197,7 +227,7 @@
                 </select>
                 <br>
                 <label>LM</label>
-                <select name="alapresz_lex">
+                <select name="lm">
                     <?php
                         $query = "SELECT * FROM `lexikalis`";
                                     /*WHERE Is_Active=1";*/
@@ -218,7 +248,7 @@
                 </div>
                 <div id="ketreszes" >
                 <label>Alaprész:</label>
-                <select name="alapresz">
+                <select name="ar">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
                                     /*WHERE Is_Active=1";*/
@@ -237,7 +267,7 @@
                 </select>
                 <br>
                 <label>ALM</label>
-                <select name="alapresz_lex">
+                <select name="alm">
                     <?php
                         $query = "SELECT * FROM `lexikalis`";
                                     /*WHERE Is_Active=1";*/
@@ -256,7 +286,7 @@
                 </select>
                 <br>
                 <label>Bővítmény:</label>
-                <select name="bovitmeny">
+                <select name="br">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
                                     /*WHERE Is_Active=1";*/
@@ -275,7 +305,7 @@
                 </select>
                 <br>
                 <label>BLM</label>
-                <select name="bovitmeny_lex">
+                <select name="blm">
                     <?php
                         $query = "SELECT * FROM `lexikalis`";
                                     /*WHERE Is_Active=1";*/
@@ -293,9 +323,8 @@
                     ?>
                 </select>
                 <br>
-                </div>
                 <label>Névalkotási szabály:</label>
-                <select name="bovitmeny">
+                <select name="nevalkotasiszabaly">
                     <?php
                         $query = "SELECT * FROM `nevalkotasszabaly`";
                                     /*WHERE Is_Active=1";*/
@@ -312,6 +341,7 @@
                         
                     ?>
                 </select>
+                </div>
                 <br>
                 <br>
                 <input id="btn" type = "submit" value = " Hozzáad "/>

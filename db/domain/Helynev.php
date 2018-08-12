@@ -25,6 +25,13 @@ class Helynev
     private $nevvaltozatok;
     private $termeszetes;
     private $mikro;
+    private $r;
+    private $lm;
+    private $ar;
+    private $alm;
+    private $br;
+    private $blm;
+    private $nevalkotasiszabaly;
     private $isactive;
 
     /**
@@ -51,7 +58,14 @@ class Helynev
             $helyinfo, 
             $nevvaltozatok, 
             $termeszetes,
-            $mikro)
+            $mikro,
+            $r,
+            $lm,
+            $ar,
+            $alm,
+            $br,
+            $blm,
+            $nevalkotasiszabaly)
     {
         $this->standard = $standard;
         $this->telepules = $telepules;
@@ -68,7 +82,13 @@ class Helynev
         $this->helyinfo = $helyinfo;
         $this->nevvaltozatok = $nevvaltozatok;
         $this->termeszetes = $termeszetes;
-        $this->mikro = $mikro;
+        $this->r = $r;
+        $this->lm = $lm;
+        $this->ar = $ar;
+        $this->alm = $alm;
+        $this->br = $br;
+        $this->blm = $blm;
+        $this->nevalkotasiszabaly = $nevalkotasiszabaly;
     }
 
 

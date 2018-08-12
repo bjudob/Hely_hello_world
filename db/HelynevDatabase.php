@@ -155,7 +155,29 @@ class HelynevDatabase
     public function addHelynev($helynev){
         $this->connect();
         
-        $query = "INSERT INTO helynev(`Standard`, `Telepules`,`Ejtes`,`Helyfajta`,`Terkepszam`,`Ragos_Alak`,`Nyelv`,`Forras_Adat`,`Forras_Ev`,`Forras_Tipus`,`Objektum_Info`,`Nev_Info`,`Nevvarians`,`Termeszetes`,`Mikro`) 
+        $query = "INSERT INTO helynev(
+            `Standard`,
+            `Telepules`,
+            `Ejtes`,
+            `Helyfajta`,
+            `Terkepszam`,
+            `Ragos_Alak`,
+            `Nyelv`,
+            `Forras_Adat`,
+            `Forras_Ev`,
+            `Forras_Tipus`,
+            `Objektum_Info`,
+            `Nev_Info`,
+            `Nevvarians`,
+            `Termeszetes`,
+            `Mikro`,
+            `R`,
+            `LM`,
+            `AR`,
+            `ALM`,
+            `BR`,
+            `BLM`,
+            `Nevalkotasi Szabaly`) 
 	  VALUES (".
             "'$helynev->standard',".
             "'$helynev->telepules',".
@@ -171,7 +193,14 @@ class HelynevDatabase
             "'$helynev->helyinfo',".
             "'$helynev->nevvaltozatok',".
             "'$helynev->termeszetes',".
-            "'$helynev->mikro')";
+            "'$helynev->mikro',".
+            "'$helynev->r',".
+            "'$helynev->lm',".
+            "'$helynev->ar',".
+            "'$helynev->alm',".
+            "'$helynev->br',".
+            "'$helynev->blm',".
+            "'$helynev->nevalkotasiszabaly')";
 
 	$result=mysqli_query($this->con,$query) or die('hiba');
 
