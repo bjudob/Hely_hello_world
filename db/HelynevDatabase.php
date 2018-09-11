@@ -116,7 +116,13 @@ class HelynevDatabase
             Nev_Info,
             Nevvarians,
             Termeszetes,
-            Mikro
+            Mikro,
+            R,
+            LM,
+            AR,
+            ALM,
+            BR,
+            BLM
             FROM `helynev` 
             INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
@@ -143,8 +149,37 @@ class HelynevDatabase
         $nevvaltozatok=$row['Nevvarians'];
         $termeszetes=$row['Termeszetes'];
         $mikro=$row['Mikro'];
+        $r=$row['R'];
+        $lm=$row['LM'];
+        $ar=$row['AR'];
+        $alm=$row['ALM'];
+        $br=$row['BR'];
+        $blm=$row['BLM'];
         
-        $helynev->setValues($standard, $telepules, $ejtes, $helyfajtaNev, $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $termeszetes, $mikro, 1);
+        $helynev->setValues(
+                $standard, 
+                $telepules, 
+                $ejtes, 
+                $helyfajtaNev, 
+                $helyfajtaKod, 
+                $terkepszam, 
+                $ragosalak, 
+                $nyelv, 
+                $forrasmunkaadat, 
+                $forrasmunkaev, 
+                $forrasmunkatipus, 
+                $objektuminfo, 
+                $helyinfo, 
+                $nevvaltozatok, 
+                $termeszetes, 
+                $mikro,
+                $r,
+                $lm,
+                $ar,
+                $alm,
+                $br,
+                $blm,
+                1); ///look at this later
         $helynev->id=$id;
                 
         $this->disconnect();
