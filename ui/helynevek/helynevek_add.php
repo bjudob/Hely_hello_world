@@ -97,7 +97,7 @@
         <br>
         <div id="item">
             <form action = "" method = "post">
-                <label>Standardizált helynév:</label><input type = "text" name = "standard" class="inputfield"/>
+                <label>Standard: </label><input type = "text" name = "standard" class="inputfield"/>
                 <br>
                 <label>Település:</label>
                 <select name="telepules">
@@ -144,7 +144,7 @@
                 <br>
                 <label>Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield"/>
                 <br>
-                <label>Ragos alak:</label><input type = "text" name = "ragosalak" class="inputfield"/>
+                <label>Helyrag:</label><input type = "text" name = "ragosalak" class="inputfield"/>
                 <br>
                 <label>Nyelv:</label>
                 <select name="nyelv">
@@ -163,11 +163,11 @@
                     ?>
                 </select>
                 <br>
-                <label>Forrásmunka adat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
+                <label>Forrásdat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
                 <br>
-                <label>Forrásmunka év:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
+                <label>Forrásdat éve:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
                 <br>
-                <label>Forrásmunka típus/év:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
+                <label>Forrás és éve:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
                 <br>
                 <label>Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" />
                 <br>

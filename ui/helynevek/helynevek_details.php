@@ -126,7 +126,7 @@
                 <br>
                 <label id="smallLabel">Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield" value="<?php echo $helynev->terkepszam; ?>"/>
                 <br>
-                <label id="smallLabel">Ragos alak:</label><input type = "text" name = "ragosalak" class="inputfield" value="<?php echo $helynev->ragosalak; ?>"/>
+                <label id="smallLabel">Helyrag:</label><input type = "text" name = "ragosalak" class="inputfield" value="<?php echo $helynev->ragosalak; ?>"/>
                 <br>
                 <label id="smallLabel">Nyelv:</label>
                 <select name="nyelv">
@@ -153,11 +153,11 @@
                     ?>
                 </select>
                 <br>
-                <label id="smallLabel">Forrás adat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield" value="<?php echo $helynev->forrasmunkaadat; ?>"/>
+                <label id="smallLabel">Forrásadat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield" value="<?php echo $helynev->forrasmunkaadat; ?>"/>
                 <br>
-                <label id="smallLabel">Forrás év:</label><input type = "text" name = "forrasmunkaev" class="inputfield" value="<?php  echo $helynev->forrasmunkaev; ?>"/>
+                <label id="smallLabel">Forrásdat éve:</label><input type = "text" name = "forrasmunkaev" class="inputfield" value="<?php  echo $helynev->forrasmunkaev; ?>"/>
                 <br>
-                <label id="smallLabel">Forrás típus:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" value="<?php  echo $helynev->forrasmunkatipus; ?>"/>
+                <label id="smallLabel">Forrás és éve:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" value="<?php  echo $helynev->forrasmunkatipus; ?>"/>
                 <br>
                 <label id="smallLabel">Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" value="<?php  echo $helynev->objektuminfo; ?>"/>
                 <br>

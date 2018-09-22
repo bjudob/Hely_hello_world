@@ -213,10 +213,10 @@
             <th>Ejtés</th>
             <th>Helyfajta</th>
             <th>Térképszám</th>
-            <th>Ragos alak</th>
+            <th>Helyrag</th>
             <th>Nyelv</th>
-            <th>Forrás adat</th>
-            <th>Forrás év</th>
+            <th>Forrásadat</th>
+            <th>Forrásdat éve</th>
             <th>Forrás típus</th>
             <th>Objektum info</th>
             <th>Név info</th>
