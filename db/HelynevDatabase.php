@@ -123,7 +123,8 @@ class HelynevDatabase
             AR,
             ALM,
             BR,
-            BLM
+            BLM,
+            `Nevalkotasi Szabaly` as nevalkotasiszabaly	
             FROM `helynev` 
             INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
@@ -157,6 +158,7 @@ class HelynevDatabase
         $alm=$row['ALM'];
         $br=$row['BR'];
         $blm=$row['BLM'];
+        $nevalkotasiszabaly=$row["nevalkotasiszabaly"];
         
         $helynev->setValues(
                 $standard, 
@@ -175,14 +177,14 @@ class HelynevDatabase
                 $nevvaltozatok, 
                 $termeszetes, 
                 $mikro,
-                $$nevszerkezet,
+                $nevszerkezet,
                 $r,
                 $lm,
                 $ar,
                 $alm,
                 $br,
                 $blm,
-                1); ///look at this later
+                $nevalkotasiszabaly); ///look at this later
         $helynev->id=$id;
                 
         $this->disconnect();
@@ -274,11 +276,19 @@ class HelynevDatabase
                 Nev_Info = '$helynev->helyinfo',
                 Nevvarians = '$helynev->nevvaltozatok',
                 Termeszetes = '$helynev->termeszetes',
-                Mikro = '$helynev->mikro'
-
+                Mikro = '$helynev->mikro',
+                Nevszerkezettipus = '$helynev->nevszerkezet',                                  
+                R = '$helynev->r',
+                LM = '$helynev->lm',
+                AR = '$helynev->ar',
+                ALM = '$helynev->alm',
+                BR = '$helynev->br',
+                BLM = '$helynev->blm',        
+                `Nevalkotasi Szabaly` = '$helynev->nevalkotasiszabaly'
+                    
                 WHERE ID = '$helynev->id'";
 
-        mysqli_query($this->con, $query) or die('hiba');
+        mysqli_query($this->con, $query) or die('hiba HelynevDatabase update');
         
         $this->disconnect();
     }

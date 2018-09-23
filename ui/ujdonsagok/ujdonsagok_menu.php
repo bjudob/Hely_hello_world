@@ -21,9 +21,20 @@
 
 		<br><br><br>
 		<div id="updatescontainer">
-		<br>
+		<br>                                       
 			<div id="update">
-				2017.02.27. :
+				2018.09.23. : 
+				<br>
+				-új verzió feltöltése
+				<br>
+				-helynevek megtekintése helyfajta szerint
+				<br>
+				-helynevek megtekintése névszerkezet szerint
+				<br>
+			</div>
+                        <br>
+			<div id="update">
+				2017.12.27. :
 				<br> 
 				-helynevek adatai megjelenítve külön
 				<br>

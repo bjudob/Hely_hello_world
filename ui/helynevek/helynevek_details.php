@@ -17,6 +17,16 @@
         $nevvaltozatok = mysqli_real_escape_string($con, $_POST['nevvaltozatok']);
         $termeszetes = mysqli_real_escape_string($con, $_POST['termeszetes']);
         $mikro = mysqli_real_escape_string($con, $_POST['mikro']);
+        $nevszerkezet = mysqli_real_escape_string($con, $_POST['nevszerkezet']);
+        $r = mysqli_real_escape_string($con, $_POST['r']);
+        $lm = mysqli_real_escape_string($con, $_POST['lm']);
+        $ar = mysqli_real_escape_string($con, $_POST['ar']);
+        $alm = mysqli_real_escape_string($con, $_POST['alm']);
+        $br = mysqli_real_escape_string($con, $_POST['br']);
+        $blm = mysqli_real_escape_string($con, $_POST['blm']);
+        $nevalkotasiszabaly = mysqli_real_escape_string($con, $_POST['nevalkotasiszabaly']);
+
+        
         
         $helynev=new Helynev();
         $helynev->setValues(
@@ -36,13 +46,14 @@
                 $nevvaltozatok, 
                 $termeszetes,
                 $mikro,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
+                $nevszerkezet,
+                $r,
+                $lm,
+                $ar,
+                $alm,
+                $br,
+                $blm,
+                $nevalkotasiszabaly
                 );
         $helynev->id=$id;
                 
@@ -114,7 +125,7 @@
                             if (strpos($kod, '.') == false) {
                                 $bold="boldoption";
                             }
-                            if($helyfajta_option==$helynev->helyfajtaNev){
+                            if($helyfajta_option===$helynev->helyfajtaNev){
                                 echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$helyfajta_option."</option>";
                             }
                             else{
@@ -148,8 +159,6 @@
                             }
                         }
 
-                        mysqli_close($con);
-
                     ?>
                 </select>
                 <br>
@@ -165,7 +174,7 @@
                 <br>
                 <label id="smallLabel">Névváltozatok:</label><input type = "text" name = "nevvaltozatok" value="<?php  echo $helynev->nevvaltozatok; ?>"/>
                 <br>
-                <label>Természetes:</label>
+                <label id="smallLabel">Természetes:</label>
                 <select name="termeszetes">
                     <?php
                         if($helynev->termeszetes!=0){
@@ -179,7 +188,7 @@
                     ?>
                 </select>
                 <br>
-                <label>Mikro/makro:</label>
+                <label id="smallLabel">Mikro/makro:</label>
                 <select name="mikro">
                     <?php
                         if($helynev->mikro!=0){
@@ -192,6 +201,239 @@
                         }
                     ?>
                     
+                </select>
+                                <br>
+                <label id="smallLabel">Névszerkezettípus:</label>
+                <select name="nevszerkezet" id="nevszerkezet">
+                    <?php
+                        $query = "SELECT * FROM `nevszerkezettipus`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $egyreszes=$row['Egyreszes'];
+
+
+                            if($id===$helynev->nevszerkezet){
+                                    echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                            }
+                            else{
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <div id="egyreszes" >
+                <label id="smallLabel"></label>
+                <select name="r">
+                    <?php
+                        $query = "SELECT * FROM `nevresz`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->r){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label id="smallLabel">LM</label>
+                <select name="lm">
+                    <?php
+                        $query = "SELECT * FROM `lexikalis`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->lm){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                </div>
+                <div id="ketreszes" >
+                <label id="smallLabel">Alaprész:</label>
+                <select name="ar">
+                    <?php
+                        $query = "SELECT * FROM `nevresz`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->ar){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label id="smallLabel">ALM</label>
+                <select name="alm">
+                    <?php
+                        $query = "SELECT * FROM `lexikalis`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->alm){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label id="smallLabel">Bővítmény:</label>
+                <select name="br">
+                    <?php
+                        $query = "SELECT * FROM `nevresz`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->br){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label id="smallLabel">BLM</label>
+                <select name="blm">
+                    <?php
+                        $query = "SELECT * FROM `lexikalis`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->blm){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                           
+                        }
+                        
+                    ?>
+                </select>
+                </div>
+                <br>
+                <label id="smallLabel">Névalkotási szabály:</label>
+                <select name="nevalkotasiszabaly">
+                    <?php
+                        $query = "SELECT * FROM `nevalkotasszabaly`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            if($id===$helynev->nevalkotasiszabaly){
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                            else{
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
                 </select>
                 <br>
                 <br>
