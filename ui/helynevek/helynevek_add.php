@@ -18,6 +18,7 @@
         $nevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
         $termeszetes = mysqli_real_escape_string($con,$_POST['termeszetes']);
         $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
+        $nevszerkezet = mysqli_real_escape_string($con,$_POST['nevszerkezet']);
         $r = mysqli_real_escape_string($con,$_POST['r']);
         $lm = mysqli_real_escape_string($con,$_POST['lm']);
         $ar = mysqli_real_escape_string($con,$_POST['ar']);
@@ -44,6 +45,7 @@
                 $nevvaltozatok, 
                 $termeszetes, 
                 $mikro,
+                $nevszerkezet,
                 $r,
                 $lm,
                 $ar,
@@ -188,7 +190,7 @@
                 </select>
                 <br>
                 <label>Névszerkezettípus:</label>
-                <select name="nevszerkezettipus" id="nevszerkezet">
+                <select name="nevszerkezet" id="nevszerkezet">
                     <?php
                         $query = "SELECT * FROM `nevszerkezettipus`";
                                     /*WHERE Is_Active=1";*/

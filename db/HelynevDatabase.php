@@ -117,6 +117,7 @@ class HelynevDatabase
             Nevvarians,
             Termeszetes,
             Mikro,
+            Nevszerkezettipus,
             R,
             LM,
             AR,
@@ -149,6 +150,7 @@ class HelynevDatabase
         $nevvaltozatok=$row['Nevvarians'];
         $termeszetes=$row['Termeszetes'];
         $mikro=$row['Mikro'];
+        $nevszerkezet=$row['Nevszerkezettipus'];
         $r=$row['R'];
         $lm=$row['LM'];
         $ar=$row['AR'];
@@ -173,6 +175,7 @@ class HelynevDatabase
                 $nevvaltozatok, 
                 $termeszetes, 
                 $mikro,
+                $$nevszerkezet,
                 $r,
                 $lm,
                 $ar,
@@ -206,6 +209,7 @@ class HelynevDatabase
             `Nevvarians`,
             `Termeszetes`,
             `Mikro`,
+            `Nevszerkezettipus`,
             `R`,
             `LM`,
             `AR`,
@@ -229,6 +233,7 @@ class HelynevDatabase
             "'$helynev->nevvaltozatok',".
             "'$helynev->termeszetes',".
             "'$helynev->mikro',".
+            "'$helynev->nevszerkezet',".   
             "'$helynev->r',".
             "'$helynev->lm',".
             "'$helynev->ar',".

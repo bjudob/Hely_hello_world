@@ -25,6 +25,7 @@ class Helynev
     private $nevvaltozatok;
     private $termeszetes;
     private $mikro;
+    private $nevszerkezet;
     private $r;
     private $lm;
     private $ar;
@@ -59,6 +60,7 @@ class Helynev
             $nevvaltozatok, 
             $termeszetes,
             $mikro,
+            $nevszerkezet,
             $r,
             $lm,
             $ar,
@@ -82,6 +84,8 @@ class Helynev
         $this->helyinfo = $helyinfo;
         $this->nevvaltozatok = $nevvaltozatok;
         $this->termeszetes = $termeszetes;
+        $this->mikro=$mikro;
+        $this->nevszerkezet = $nevszerkezet;
         $this->r = $r;
         $this->lm = $lm;
         $this->ar = $ar;

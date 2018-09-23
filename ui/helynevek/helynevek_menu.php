@@ -25,10 +25,14 @@
 		<input id="btn" type="button" value="Helynevek megtekintése" onclick="window.location.href='./helynevek_show.php'">
 		</div>
                 <br>
+                <div id="menuOption">
+		<input id="btn" type="button" value="Névszerkezettípus szerint" onclick="window.location.href='./helynevek_show_nevszerkezet.php'">
+		</div>
+		<br>
 		<div id="menuOption">
 		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_show_helyfajta.php'">
 		</div>
-		<br>
+                <br>
 		<div id="menuOption">
 		<input id="btn" type="button" value="Új helynév" onclick="window.location.href='./helynevek_add.php'">
 		</div>
