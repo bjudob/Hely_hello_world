@@ -219,8 +219,14 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+
+                            //echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -238,8 +244,13 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -259,8 +270,13 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -278,8 +294,13 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -297,8 +318,13 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -316,12 +342,19 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                           
                         }
                         
                     ?>
                 </select>
+                </div>
                 <br>
                 <label>Névalkotási szabály:</label>
                 <select name="nevalkotasiszabaly">
@@ -335,13 +368,17 @@
                             $id=$row['ID'];
                             $nev=$row['Nev'];
                             $kod=$row['Kod'];
+                            $bold="none";
 
-                            echo "<option value=".$id.">".$kod." ".$nev."</option>";
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
+                            
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
                 </select>
-                </div>
                 <br>
                 <br>
                 <input id="btn" type = "submit" value = " Hozzáad "/>
