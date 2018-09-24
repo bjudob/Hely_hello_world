@@ -95,6 +95,26 @@
     <title>Törlés</title>
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
     <link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script> 
+            $(document).ready(function(){
+                $("#ketreszes").hide();
+                
+                $('#nevszerkezet').on('change', function() {
+                  if ( this.options[this.selectedIndex].text.includes("+"))
+                  //.....................^.......
+                  {
+                    $("#ketreszes").show();
+                    $("#egyreszes").hide();
+                  }
+                  else
+                  {
+                    $("#ketreszes").hide();
+                    $("#egyreszes").show();
+                  }
+                });
+            });
+        </script>
 </head>
 <body>
     <div id="container">
@@ -110,7 +130,7 @@
                 <label id="smallLabel">Helyfajta:</label>
                 <select name="helyfajta">
                     <?php
-                        $query = "SELECT * FROM `helyfajta`";
+                        $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         mysqli_query($con, $query);
                         $result=mysqli_query($con,$query) or die('hiba');

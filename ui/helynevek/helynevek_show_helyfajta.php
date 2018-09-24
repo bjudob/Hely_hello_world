@@ -150,7 +150,6 @@
                 var standard=helynevek[id][i].standard;
                 var ejtes=helynevek[id][i].ejtes;
                 var helyfajta=helynevek[id][i].helyfajta;
-                var terkepszam=helynevek[id][i].terkepszam;
                 var ragos_alak=helynevek[id][i].ragos_alak;
                 var nyelv=helynevek[id][i].nyelv;
                 var forras_adat=helynevek[id][i].forras_adat;
@@ -176,22 +175,20 @@
                 var cell10 = row.insertCell(9);
                 var cell11= row.insertCell(10);
                 var cell12 = row.insertCell(11);
-                var cell13 = row.insertCell(12);
 
                 // Add some text to the new cells:
                 cell1.innerHTML = standard;
                 cell2.innerHTML = ejtes;
                 cell3.innerHTML = helyfajta;
-                cell4.innerHTML = terkepszam;
-                cell5.innerHTML = ragos_alak;
-                cell6.innerHTML = nyelv;
-                cell7.innerHTML = forras_adat;
-                cell8.innerHTML = forras_ev;
-                cell9.innerHTML = forras_tipus;
-                cell10.innerHTML = objektum_info;
-                cell11.innerHTML = nev_info;
-                cell12.innerHTML = nevvarians;
-                cell13.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                cell4.innerHTML = ragos_alak;
+                cell5.innerHTML = nyelv;
+                cell6.innerHTML = forras_adat;
+                cell7.innerHTML = forras_ev;
+                cell8.innerHTML = forras_tipus;
+                cell9.innerHTML = objektum_info;
+                cell10.innerHTML = nev_info;
+                cell11.innerHTML = nevvarians;
+                cell12.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
             }
         }
     }
@@ -248,7 +245,6 @@
             <th>Standard</th>
             <th>Ejtés</th>
             <th>Helyfajta</th>
-            <th>Térképszám</th>
             <th>Helyrag</th>
             <th>Nyelv</th>
             <th>Forrásadat</th>

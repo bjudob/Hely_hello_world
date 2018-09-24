@@ -47,45 +47,93 @@ class HelynevDatabase
         $query = "SELECT
             helynev.ID, 
             Standard,
-            Telepules,
+            telepules.Nev as telepules,
             Ejtes,
             helyfajta.Nev as helyfajtaNev,
             helyfajta.Kod as helyfajtaKod,
             Terkepszam,
             Ragos_Alak,
-            nyelv.Nev as nyelvNev,
+            nyelv.Nev as joinNyelv,
             Forras_Adat,
             Forras_Ev,
             Forras_Tipus,
             Objektum_Info,
             Nev_Info,
             Nevvarians,
-            Is_Active
+            Termeszetes,
+            Mikro,
+            Nevszerkezettipus,
+            R,
+            LM,
+            AR,
+            ALM,
+            BR,
+            BLM,
+            `Nevalkotasi Szabaly` as nevalkotasiszabaly	
             FROM `helynev` 
+            INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
         $result=mysqli_query($this->con,$query) or die('Hiba tortent');
         
         while($row=mysqli_fetch_array($result)){
+            $id=$row['ID'];
             $standard=$row['Standard'];
-            $telepules=$row['Telepules'];
             $ejtes=$row['Ejtes'];
+            $telepules=$row['telepules'];
             $helyfajtaNev=$row['helyfajtaNev'];
             $helyfajtaKod=$row['helyfajtaKod'];
             $terkepszam=$row['Terkepszam'];
             $ragosalak=$row['Ragos_Alak'];
-            $nyelv=$row['nyelvNev'];
+            $nyelv=$row['joinNyelv'];
             $forrasmunkaadat=$row['Forras_Adat'];
             $forrasmunkaev=$row['Forras_Ev'];
             $forrasmunkatipus=$row['Forras_Tipus'];
             $objektuminfo=$row['Objektum_Info'];
             $helyinfo=$row['Nev_Info'];
             $nevvaltozatok=$row['Nevvarians'];
-            $isactive=$row['Is_Active'];
+            $termeszetes=$row['Termeszetes'];
+            $mikro=$row['Mikro'];
+            $nevszerkezet=$row['Nevszerkezettipus'];
+            $r=$row['R'];
+            $lm=$row['LM'];
+            $ar=$row['AR'];
+            $alm=$row['ALM'];
+            $br=$row['BR'];
+            $blm=$row['BLM'];
+            $nevalkotasiszabaly=$row["nevalkotasiszabaly"];
+            
 
             $helynev=new Helynev();
-            $helynev->setValues($standard, $telepules, $ejtes, $helyfajtaNev, $helyfajtaKod, $terkepszam, $ragosalak, $nyelv, $forrasmunkaadat, $forrasmunkaev, $forrasmunkatipus, $objektuminfo, $helyinfo, $nevvaltozatok, $isactive);
-
+            $helynev->setValues(
+                    $standard, 
+                    $telepules,
+                    $ejtes, 
+                    $helyfajtaNev, 
+                    $helyfajtaKod, 
+                    $terkepszam, 
+                    $ragosalak, 
+                    $nyelv, 
+                    $forrasmunkaadat, 
+                    $forrasmunkaev, 
+                    $forrasmunkatipus, 
+                    $objektuminfo, 
+                    $helyinfo, 
+                    $nevvaltozatok, 
+                    $termeszetes,
+                    $mikro,
+                    $nevszerkezet,
+                    $r,
+                    $lm,
+                    $ar,
+                    $alm,
+                    $br,
+                    $blm,
+                    $nevalkotasiszabaly
+                );
+            
+            $helynev->setId($id);
+            
             $helynevek[] = $helynev;
 
         }

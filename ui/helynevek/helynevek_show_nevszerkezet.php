@@ -46,10 +46,32 @@
             Objektum_Info,
             Nev_Info,
             Nevvarians,
-            nevszerkezettipus.Nev as nevszerkezet
+            Termeszetes,
+            Mikro,
+            nevszerkezettipus.Nev as nevszerkezet,
+            nevszerkezettipus.Egyreszes as egyreszes,
+            nr.Nev as R,
+            nr.Kod as Rkod,
+            lm.Nev as LM,
+            lm.Kod as LMkod,
+            nar.Nev as AR,
+            nar.Kod as ARkod,
+            alm.Nev as ALM,
+            alm.Kod as ALMkod,
+            nbr.Nev as BR,
+            nbr.Kod as BRkod,
+            blm.Nev as BLM,
+            blm.Kod as BLMkod,
+            `Nevalkotasi Szabaly` as nevalkotasiszabaly	
             FROM `helynev` 
             INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+            INNER JOIN `nevresz` nr ON `helynev`.R=nr.ID
+            INNER JOIN `nevresz` nar ON `helynev`.AR=nar.ID
+            INNER JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
+            INNER JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
+            INNER JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
+            INNER JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
           /*WHERE Is_Active=1";*/
     mysqli_query($con, $query);
@@ -70,24 +92,54 @@
         $objektum_info=$row['Objektum_Info'];
         $nev_info=$row['Nev_Info'];
         $nevvarians=$row['Nevvarians'];
+        $termeszetes=$row['Termeszetes'];
+        $mikro=$row['Mikro'];
         $nevszerkezet=$row['nevszerkezet'];
+        $egyreszes=$row['egyreszes'];
+        $r=$row['Rkod'].$row['R'];
+        $lm=$row['LMkod'].$row['LM'];
+        $ar=$row['ARkod'].$row['AR'];
+        $alm=$row['ALMkod'].$row['ALM'];
+        $br=$row['BRkod'].$row['BR'];
+        $blm=$row['BLMkod'].$row['BLM'];
+        $nevalkotasiszabaly=$row['nevalkotasiszabaly'];
+        
+        if($egyreszes==1){
+            $ar="-";
+            $alm="-";
+            $br="-";
+            $blm="-";
+        }
+        else{
+            $r="-";
+            $lm="-";
+        }
 
         $helynevek[$row['Telepules']][]=array(
-          "id"=>$id,
-          "standard"=>$standard,
-          "ejtes"=>$ejtes,
-          "helyfajta"=>$helyfajta,
-          "helyfajtaKod"=>$helyfajtaKod,
-          "terkepszam"=>$terkepszam,
-          "ragos_alak"=>$ragos_alak,
-          "nyelv"=>$nyelv,
-          "forras_adat"=>$forras_adat,
-          "forras_ev"=>$forras_ev,
-          "forras_tipus"=>$forras_tipus,
-          "objektum_info"=>$objektum_info,
-          "nev_info"=>$nev_info,
-          "nevvarians"=>$nevvarians,
-          "nevszerkezet"=>$nevszerkezet
+            "id"=>$id,
+            "standard"=>$standard,
+            "ejtes"=>$ejtes,
+            "helyfajta"=>$helyfajta,
+            "helyfajtaKod"=>$helyfajtaKod,
+            "terkepszam"=>$terkepszam,
+            "ragos_alak"=>$ragos_alak,
+            "nyelv"=>$nyelv,
+            "forras_adat"=>$forras_adat,
+            "forras_ev"=>$forras_ev,
+            "forras_tipus"=>$forras_tipus,
+            "objektum_info"=>$objektum_info,
+            "nev_info"=>$nev_info,
+            "termeszetes"=>$termeszetes,
+            "mikro"=>$mikro,
+            "nevvarians"=>$nevvarians,
+            "nevszerkezet"=>$nevszerkezet,
+            "r"=>$r,
+            "lm"=>$lm,
+            "ar"=>$ar,
+            "alm"=>$alm,
+            "br"=>$br,
+            "blm"=>$blm,
+            "nevalkotasiszabaly"=>$nevalkotasiszabaly,
           );
     }
   
@@ -151,20 +203,7 @@
         for(var i = 0; i < helynevek[id].length; i++){
             //helynevek[id][i].nevszerkezet===selectedNevszerkezet
             if(helynevek[id][i].nevszerkezet===selectedNevszerkezet){
-                var hely_id=helynevek[id][i].id;
-                var standard=helynevek[id][i].standard;
-                var ejtes=helynevek[id][i].ejtes;
-                var helyfajta=helynevek[id][i].helyfajta;
-                var terkepszam=helynevek[id][i].nevszerkezet;
-                var ragos_alak=helynevek[id][i].ragos_alak;
-                var nyelv=helynevek[id][i].nyelv;
-                var forras_adat=helynevek[id][i].forras_adat;
-                var forras_ev=helynevek[id][i].forras_ev;
-                var forras_tipus=helynevek[id][i].forras_tipus;
-                var objektum_info=helynevek[id][i].objektum_info;
-                var nev_info=helynevek[id][i].nev_info;
-                var nevvarians=helynevek[id][i].nevvarians;
-
+                
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow(1);
 
@@ -180,23 +219,19 @@
                 var cell9 = row.insertCell(8);
                 var cell10 = row.insertCell(9);
                 var cell11= row.insertCell(10);
-                var cell12 = row.insertCell(11);
-                var cell13 = row.insertCell(12);
 
                 // Add some text to the new cells:
-                cell1.innerHTML = standard;
-                cell2.innerHTML = ejtes;
-                cell3.innerHTML = helyfajta;
-                cell4.innerHTML = terkepszam;
-                cell5.innerHTML = ragos_alak;
-                cell6.innerHTML = nyelv;
-                cell7.innerHTML = forras_adat;
-                cell8.innerHTML = forras_ev;
-                cell9.innerHTML = forras_tipus;
-                cell10.innerHTML = objektum_info;
-                cell11.innerHTML = nev_info;
-                cell12.innerHTML = nevvarians;
-                cell13.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                cell1.innerHTML = helynevek[id][i].standard;
+                cell2.innerHTML = helynevek[id][i].helyfajta;
+                cell3.innerHTML = helynevek[id][i].nevszerkezet;
+                cell4.innerHTML = helynevek[id][i].r;
+                cell5.innerHTML = helynevek[id][i].lm;
+                cell6.innerHTML = helynevek[id][i].ar;
+                cell7.innerHTML = helynevek[id][i].alm;
+                cell8.innerHTML = helynevek[id][i].br;
+                cell9.innerHTML = helynevek[id][i].blm;
+                cell10.innerHTML = helynevek[id][i].nevalkotasiszabaly;
+                cell11.innerHTML = "<a href='helynevek_details.php?id="+helynevek[id][i].id+"'>Adatok</a>";
             }
         }
     }
@@ -246,17 +281,15 @@
         <thead>
         <tr>
             <th>Standard</th>
-            <th>Ejtés</th>
             <th>Helyfajta</th>
-            <th>Térképszám</th>
-            <th>Helyrag</th>
-            <th>Nyelv</th>
-            <th>Forrásadat</th>
-            <th>Forrásdat éve</th>
-            <th>Forrás típus</th>
-            <th>Objektum info</th>
-            <th>Név info</th>
-            <th>Névváltozatok</th>
+            <th>Névszerkezet</th>
+            <th>Névrész</th>
+            <th>LM</th>
+            <th>Alaprész</th>
+            <th>ALM</th>
+            <th>Bővítmény</th>
+            <th>BLM</th>
+            <th>Névalkotási szabály</th>
             <th></th>
         </tr>
         </thead>

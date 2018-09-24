@@ -33,7 +33,6 @@ class Helynev
     private $br;
     private $blm;
     private $nevalkotasiszabaly;
-    private $isactive;
 
     /**
      * Helynev constructor.
@@ -42,6 +41,10 @@ class Helynev
     {
     }
 
+    public function setId($id){
+        $this->id=$id;
+    }
+    
     //all args constructor
     public function setValues(
             $standard, 
