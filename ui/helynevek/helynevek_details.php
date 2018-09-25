@@ -7,6 +7,7 @@
         $id = mysqli_real_escape_string($con, $_GET['id']);;
         $standard = mysqli_real_escape_string($con, $_POST['standard']);
         $ejtes = mysqli_real_escape_string($con, $_POST['ejtes']);
+        $helyfajta = mysqli_real_escape_string($con, $_POST['helyfajta']);
         $terkepszam = mysqli_real_escape_string($con, $_POST['terkepszam']);
         $ragosalak = mysqli_real_escape_string($con, $_POST['ragosalak']);
         $forrasmunkaadat = mysqli_real_escape_string($con, $_POST['forrasmunkaadat']);
@@ -34,7 +35,7 @@
                 0, 
                 $ejtes, 
                 0, 
-                0, 
+                $helyfajta, 
                 $terkepszam, 
                 $ragosalak, 
                 0, 

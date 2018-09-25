@@ -315,6 +315,7 @@ class HelynevDatabase
                 SET 
                 Standard = '$helynev->standard',
                 Ejtes = '$helynev->ejtes',
+                Helyfajta = '$helynev->helyfajtaKod',
                 Terkepszam = '$helynev->terkepszam',
                 Ragos_Alak = '$helynev->ragosalak',
                 Forras_Adat = '$helynev->forrasmunkaadat',
