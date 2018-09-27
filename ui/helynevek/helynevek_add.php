@@ -209,7 +209,7 @@
                 </select>
                 <br>
                 <div id="egyreszes" >
-                <label></label>
+                <label>FSZ</label>
                 <select name="r">
                     <?php
                         $query = "SELECT * FROM `nevresz`";

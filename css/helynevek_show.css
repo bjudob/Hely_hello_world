@@ -28,6 +28,7 @@ table{
     table-layout:fixed;
     border: 2px solid #17A41C;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 table tr:hover {
@@ -36,6 +37,10 @@ table tr:hover {
 
 table, th, td {
     border: 3px solid #175203;
+}
+
+td{
+        word-wrap:break-word;
 }
 
 tbody {
