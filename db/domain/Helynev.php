@@ -28,10 +28,13 @@ class Helynev
     private $nevszerkezet;
     private $r;
     private $lm;
+    private $t;
     private $ar;
     private $alm;
+    private $at;
     private $br;
     private $blm;
+    private $bt;
     private $nevalkotasiszabaly;
 
     /**
@@ -66,10 +69,13 @@ class Helynev
             $nevszerkezet,
             $r,
             $lm,
+            $t,
             $ar,
             $alm,
+            $at,
             $br,
             $blm,
+            $bt,
             $nevalkotasiszabaly)
     {
         $this->standard = $standard;
@@ -91,10 +97,13 @@ class Helynev
         $this->nevszerkezet = $nevszerkezet;
         $this->r = $r;
         $this->lm = $lm;
+        $this->t = $t;
         $this->ar = $ar;
         $this->alm = $alm;
+        $this->at = $at;
         $this->br = $br;
         $this->blm = $blm;
+        $this->bt = $bt;
         $this->nevalkotasiszabaly = $nevalkotasiszabaly;
     }
 

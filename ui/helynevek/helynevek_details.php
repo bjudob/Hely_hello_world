@@ -21,10 +21,13 @@
         $nevszerkezet = mysqli_real_escape_string($con, $_POST['nevszerkezet']);
         $r = mysqli_real_escape_string($con, $_POST['r']);
         $lm = mysqli_real_escape_string($con, $_POST['lm']);
+        $t = mysqli_real_escape_string($con, $_POST['t']);
         $ar = mysqli_real_escape_string($con, $_POST['ar']);
         $alm = mysqli_real_escape_string($con, $_POST['alm']);
+        $at = mysqli_real_escape_string($con, $_POST['at']);
         $br = mysqli_real_escape_string($con, $_POST['br']);
         $blm = mysqli_real_escape_string($con, $_POST['blm']);
+        $bt = mysqli_real_escape_string($con, $_POST['bt']);
         $nevalkotasiszabaly = mysqli_real_escape_string($con, $_POST['nevalkotasiszabaly']);
 
         
@@ -50,10 +53,13 @@
                 $nevszerkezet,
                 $r,
                 $lm,
+                $t,
                 $ar,
                 $alm,
+                $at,
                 $br,
                 $blm,
+                $bt,
                 $nevalkotasiszabaly
                 );
         $helynev->id=$id;
@@ -308,6 +314,29 @@
                     ?>
                 </select>
                 <br>
+                <label id="smallLabel">Toldalék</label>
+                <select name="t">
+                    <?php
+                        $query = "SELECT * FROM `toldalek`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            
+                            if($id===$helynev->t){
+                                echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                            }
+                            else{
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
                 </div>
                 <div id="ketreszes" >
                 <label id="smallLabel">Alaprész:</label>
@@ -368,7 +397,30 @@
                     ?>
                 </select>
                 <br>
-                <label id="smallLabel">Bővítmény:</label>
+                <label id="smallLabel">AT</label>
+                <select name="at">
+                    <?php
+                        $query = "SELECT * FROM `toldalek`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            
+                            if($id===$helynev->at){
+                                echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                            }
+                            else{
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label id="smallLabel">Bővítményrész:</label>
                 <select name="br">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
@@ -426,6 +478,29 @@
                         
                     ?>
                 </select>
+                <br>
+                <label id="smallLabel">BT</label>
+                <select name="bt">
+                    <?php
+                        $query = "SELECT * FROM `toldalek`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            
+                            if($id===$helynev->bt){
+                                echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                            }
+                            else{
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }
+                        }
+                        
+                    ?>
+                </select>
                 </div>
                 <br>
                 <label id="smallLabel">Névalkotási szabály:</label>
@@ -456,7 +531,7 @@
                         
                     ?>
                 </select>
-                <br>
+                <br>             
                 <br>
                 <input id="btn" type = "submit"  name="update_button" value = " Módosítás "/>
                 <input id="btn" type = "submit"  name="delete_button" value = " Törlés "/>
@@ -465,7 +540,7 @@
             </form>
         </div>
         <br>
-        <br>
+        <br
     </div>
 </body>
 </html>

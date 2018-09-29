@@ -54,14 +54,17 @@
             nr.Kod as Rkod,
             lm.Nev as LM,
             lm.Kod as LMkod,
+            t.Rovidites as T,
             nar.Nev as AR,
             nar.Kod as ARkod,
             alm.Nev as ALM,
             alm.Kod as ALMkod,
+            at.Rovidites as AT,
             nbr.Nev as BR,
             nbr.Kod as BRkod,
             blm.Nev as BLM,
             blm.Kod as BLMkod,
+            bt.Rovidites as BT,
             `Nevalkotasi Szabaly` as nevalkotasiszabaly	
             FROM `helynev` 
             INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
@@ -72,6 +75,9 @@
             INNER JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
             INNER JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
             INNER JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
+            INNER JOIN `toldalek` t ON `helynev`.T=t.ID
+            INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
+            INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
           /*WHERE Is_Active=1";*/
     mysqli_query($con, $query);
@@ -97,11 +103,11 @@
         $nevszerkezet=$row['nevszerkezet'];
         $egyreszes=$row['egyreszes'];
         $r=$row['Rkod'].$row['R'];
-        $lm=$row['LMkod'].$row['LM'];
+        $lm=$row['LMkod'].$row['LM']."-".$row['T'];
         $ar=$row['ARkod'].$row['AR'];
-        $alm=$row['ALMkod'].$row['ALM'];
+        $alm=$row['ALMkod'].$row['ALM']."-".$row['AT'];
         $br=$row['BRkod'].$row['BR'];
-        $blm=$row['BLMkod'].$row['BLM'];
+        $blm=$row['BLMkod'].$row['BLM']."-".$row['BT'];
         $nevalkotasiszabaly=$row['nevalkotasiszabaly'];
         
         if($egyreszes==1){
@@ -287,7 +293,7 @@
             <th>LM</th>
             <th>Alaprész</th>
             <th>ALM</th>
-            <th>Bővítmény</th>
+            <th>Bővítményrész</th>
             <th>BLM</th>
             <th>Névalkotási szabály</th>
             <th></th>

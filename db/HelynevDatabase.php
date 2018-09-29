@@ -168,10 +168,13 @@ class HelynevDatabase
             Nevszerkezettipus,
             R,
             LM,
+            T,
             AR,
             ALM,
+            AT,
             BR,
             BLM,
+            BT,
             `Nevalkotasi Szabaly` as nevalkotasiszabaly	
             FROM `helynev` 
             INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
@@ -202,10 +205,13 @@ class HelynevDatabase
         $nevszerkezet=$row['Nevszerkezettipus'];
         $r=$row['R'];
         $lm=$row['LM'];
+        $t=$row['T'];
         $ar=$row['AR'];
         $alm=$row['ALM'];
+        $at=$row['AT'];
         $br=$row['BR'];
         $blm=$row['BLM'];
+        $bt=$row['BT'];
         $nevalkotasiszabaly=$row["nevalkotasiszabaly"];
         
         $helynev->setValues(
@@ -228,10 +234,13 @@ class HelynevDatabase
                 $nevszerkezet,
                 $r,
                 $lm,
+                $t,
                 $ar,
                 $alm,
+                $at,
                 $br,
                 $blm,
+                $bt,
                 $nevalkotasiszabaly); ///look at this later
         $helynev->id=$id;
                 
@@ -262,10 +271,13 @@ class HelynevDatabase
             `Nevszerkezettipus`,
             `R`,
             `LM`,
+            `T`,
             `AR`,
             `ALM`,
+            `AT`,
             `BR`,
             `BLM`,
+            `BT`,
             `Nevalkotasi Szabaly`) 
 	  VALUES (".
             "'$helynev->standard',".
@@ -286,10 +298,13 @@ class HelynevDatabase
             "'$helynev->nevszerkezet',".   
             "'$helynev->r',".
             "'$helynev->lm',".
+            "'$helynev->t',".
             "'$helynev->ar',".
             "'$helynev->alm',".
+            "'$helynev->at',".
             "'$helynev->br',".
             "'$helynev->blm',".
+            "'$helynev->bt',".
             "'$helynev->nevalkotasiszabaly')";
 
 	$result=mysqli_query($this->con,$query) or die('hiba');
@@ -329,10 +344,13 @@ class HelynevDatabase
                 Nevszerkezettipus = '$helynev->nevszerkezet',                                  
                 R = '$helynev->r',
                 LM = '$helynev->lm',
+                T = '$helynev->t',
                 AR = '$helynev->ar',
                 ALM = '$helynev->alm',
+                AT = '$helynev->at',
                 BR = '$helynev->br',
-                BLM = '$helynev->blm',        
+                BLM = '$helynev->blm',   
+                BT = '$helynev->bt',
                 `Nevalkotasi Szabaly` = '$helynev->nevalkotasiszabaly'
                     
                 WHERE ID = '$helynev->id'";

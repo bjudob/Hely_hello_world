@@ -20,11 +20,15 @@
         $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
         $nevszerkezet = mysqli_real_escape_string($con,$_POST['nevszerkezet']);
         $r = mysqli_real_escape_string($con,$_POST['r']);
+        $r = mysqli_real_escape_string($con,$_POST['r']);
         $lm = mysqli_real_escape_string($con,$_POST['lm']);
+        $t = mysqli_real_escape_string($con,$_POST['t']);
         $ar = mysqli_real_escape_string($con,$_POST['ar']);
         $alm = mysqli_real_escape_string($con,$_POST['alm']);
+        $at= mysqli_real_escape_string($con,$_POST['at']);
         $br = mysqli_real_escape_string($con,$_POST['br']);
         $blm = mysqli_real_escape_string($con,$_POST['blm']);
+        $bt = mysqli_real_escape_string($con,$_POST['bt']);
         $nevalkotasiszabaly = mysqli_real_escape_string($con,$_POST['nevalkotasiszabaly']);
 
         $helynev= new Helynev();
@@ -48,10 +52,13 @@
                 $nevszerkezet,
                 $r,
                 $lm,
+                $t,
                 $ar,
                 $alm,
+                $at,
                 $br,
                 $blm,
+                $bt,
                 $nevalkotasiszabaly);
                 
         $db=new HelynevDatabase();
@@ -258,6 +265,24 @@
                     ?>
                 </select>
                 <br>
+                <label>Toldalék</label>
+                <select name="t">
+                    <?php
+                        $query = "SELECT * FROM `toldalek`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            
+                            echo "<option value=".$id.">".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
                 </div>
                 <div id="ketreszes" >
                 <label>Alaprész:</label>
@@ -308,7 +333,25 @@
                     ?>
                 </select>
                 <br>
-                <label>Bővítmény:</label>
+                <label>AT</label>
+                <select name="at">
+                    <?php
+                        $query = "SELECT * FROM `toldalek`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            
+                            echo "<option value=".$id.">".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
+                <label>Bővítményrész:</label>
                 <select name="br">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
@@ -356,6 +399,25 @@
                         
                     ?>
                 </select>
+                <br>
+                <label>BT</label>
+                <select name="bt">
+                    <?php
+                        $query = "SELECT * FROM `toldalek`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            
+                            echo "<option value=".$id.">".$nev."</option>";
+                        }
+                        
+                    ?>
+                </select>
+                <br>
                 </div>
                 <br>
                 <label>Névalkotási szabály:</label>
