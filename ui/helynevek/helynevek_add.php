@@ -268,7 +268,8 @@
                 <label>Toldalék</label>
                 <select name="t">
                     <?php
-                        $query = "SELECT * FROM `toldalek`";
+                        $query = "SELECT * FROM `toldalek`"
+                                . "ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
@@ -276,8 +277,14 @@
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
                             $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
                             
-                            echo "<option value=".$id.">".$nev."</option>";
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -336,7 +343,8 @@
                 <label>AT</label>
                 <select name="at">
                     <?php
-                        $query = "SELECT * FROM `toldalek`";
+                        $query = "SELECT * FROM `toldalek`"
+                                . "ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
@@ -344,8 +352,14 @@
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
                             $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
                             
-                            echo "<option value=".$id.">".$nev."</option>";
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>
@@ -401,9 +415,10 @@
                 </select>
                 <br>
                 <label>BT</label>
-                <select name="bt">
+                <select name="bt">                    
                     <?php
-                        $query = "SELECT * FROM `toldalek`";
+                        $query = "SELECT * FROM `toldalek`"
+                                . "ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
@@ -411,8 +426,14 @@
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
                             $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
                             
-                            echo "<option value=".$id.">".$nev."</option>";
+                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                         }
                         
                     ?>

@@ -21,7 +21,14 @@
 
 		<br><br><br>
 		<div id="updatescontainer">
-		<br>                                       
+		<br>               
+                        <div id="update">
+				2018.10.10. : 
+				<br>
+				-toldaléktípusok hozzáadva
+				<br>				
+			</div>
+                        <br>
 			<div id="update">
 				2018.09.23. : 
 				<br>

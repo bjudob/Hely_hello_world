@@ -120,6 +120,10 @@
                     $("#egyreszes").show();
                   }
                 });
+                
+                var element = document.getElementById('nevszerkezet');
+                var event = new Event('change');
+                element.dispatchEvent(event);
             });
         </script>
 </head>
@@ -317,7 +321,8 @@
                 <label id="smallLabel">Toldalék</label>
                 <select name="t">
                     <?php
-                        $query = "SELECT * FROM `toldalek`";
+                        $query = "SELECT * FROM `toldalek`"
+                                . "ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
@@ -325,13 +330,19 @@
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
                             $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
                             
                             if($id===$helynev->t){
-                                echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
                             }
                             else{
-                                echo "<option value=".$id.">".$nev."</option>";
-                            }
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                            } 
                         }
                         
                     ?>
@@ -400,7 +411,8 @@
                 <label id="smallLabel">AT</label>
                 <select name="at">
                     <?php
-                        $query = "SELECT * FROM `toldalek`";
+                        $query = "SELECT * FROM `toldalek`"
+                                . "ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
@@ -408,12 +420,18 @@
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
                             $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
                             
                             if($id===$helynev->at){
-                                echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
                             }
                             else{
-                                echo "<option value=".$id.">".$nev."</option>";
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                             }
                         }
                         
@@ -482,7 +500,8 @@
                 <label id="smallLabel">BT</label>
                 <select name="bt">
                     <?php
-                        $query = "SELECT * FROM `toldalek`";
+                        $query = "SELECT * FROM `toldalek`"
+                                . "ORDER BY Kod";
                                     /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
@@ -490,12 +509,18 @@
                         while($row=mysqli_fetch_array($result)){
                             $id=$row['ID'];
                             $nev=$row['Nev'];
+                            $kod=$row['Kod'];
+                            $bold="none";
+
+                            if (strlen($kod) == 2) {
+                                $bold="boldoption";
+                            }
                             
                             if($id===$helynev->bt){
-                                echo "<option selected='selected' value=".$id.">".$nev."</option>";
+                                echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
                             }
                             else{
-                                echo "<option value=".$id.">".$nev."</option>";
+                                echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                             }
                         }
                         
