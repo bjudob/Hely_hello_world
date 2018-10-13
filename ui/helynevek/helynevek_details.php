@@ -1,8 +1,10 @@
 <?php
     include("../../config.php");
     require ("../../db/HelynevDatabase.php");
-            
+    session_start();
+    
     if (isset($_POST['update_button'])) {
+        session_start();
         
         $id = mysqli_real_escape_string($con, $_GET['id']);;
         $standard = mysqli_real_escape_string($con, $_POST['standard']);
@@ -67,7 +69,10 @@
         $db=new HelynevDatabase();
         $db->updateHelynev($helynev);
         
-        header("location: helynevek_show.php");
+        //header('location: ' . $_SERVER['HTTP_REFERER']);
+        //header("location:javascript://history.go(-2)");
+        header("location: ". $_SESSION["backlink"]);
+        exit;
     } 
     else if (isset($_POST['delete_button'])) {
         if ($con->connect_error) {
@@ -80,13 +85,15 @@
         $db->deleteHelynev($id);
 
         header("location: helynevek_show.php");
+        exit;
     } 
     else if (isset($_POST['back_button'])) {
-        header("location: helynevek_show.php");
+        //header("location: helynevek_show.php");
     } 
     else {
         //no button pressed
     }
+    $_SESSION["backlink"] = $_SERVER['HTTP_REFERER'];
 
     $db=new HelynevDatabase();
                 
@@ -132,6 +139,8 @@
         <br><br>
         <div id="item">
             <form action = "" method = "post">
+                <label id="smallLabel"><?php echo $_SERVER['HTTP_REFERER']?></label>
+                <br>
                 <label id="smallLabel">Standard:</label><input type = "text" name = "standard" class="inputfield" value="<?php echo $helynev->standard; ?>"/>
                 <br>
                 <label id="smallLabel">Település:</label><input type = "text" name = "telepules" class="inputfield" value="<?php echo $helynev->telepules; ?>" disabled/>
@@ -561,7 +570,7 @@
                 <input id="btn" type = "submit"  name="update_button" value = " Módosítás "/>
                 <input id="btn" type = "submit"  name="delete_button" value = " Törlés "/>
                 <br><br>
-                <input id="btn" type = "submit"  name="back_button" value = " Vissza "/>
+                <input id="btn" onclick="history.back()" name="back_button" value = " Vissza "/>
             </form>
         </div>
         <br>

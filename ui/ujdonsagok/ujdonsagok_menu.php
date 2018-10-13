@@ -21,7 +21,16 @@
 
 		<br><br><br>
 		<div id="updatescontainer">
-		<br>               
+		<br>      
+			<div id="update">
+				2018.10.13. : 
+				<br>
+				-összes helynév megtekintése helyfajta szerint 
+				<br>
+				-összes helynév megtekintése névszerkezet szerint
+				<br>
+			</div>
+                        <br>
                         <div id="update">
 				2018.10.10. : 
 				<br>

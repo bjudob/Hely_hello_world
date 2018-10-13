@@ -30,14 +30,12 @@
                 $tajegysegek = $db->getAllTajegyseg();
                 
                 foreach ($tajegysegek as &$tajegyseg) {
-
-                echo '<tr>';
-                echo '<td>';
-                echo $tajegyseg->nev;
-                echo '</td>';
-                echo "<td><a href='delete.php?id=".$tajegyseg->id."&name=".$tajegyseg->nev."'>Törlés</a></td>";
-                echo '</tr>';
-
+                    echo '<tr>';
+                    echo '<td>';
+                    echo $tajegyseg->nev;
+                    echo '</td>';
+                    echo "<td><a href='delete.php?id=".$tajegyseg->id."&name=".$tajegyseg->nev."'>Törlés</a></td>";
+                    echo '</tr>';
                 }
 	    ?>
         </tbody>
