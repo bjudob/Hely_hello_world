@@ -3,28 +3,6 @@
 <?php
     require ("../../db/HelynevDatabase.php");
     include("../../config.php");
-    
-    $query = "SELECT * FROM `tajegyseg`";
-          /*WHERE Is_Active=1";*/
-    $result=mysqli_query($con,$query) or die('hiba');
-
-    while($row=mysqli_fetch_array($result)){
-        $id=$row['ID'];
-        $nev=$row['Nev'];
-
-        $tajegysegek[]=array("id"=>$id,"val"=>$nev);
-  }
-
-    $query = "SELECT * FROM `telepules`";
-          /*WHERE Is_Active=1";*/
-    $result=mysqli_query($con,$query) or die('hiba');
-
-    while($row=mysqli_fetch_array($result)){
-        $id=$row['ID'];
-        $nev=$row['Nev'];
-
-        $telepulesek[$row['Tajegyseg']][]=array("id"=>$id,"val"=>$nev);
-    }
 
     $db=new HelynevDatabase();
 
@@ -34,6 +12,7 @@
             helynev.ID, 
             Standard,
             Telepules,
+            telepules.nev as TelepulesNev,
             Ejtes,
             helyfajta.Nev as joinHelyfajta,
             helyfajta.Kod as helyfajtaKod,
@@ -67,6 +46,7 @@
             bt.Rovidites as BT,
             `Nevalkotasi Szabaly` as nevalkotasiszabaly	
             FROM `helynev` 
+            INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
             INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
             INNER JOIN `nevresz` nr ON `helynev`.R=nr.ID
@@ -78,13 +58,15 @@
             INNER JOIN `toldalek` t ON `helynev`.T=t.ID
             INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
             INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
+            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            ORDER BY TelepulesNev DESC";
           /*WHERE Is_Active=1";*/
     mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
 
     while($row=mysqli_fetch_array($result)){
         $id=$row['ID'];
+        $telepules=$row['TelepulesNev'];
         $standard=$row['Standard'];
         $ejtes=$row['Ejtes'];
         $helyfajta=$row['helyfajtaKod']." ".$row['joinHelyfajta'];
@@ -121,8 +103,9 @@
             $lm="-";
         }
 
-        $helynevek[$row['Telepules']][]=array(
+        $helynevek[]=array(
             "id"=>$id,
+            "telepules"=>$telepules,
             "standard"=>$standard,
             "ejtes"=>$ejtes,
             "helyfajta"=>$helyfajta,
@@ -149,9 +132,6 @@
           );
     }
   
-
-    $jsonTajegysegek = json_encode($tajegysegek);
-    $jsonTelepulesek = json_encode($telepulesek);
     $jsonHelynevek = json_encode($helynevek);
 
 
@@ -169,34 +149,11 @@
     <script src="jquery-3.2.1.min.js"></script>
     <script type='text/javascript'>
       <?php
-        echo "var tajegysegek = $jsonTajegysegek; \n";
-        echo "var telepulesek = $jsonTelepulesek; \n";
         echo "var helynevek = $jsonHelynevek; \n";
       ?>
-      function loadTajegysegek(){
-        var select = document.getElementById("tajegysegekSelect");
-        select.onchange = updateTelepulesek;
-        for(var i = 0; i < tajegysegek.length; i++){
-          select.options[i] = new Option(tajegysegek[i].val,tajegysegek[i].id);          
-        }
-        updateTelepulesek();
-      }
-      function updateTelepulesek(){
-        var tajegysegekSelect = document.getElementById("tajegysegekSelect");
-        var id = tajegysegekSelect.value;
-        var telepulesekSelect = document.getElementById("telepulesekSelect");
-        telepulesekSelect.onchange = updateHelynevek;
-        telepulesekSelect.options.length = 0; //delete all options if any present
-        for(var i = 0; i < telepulesek[id].length; i++){
-          telepulesekSelect.options[i] = new Option(telepulesek[id][i].val,telepulesek[id][i].id);
-        }
-        updateHelynevek();
-      }
       function updateHelynevek(){
-        var telepulesekSelect = document.getElementById("telepulesekSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
         nevszerkezetSelect.onchange = updateHelynevek;
-        var id = telepulesekSelect.value;
         var selectedNevszerkezet=nevszerkezetSelect.value;
 
         var table = document.getElementById("helynevekTable");
@@ -206,9 +163,8 @@
             table.deleteRow(1);
         }
 
-        for(var i = 0; i < helynevek[id].length; i++){
-            //helynevek[id][i].nevszerkezet===selectedNevszerkezet
-            if(helynevek[id][i].nevszerkezet===selectedNevszerkezet){
+        for(var i = 0; i < helynevek.length; i++){
+            if(helynevek[i].nevszerkezet===selectedNevszerkezet){
                 
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow(1);
@@ -225,19 +181,21 @@
                 var cell9 = row.insertCell(8);
                 var cell10 = row.insertCell(9);
                 var cell11= row.insertCell(10);
+                var cell12= row.insertCell(11);
 
                 // Add some text to the new cells:
-                cell1.innerHTML = helynevek[id][i].standard;
-                cell2.innerHTML = helynevek[id][i].helyfajta;
-                cell3.innerHTML = helynevek[id][i].nevszerkezet;
-                cell4.innerHTML = helynevek[id][i].r;
-                cell5.innerHTML = helynevek[id][i].lm;
-                cell6.innerHTML = helynevek[id][i].ar;
-                cell7.innerHTML = helynevek[id][i].alm;
-                cell8.innerHTML = helynevek[id][i].br;
-                cell9.innerHTML = helynevek[id][i].blm;
-                cell10.innerHTML = helynevek[id][i].nevalkotasiszabaly;
-                cell11.innerHTML = "<a href='helynevek_details.php?id="+helynevek[id][i].id+"'>Adatok</a>";
+                cell1.innerHTML = helynevek[i].telepules;
+                cell2.innerHTML = helynevek[i].standard;
+                cell3.innerHTML = helynevek[i].helyfajta;
+                cell4.innerHTML = helynevek[i].nevszerkezet;
+                cell5.innerHTML = helynevek[i].r;
+                cell6.innerHTML = helynevek[i].lm;
+                cell7.innerHTML = helynevek[i].ar;
+                cell8.innerHTML = helynevek[i].alm;
+                cell9.innerHTML = helynevek[i].br;
+                cell10.innerHTML = helynevek[i].blm;
+                cell11.innerHTML = helynevek[i].nevalkotasiszabaly;
+                cell12.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
             }
         }
     }
@@ -247,20 +205,12 @@
     }
     </script>
 </head>
-<body onload='loadTajegysegek()'>
+<body onload='updateHelynevek()'>
     <div id="container">
         <div id="title">Helynevek</div>
         <br>
         <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
         <form action = "" method = "post">
-            <label>Tájegység:</label>
-            <select id='tajegysegekSelect' >
-            </select>
-            <br>
-            <label>Település:</label>
-            <select id='telepulesekSelect' >
-            </select>
-            <br>
             <label>Névszerkezettípus:</label>
             <select id='nevszerkezetSelect' >
                 <?php
@@ -286,6 +236,7 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
+            <th>Település</th>
             <th>Standard</th>
             <th>Helyfajta</th>
             <th>Névszerkezet</th>

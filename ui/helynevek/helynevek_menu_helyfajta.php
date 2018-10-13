@@ -17,25 +17,18 @@
 <body>
 	<div id="container">
 		<br><br>
-		<div id="title">Helynevek kezelése</div>
+		<div id="title">Helyfajta szerint</div>
 
 		<br><br><br><br>
 
 		<div id="menuOption">
-		<input id="btn" type="button" value="Helynevek megtekintése" onclick="window.location.href='./helynevek_show.php'">
+		<input id="btn" type="button" value="Összes" onclick="window.location.href='./helynevek_show_helyfajta_all.php'">
 		</div>
                 <br>
                 <div id="menuOption">
-		<input id="btn" type="button" value="Névszerkezettípus szerint" onclick="window.location.href='./helynevek_menu_nevszerkezet.php'">
-		</div>
-		<br>
-		<div id="menuOption">
-		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_menu_helyfajta.php'">
+		<input id="btn" type="button" value="Településenként" onclick="window.location.href='./helynevek_show_helyfajta.php'">
 		</div>
                 <br>
-		<div id="menuOption">
-		<input id="btn" type="button" value="Új helynév" onclick="window.location.href='./helynevek_add.php'">
-		</div>
 
 		
 	</div>
