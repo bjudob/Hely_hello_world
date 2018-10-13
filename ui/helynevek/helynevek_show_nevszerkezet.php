@@ -194,10 +194,10 @@
       }
       function updateHelynevek(){
         var telepulesekSelect = document.getElementById("telepulesekSelect");
-        var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
+        var helyfajtaSelect = document.getElementById("nevszerkezetSelect");
         nevszerkezetSelect.onchange = updateHelynevek;
         var id = telepulesekSelect.value;
-        var selectedNevszerkezet=nevszerkezetSelect.value;
+        var selectedNevszerkezet=helyfajtaSelect.value;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;

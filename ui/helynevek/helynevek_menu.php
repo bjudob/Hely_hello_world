@@ -5,7 +5,7 @@
 	include('../../navbar_lvl1.php');
 ?>
 <head>
-	<title>Helynevek</title>
+	<title>Települések</title>
 	<link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
 	<link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 
@@ -26,11 +26,11 @@
 		</div>
                 <br>
                 <div id="menuOption">
-		<input id="btn" type="button" value="Névszerkezettípus szerint" onclick="window.location.href='./helynevek_menu_nevszerkezet.php'">
+		<input id="btn" type="button" value="Névszerkezettípus szerint" onclick="window.location.href='./helynevek_show_nevszerkezet.php'">
 		</div>
 		<br>
 		<div id="menuOption">
-		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_menu_helyfajta.php'">
+		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_show_helyfajta.php'">
 		</div>
                 <br>
 		<div id="menuOption">
