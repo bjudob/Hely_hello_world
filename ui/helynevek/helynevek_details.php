@@ -1,10 +1,16 @@
 <?php
     include("../../config.php");
     require ("../../db/HelynevDatabase.php");
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     
     if (isset($_POST['update_button'])) {
-        session_start();
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
         
         $id = mysqli_real_escape_string($con, $_GET['id']);;
         $standard = mysqli_real_escape_string($con, $_POST['standard']);
@@ -139,8 +145,6 @@
         <br><br>
         <div id="item">
             <form action = "" method = "post">
-                <label id="smallLabel"><?php echo $_SERVER['HTTP_REFERER']?></label>
-                <br>
                 <label id="smallLabel">Standard:</label><input type = "text" name = "standard" class="inputfield" value="<?php echo $helynev->standard; ?>"/>
                 <br>
                 <label id="smallLabel">Település:</label><input type = "text" name = "telepules" class="inputfield" value="<?php echo $helynev->telepules; ?>" disabled/>
