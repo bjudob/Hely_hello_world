@@ -33,6 +33,10 @@
 		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_menu_helyfajta.php'">
 		</div>
                 <br>
+                <div id="menuOption">
+		<input id="btn" type="button" value="Ábécé szerint" onclick="window.location.href='./helynevek_menu_abc.php'">
+		</div>
+                <br>
 		<div id="menuOption">
 		<input id="btn" type="button" value="Új helynév" onclick="window.location.href='./helynevek_add.php'">
 		</div>
