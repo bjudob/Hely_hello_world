@@ -69,8 +69,8 @@
           "nev_info"=>$nev_info,
           "nevvarians"=>$nevvarians
           );
-    }
-
+  }
+  
     $jsonHelynevek = json_encode($helynevek);
 
 
@@ -89,7 +89,6 @@
     <script type='text/javascript'>
     <?php
         echo "var helynevek = $jsonHelynevek; \n";
-
     ?>
     function charToNumber(a){
         var abc = ["a", "á", "b","c","d","e","é","f","g","h","i","í","j","k","l","m","n","o","ó","ö","ő","p","q","r","s","t","u","ú","ü","ű","v","w","x","y","z"];
@@ -101,62 +100,14 @@
         }
         return -1;
     }
-    function compareLetter(a,b){
-        nrA=charToNumber(a);
-        nrB=charToNumber(b);
+    function azEnMagyarulIsTudoOsszehasonlitom(a,b){
+        nrA=charToNumber(a.standard.charAt(0));
+        nrB=charToNumber(b.standard.charAt(0));
         
         return nrA<nrB;
     }
-    
-    function azEnMagyarulIsTudoOsszehasonlitom(a,b){
-        while(true){
-            if(b===""){
-                return false;
-            }
-            if(a===""){
-                return true;
-            }
-            a1=a.charAt(0);
-            b1=b.charAt(0);
-            
-            if(a1!==b1){
-                return compareLetter(a1,b1);
-            }
-            a = a.substr(1);
-            b = b.substr(1);
-        }
-    }
-    
-    function bubbleSort(a) {
-       var swapped;
-       do {
-           swapped = false;
-           for (var i=0; i < a.length-1; i++) {
-               if (azEnMagyarulIsTudoOsszehasonlitom(a[i], a[i+1])) {
-                   var temp = a[i];
-                   a[i] = a[i+1];
-                   a[i+1] = temp;
-                   swapped = true;
-               }
-           }
-       } while (swapped);
-   }
-   
-    function bubbleSortHelynev(a) {
-       var swapped;
-       do {
-           swapped = false;
-           for (var i=0; i < a.length-1; i++) {
-               if (azEnMagyarulIsTudoOsszehasonlitom(a[i].standard, a[i+1].standard)) {
-                   var temp = a[i];
-                   a[i] = a[i+1];
-                   a[i+1] = temp;
-                   swapped = true;
-               }
-           }
-       } while (swapped);
-   }
-    
+
+          
     function updateHelynevek(){
         var abcSelect = document.getElementById("abcSelect");
         abcSelect.onchange = updateHelynevek;
@@ -168,7 +119,7 @@
         for(var i=1;i<rows;i++){
             table.deleteRow(1);
         }
-        bubbleSortHelynev(helynevek);
+        helynevek.sort(azEnMagyarulIsTudoOsszehasonlitom);
         for(var i = 0; i < helynevek.length; i++){
             var show=false; 
             for (var j = 0; j < selectedAbc.length; j++) {
@@ -178,10 +129,19 @@
             }
             if(selectedAbc==="all" || show){
                 var hely_id=helynevek[i].id;
-                var standard=helynevek[i].standard;
                 var telepules=helynevek[i].telepules;
+                var standard=helynevek[i].standard;
+                var ejtes=helynevek[i].ejtes;
                 var helyfajta=helynevek[i].helyfajta;
-                
+                var ragos_alak=helynevek[i].ragos_alak;
+                var nyelv=helynevek[i].nyelv;
+                var forras_adat=helynevek[i].forras_adat;
+                var forras_ev=helynevek[i].forras_ev;
+                var forras_tipus=helynevek[i].forras_tipus;
+                var objektum_info=helynevek[i].objektum_info;
+                var nev_info=helynevek[i].nev_info;
+                var nevvarians=helynevek[i].nevvarians;
+
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow(1);
 
@@ -191,13 +151,29 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
-                
+                var cell6 = row.insertCell(5);
+                var cell7 = row.insertCell(6);
+                var cell8 = row.insertCell(7);
+                var cell9 = row.insertCell(8);
+                var cell10 = row.insertCell(9);
+                var cell11= row.insertCell(10);
+                var cell12 = row.insertCell(11);
+                var cell13 = row.insertCell(12);
+
                 // Add some text to the new cells:
-                cell1.innerHTML = (helynevek.length-i).toString();
-                cell2.innerHTML = '<b>'+standard+'</b>';
-                cell3.innerHTML = telepules;
+                cell1.innerHTML = '<b>'+standard+'</b>';
+                cell2.innerHTML = telepules;
+                cell3.innerHTML = ejtes;
                 cell4.innerHTML = helyfajta;
-                cell5.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                cell5.innerHTML = ragos_alak;
+                cell6.innerHTML = nyelv;
+                cell7.innerHTML = forras_adat;
+                cell8.innerHTML = forras_ev;
+                cell9.innerHTML = forras_tipus;
+                cell10.innerHTML = objektum_info;
+                cell11.innerHTML = nev_info;
+                cell12.innerHTML = nevvarians;
+                cell13.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
             }
         }
     }
@@ -250,10 +226,18 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
-            <th></th>
             <th>Standard</th>
             <th>Település</th>
-            <th>Helyfajta</th>          
+            <th>Ejtés</th>
+            <th>Helyfajta</th>
+            <th>Helyrag</th>
+            <th>Nyelv</th>
+            <th>Forrásadat</th>
+            <th>Forrásdat éve</th>
+            <th>Forrás típus</th>
+            <th>Objektum info</th>
+            <th>Név info</th>
+            <th>Névváltozatok</th>
             <th></th>
         </tr>
         </thead>

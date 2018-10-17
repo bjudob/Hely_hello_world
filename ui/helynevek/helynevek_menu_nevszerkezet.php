@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <?php
@@ -17,16 +16,16 @@
 <body>
 	<div id="container">
 		<br><br>
-		<div id="title">Névszerkezettípus szerint</div>
+		<div id="title">Helyfajta szerint</div>
 
 		<br><br><br><br>
 
 		<div id="menuOption">
-		<input id="btn" type="button" value="Összes" onclick="window.location.href='./helynevek_show_nevszerkezet_all.php'">
+		<input id="btn" type="button" value="Összes" onclick="window.location.href='./helynevek_show_helyfajta_all.php'">
 		</div>
                 <br>
                 <div id="menuOption">
-		<input id="btn" type="button" value="Településenként" onclick="window.location.href='./helynevek_show_nevszerkezet.php'">
+		<input id="btn" type="button" value="Településenként" onclick="window.location.href='./helynevek_show_helyfajta.php'">
 		</div>
                 <br>
 

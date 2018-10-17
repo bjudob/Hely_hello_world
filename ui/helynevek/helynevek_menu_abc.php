@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <?php
@@ -22,11 +21,11 @@
 		<br><br><br><br>
 
 		<div id="menuOption">
-		<input id="btn" type="button" value="Összes" onclick="window.location.href='./helynevek_show_abc_all.php'">
+		<input id="btn" type="button" value="Első betű szerint" onclick="window.location.href='./helynevek_show_abc_all.php'">
 		</div>
                 <br>
                 <div id="menuOption">
-		<input id="btn" type="button" value="Településenként" onclick="window.location.href='./helynevek_show_abc.php'">
+		<input id="btn" type="button" value="Utolsó betű szerint" onclick="window.location.href='./helynevek_show_abc_reverse_all.php'">
 		</div>
                 <br>
 
