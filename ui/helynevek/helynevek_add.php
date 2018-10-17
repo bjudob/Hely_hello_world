@@ -172,9 +172,9 @@
                     ?>
                 </select>
                 <br>
-                <label>Forrásdat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
+                <label>Forrásadat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
                 <br>
-                <label>Forrásdat éve:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
+                <label>Forrásadat éve:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
                 <br>
                 <label>Forrás és éve:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
                 <br>

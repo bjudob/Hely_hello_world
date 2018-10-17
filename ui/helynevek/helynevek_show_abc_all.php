@@ -181,7 +181,8 @@
                 var standard=helynevek[i].standard;
                 var telepules=helynevek[i].telepules;
                 var helyfajta=helynevek[i].helyfajta;
-                
+                var nevvaltozatok=helynevek[i].nevvarians;
+                               
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow(1);
 
@@ -193,11 +194,18 @@
                 var cell5 = row.insertCell(4);
                 
                 // Add some text to the new cells:
-                cell1.innerHTML = (helynevek.length-i).toString();
-                cell2.innerHTML = '<b>'+standard+'</b>';
-                cell3.innerHTML = telepules;
-                cell4.innerHTML = helyfajta;
+                cell1.innerHTML = '<b>'+standard+'</b>';
+                cell2.innerHTML = telepules;
+                cell3.innerHTML = helyfajta;
+                cell4.innerHTML = nevvaltozatok;
                 cell5.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                
+                if(i<helynevek.length-1 && standard.charAt(0) !== helynevek[i+1].standard.charAt(0)){
+                    var betuRow = table.insertRow(1);
+                    
+                    var betuCell = betuRow.insertCell(0);
+                    betuCell.innerHTML = '<h1><b>'+standard.substring(0,1).toUpperCase()+'</b></h1>';
+                }
             }
         }
     }
@@ -250,10 +258,10 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
-            <th></th>
             <th>Standard</th>
             <th>Település</th>
             <th>Helyfajta</th>          
+            <th>Névváltozatok</th>
             <th></th>
         </tr>
         </thead>
@@ -261,7 +269,7 @@
         </tbody>
         </table>
         <br>
-        <div id="menuOption"><input id="btn" type="button" value="Vissza"       onclick="window.location.href='./helynevek_menu.php'">
+        <div id="menuOption"><input id="btn" type="button" value="Vissza" onclick="window.location.href='./helynevek_menu.php'">
         </div>
         <br>
         <br>
