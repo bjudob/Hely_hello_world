@@ -131,7 +131,6 @@
                 <select name="helyfajta">
                     <?php
                         $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -159,7 +158,6 @@
                 <select name="nyelv">
                     <?php
                         $query = "SELECT * FROM `nyelv`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -200,7 +198,6 @@
                 <select name="nevszerkezet" id="nevszerkezet">
                     <?php
                         $query = "SELECT * FROM `nevszerkezettipus`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -220,7 +217,6 @@
                 <select name="r">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -245,7 +241,6 @@
                 <select name="lm">
                     <?php
                         $query = "SELECT * FROM `lexikalis`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -269,8 +264,7 @@
                 <select name="t">
                     <?php
                         $query = "SELECT * FROM `toldalek`"
-                                . "ORDER BY Kod";
-                                    /*WHERE Is_Active=1";*/
+                                . "ORDER BY Sorszam";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -296,7 +290,6 @@
                 <select name="ar">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -320,7 +313,6 @@
                 <select name="alm">
                     <?php
                         $query = "SELECT * FROM `lexikalis`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -344,8 +336,7 @@
                 <select name="at">
                     <?php
                         $query = "SELECT * FROM `toldalek`"
-                                . "ORDER BY Kod";
-                                    /*WHERE Is_Active=1";*/
+                                . "ORDER BY Sorszam";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -369,7 +360,6 @@
                 <select name="br">
                     <?php
                         $query = "SELECT * FROM `nevresz`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -393,7 +383,6 @@
                 <select name="blm">
                     <?php
                         $query = "SELECT * FROM `lexikalis`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -418,8 +407,7 @@
                 <select name="bt">                    
                     <?php
                         $query = "SELECT * FROM `toldalek`"
-                                . "ORDER BY Kod";
-                                    /*WHERE Is_Active=1";*/
+                                . "ORDER BY Sorszam";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -445,7 +433,6 @@
                 <select name="nevalkotasiszabaly">
                     <?php
                         $query = "SELECT * FROM `nevalkotasszabaly`";
-                                    /*WHERE Is_Active=1";*/
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 

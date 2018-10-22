@@ -24,10 +24,7 @@
 		<input id="btn" type="button" value="Első betű szerint" onclick="window.location.href='./helynevek_show_abc_all.php'">
 		</div>
                 <br>
-                <div id="menuOption">
-		<input id="btn" type="button" value="Utolsó betű szerint" onclick="window.location.href='./helynevek_show_abc_reverse_all.php'">
-		</div>
-                <br>
+               
 
 		
 	</div>

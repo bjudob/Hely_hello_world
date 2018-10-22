@@ -92,7 +92,7 @@
 
     ?>
     function charToNumber(a){
-        var abc = ["a", "á", "b","c","d","e","é","f","g","h","i","í","j","k","l","m","n","o","ó","ö","ő","p","q","r","s","t","u","ú","ü","ű","v","w","x","y","z"];
+        var abc = ["a", "á", "b","c","cs","d","dz","dzs","e","é","f","g","gy","h","i","í","j","k","l","ly","m","n","ny","o","ó","ö","ő","p","q","r","s","sz","t","ty","u","ú","ü","ű","v","w","x","y","z","zs"];
         
         for(var i=0;i<abc.length;i++){
             if(a===abc[i]){
@@ -108,7 +108,32 @@
         return nrA<nrB;
     }
     
+    function firstLetter(a){
+        a=a.toLowerCase();
+        if(a.substr(0,3)==="dzs"){
+            return a.substr(0,3);
+        }
+        if(  a.substr(0,2)=="cs"
+           ||a.substr(0,2)=="dz"
+           ||a.substr(0,2)=="gy"
+           ||a.substr(0,2)=="ly"
+           ||a.substr(0,2)=="ny"
+           ||a.substr(0,2)=="sz"
+           ||a.substr(0,2)=="ty"
+           ||a.substr(0,2)=="zs"){
+            return a.substr(0,2);
+        }
+        return a.substr(0,1);
+    }
+    
     function azEnMagyarulIsTudoOsszehasonlitom(a,b){
+        if(a.charAt(0)==="*"){
+            a=a.substr(1);
+        }
+        if(b.charAt(0)==="*"){
+            b=b.substr(1);
+        }
+
         while(true){
             if(b===""){
                 return false;
@@ -116,14 +141,14 @@
             if(a===""){
                 return true;
             }
-            a1=a.charAt(0);
-            b1=b.charAt(0);
+            a1=firstLetter(a);
+            b1=firstLetter(b);
             
             if(a1!==b1){
                 return compareLetter(a1,b1);
             }
-            a = a.substr(1);
-            b = b.substr(1);
+            a = a.substr(a1.length);
+            b = b.substr(b1.length);
         }
     }
     
@@ -171,10 +196,8 @@
         bubbleSortHelynev(helynevek);
         for(var i = 0; i < helynevek.length; i++){
             var show=false; 
-            for (var j = 0; j < selectedAbc.length; j++) {
-                if(helynevek[i].standard.startsWith(selectedAbc.charAt(j))){                    
-                    show=true;
-                }
+            if(firstLetter(helynevek[i].standard)===selectedAbc){                    
+                show=true;
             }
             if(selectedAbc==="all" || show){
                 var hely_id=helynevek[i].id;
@@ -200,12 +223,6 @@
                 cell4.innerHTML = nevvaltozatok;
                 cell5.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
                 
-                if(i<helynevek.length-1 && standard.charAt(0) !== helynevek[i+1].standard.charAt(0)){
-                    var betuRow = table.insertRow(1);
-                    
-                    var betuCell = betuRow.insertCell(0);
-                    betuCell.innerHTML = '<h1><b>'+standard.substring(0,1).toUpperCase()+'</b></h1>';
-                }
             }
         }
     }
@@ -223,33 +240,46 @@
                 <option value="á">Á</option>
                 <option value="b">B</option>
                 <option value="c">C</option>
+                <option value="cs">CS</option>
                 <option value="d">D</option>
+                <option value="dz">DZ</option>
+                <option value="dzs">DZS</option>
                 <option value="e">E</option>
                 <option value="é">É</option>
                 <option value="f">F</option>
                 <option value="g">G</option>
+                <option value="gy">GY</option>
                 <option value="h">H</option>
                 <option value="i">I</option>
                 <option value="í">Í</option>
                 <option value="j">J</option>
                 <option value="k">K</option>
                 <option value="l">L</option>
+                <option value="ly">LY</option>
                 <option value="m">M</option>
                 <option value="n">N</option>
+                <option value="ny">NY</option>
                 <option value="o">O</option>
                 <option value="ó">Ó</option>
                 <option value="ö">Ö</option>
                 <option value="ő">Ő</option>
                 <option value="p">P</option>
+                <option value="q">Q</option>
                 <option value="r">R</option>
                 <option value="s">S</option>
+                <option value="sz">SZ</option>
                 <option value="t">T</option>
+                <option value="ty">TY</option>
                 <option value="u">U</option>
                 <option value="ú">Ú</option>
                 <option value="ü">Ü</option>
                 <option value="ű">Ű</option>
                 <option value="v">V</option>
+                <option value="w">W</option>
+                <option value="x">X</option>
+                <option value="y">Y</option>
                 <option value="z">Z</option>
+                <option value="zs">ZS</option>
             </select>
             <br>
         </form>
