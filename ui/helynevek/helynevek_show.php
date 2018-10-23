@@ -169,22 +169,23 @@
             var cell10 = row.insertCell(9);
             var cell11= row.insertCell(10);
             var cell12 = row.insertCell(11);
-            var cell13 = row.insertCell(12);
+            //var cell13 = row.insertCell(12);
 
             // Add some text to the new cells:
-            cell1.innerHTML = standard;
-            cell2.innerHTML = ejtes;
-            cell3.innerHTML = helyfajta;
-            cell4.innerHTML = terkepszam;
-            cell5.innerHTML = ragos_alak;
-            cell6.innerHTML = nyelv;
-            cell7.innerHTML = forras_adat;
-            cell8.innerHTML = forras_ev;
-            cell9.innerHTML = forras_tipus;
-            cell10.innerHTML = objektum_info;
-            cell11.innerHTML = nev_info;
-            cell12.innerHTML = nevvarians;
-            cell13.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+            cell1.innerHTML = helynevek[id].length-i;
+            cell2.innerHTML = standard;
+            cell3.innerHTML = ejtes;
+            cell4.innerHTML = helyfajta;
+            cell5.innerHTML = terkepszam;
+            cell6.innerHTML = ragos_alak;
+            cell7.innerHTML = nyelv;
+            cell8.innerHTML = forras_adat;
+            //cell8.innerHTML = forras_ev;
+            //cell9.innerHTML = forras_tipus;
+            cell9.innerHTML = objektum_info;
+            cell10.innerHTML = nev_info;
+            cell11.innerHTML = nevvarians;
+            cell12.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
         }
       }
     </script>
@@ -209,6 +210,7 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
+            <th>Sorszám</th>
             <th>Standard</th>
             <th>Ejtés</th>
             <th>Helyfajta</th>
@@ -216,8 +218,6 @@
             <th>Helyrag</th>
             <th>Nyelv</th>
             <th>Forrásadat</th>
-            <th>Forrásdat éve</th>
-            <th>Forrás típus</th>
             <th>Objektum info</th>
             <th>Név info</th>
             <th>Névváltozatok</th>
