@@ -1,5 +1,6 @@
 <?php
     include("../../config.php");
+    include("./helynevek_abc_hash_utils.php");
     require ("../../db/HelynevDatabase.php");
     if(!isset($_SESSION)) 
     { 
@@ -37,7 +38,7 @@
         $blm = mysqli_real_escape_string($con, $_POST['blm']);
         $bt = mysqli_real_escape_string($con, $_POST['bt']);
         $nevalkotasiszabaly = mysqli_real_escape_string($con, $_POST['nevalkotasiszabaly']);
-
+        $standardhash=abcHash($standard);
         
         
         $helynev=new Helynev();
@@ -68,8 +69,8 @@
                 $br,
                 $blm,
                 $bt,
-                $nevalkotasiszabaly
-                );
+                $nevalkotasiszabaly,
+                $standardhash);
         $helynev->id=$id;
                 
         $db=new HelynevDatabase();

@@ -241,7 +241,8 @@ class HelynevDatabase
                 $br,
                 $blm,
                 $bt,
-                $nevalkotasiszabaly); ///look at this later
+                $nevalkotasiszabaly,
+                0); ///look at this later
         $helynev->id=$id;
                 
         $this->disconnect();
@@ -353,7 +354,8 @@ class HelynevDatabase
                 BR = '$helynev->br',
                 BLM = '$helynev->blm',   
                 BT = '$helynev->bt',
-                `Nevalkotasi Szabaly` = '$helynev->nevalkotasiszabaly'
+                `Nevalkotasi Szabaly` = '$helynev->nevalkotasiszabaly',
+                `Standard_Hash` = '$helynev->standardhash'
                     
                 WHERE ID = '$helynev->id'";
 
