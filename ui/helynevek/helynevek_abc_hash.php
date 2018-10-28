@@ -14,10 +14,10 @@
                 "Ȧ"=>"4",
                 "ä"=>"5",
                 "Ä"=>"6",
-                "á"=>"8",
-                "b"=>"9",
-                "c"=>":",
-                "cs"=>";",
+                "á"=>"7",
+                "b"=>"8",
+                "c"=>"9",
+                "cs"=>":",
                 "d"=>"<",
                 "dz"=>"=",
                 "dzs"=>">",
@@ -52,27 +52,27 @@
                 "t"=>"Z",
                 "ty"=>"[",
                 "u"=>"]",
-                "ú"=>"a",
-                "ü"=>"b",
-                "ű"=>"c",
-                "v"=>"d",
-                "w"=>"e",
-                "x"=>"xf",
-                "y"=>"g",
-                "z"=>"h",
-                "zs"=>"i",
-                "¹"=>"j",
-                "²"=>"k",
-                "³"=>"l",
-                "1"=>"m",
-                "2"=>"n",
-                "3"=>"o",
-                "4"=>"p",
-                "5"=>"q",
-                "6"=>"r",
-                "7"=>"s",
-                "8"=>"t",            
-                "9"=>"u");
+                "ú"=>"{",
+                "ü"=>"|",
+                "ű"=>"}",
+                "v"=>"~",
+                "w"=>"¡",
+                "x"=>"¢",
+                "y"=>"£",
+                "z"=>"¤",
+                "zs"=>"¦",
+                "¹"=>"§",
+                "²"=>"¨",
+                "³"=>"©",
+                "1"=>"ª",
+                "2"=>"«",
+                "3"=>"¬",
+                "4"=>"®",
+                "5"=>"¯",
+                "6"=>"°",
+                "7"=>"±",
+                "8"=>"²",            
+                "9"=>"³");
            
             if(array_key_exists ($a,$utf)){
                 $value=$utf[$a];
@@ -111,7 +111,7 @@
     if (!function_exists('abcHash'))   {
         function abcHash($str){
             //remove white spaces
-            $standard = preg_replace('/\s+/', '', $str);
+            $standard = mb_strtolower(preg_replace('/\s+/', '', $str));
             
             //remove *
             if(mb_substr($standard, 0, 1)==="*"){
@@ -128,7 +128,7 @@
                 }
 
                 $firstLetter=firstLetter($standard);
-                $hash=$hash.letterToHash(mb_strtolower(mb_substr($firstLetter, 0, 1)));
+                $hash=$hash.letterToHash($firstLetter);
                 $standard =substr( $standard,strlen($firstLetter));
             }
         }

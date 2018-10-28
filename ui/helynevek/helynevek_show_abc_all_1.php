@@ -29,7 +29,8 @@
             INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
-            ORDER BY Standard_Hash DESC";
+            ORDER BY lower(Standard)
+            COLLATE utf8_bin";
           /*WHERE Is_Active=1";*/
     mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
@@ -123,6 +124,49 @@
         }
         return a.substr(0,1);
     }
+    
+    function azEnMagyarulIsTudoOsszehasonlitom(a,b){
+        if(a.charAt(0)==="*"){
+            a=a.substr(1);
+        }
+        if(b.charAt(0)==="*"){
+            b=b.substr(1);
+        }
+        a = a.replace(/\s/g,'');  
+        b = b.replace(/\s/g,'');  
+
+        while(true){
+            if(b===""){
+                return false;
+            }
+            if(a===""){
+                return true;
+            }
+            a1=firstLetter(a);
+            b1=firstLetter(b);
+            
+            if(a1!==b1){
+                return compareLetter(a1,b1);
+            }
+            a = a.substr(a1.length);
+            b = b.substr(b1.length);
+        }
+    }
+    
+    function bubbleSort(a) {
+       var swapped;
+       do {
+           swapped = false;
+           for (var i=0; i < a.length-1; i++) {
+               if (azEnMagyarulIsTudoOsszehasonlitom(a[i], a[i+1])) {
+                   var temp = a[i];
+                   a[i] = a[i+1];
+                   a[i+1] = temp;
+                   swapped = true;
+               }
+           }
+       } while (swapped);
+   }
    
     function bubbleSortHelynev(a) {
        var swapped;
@@ -150,7 +194,7 @@
         for(var i=1;i<rows;i++){
             table.deleteRow(1);
         }
-        
+        bubbleSortHelynev(helynevek);
         for(var i = 0; i < helynevek.length; i++){
             var show=false; 
             if(firstLetter(helynevek[i].standard)===selectedAbc){                    
