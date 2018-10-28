@@ -111,8 +111,9 @@
     if (!function_exists('abcHash'))   {
         function abcHash($str){
             //remove white spaces
-            $standard = mb_strtolower(preg_replace('/\s+/', '', $str));
-            
+            $nospace = mb_strtolower(preg_replace('/\s+/', '', $str));
+            $standard = preg_replace('/-/', '', $nospace);
+                    
             //remove *
             if(mb_substr($standard, 0, 1)==="*"){
                 $standard = mb_substr($standard, 1);
