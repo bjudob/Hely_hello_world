@@ -22,6 +22,14 @@
 		<br><br><br>
 		<div id="updatescontainer">
 		<br>      
+                        <div id="update">
+				2018.10.27. : 
+				<br>
+				-speciális karakterek berakva 
+				<br>
+				-indexek berakva
+				<br>
+			</div>
 			<div id="update">
 				2018.10.13. : 
 				<br>

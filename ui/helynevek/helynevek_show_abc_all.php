@@ -85,7 +85,6 @@
     <link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 
-    <script src="jquery-3.2.1.min.js"></script>
     <script type='text/javascript'>
     <?php
         echo "var helynevek = $jsonHelynevek; \n";
@@ -133,6 +132,8 @@
         if(b.charAt(0)==="*"){
             b=b.substr(1);
         }
+        a = a.replace(/\s/g,'');  
+        b = b.replace(/\s/g,'');  
 
         while(true){
             if(b===""){

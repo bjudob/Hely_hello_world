@@ -97,6 +97,17 @@
                   }
                 });
             });
+            
+            function addIndex(a){
+                document.getElementById("standardInput").value = document.getElementById("standardInput").value.concat(a);
+                
+            }
+            
+            function addLetter(a){
+                document.getElementById("ejtesInput").value = document.getElementById("ejtesInput").value.concat(a);
+                
+            }
+            
         </script>
         
 </head>
@@ -106,7 +117,12 @@
         <br>
         <div id="item">
             <form action = "" method = "post">
-                <label>Standard: </label><input type = "text" name = "standard" class="inputfield"/>
+                <label>Standard: </label><input id="standardInput" type = "text" name = "standard" class="inputfield"/>
+                <br>
+                <label></label>
+                <input class="charButton" value="¹" type = "button" onclick="addIndex('¹');"></button>
+                <input class="charButton" value="²" type = "button" onclick="addIndex('²');"></button>
+                <input class="charButton" value="³" type = "button" onclick="addIndex('³');"></button>
                 <br>
                 <label>Település:</label>
                 <select name="telepules">
@@ -125,7 +141,19 @@
                     ?>
                 </select>
                 <br>
-                <label>Ejtés:</label><input type = "text" name = "ejtes" class="inputfield"/>
+                <label>Ejtés:</label><input id="ejtesInput" type = "text" name = "ejtes" class="inputfield"/>
+                <br>
+                <label></label>
+                <input class="charButton" value="ā" type = "button" onclick="addLetter('ā');"></button>
+                <input class="charButton" value="Ā" type = "button" onclick="addLetter('Ā');"></button>
+                <input class="charButton" value="ȧ" type = "button" onclick="addLetter('ȧ');"></button>
+                <input class="charButton" value="Ȧ" type = "button" onclick="addLetter('Ȧ');"></button>
+                <input class="charButton" value="ä" type = "button" onclick="addLetter('ä');"></button>
+                <input class="charButton" value="Ä" type = "button" onclick="addLetter('Ä');"></button>
+                <input class="charButton" value="ë" type = "button" onclick="addLetter('ë');"></button>
+                <input class="charButton" value="Ë" type = "button" onclick="addLetter('Ë');"></button>
+                <input class="charButton" value="ē" type = "button" onclick="addLetter('ē');"></button>
+                <input class="charButton" value="Ē" type = "button" onclick="addLetter('Ē');"></button>
                 <br>
                 <label>Helyfajta:</label>
                 <select name="helyfajta">
