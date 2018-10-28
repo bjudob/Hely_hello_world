@@ -36,6 +36,7 @@ class Helynev
     private $blm;
     private $bt;
     private $nevalkotasiszabaly;
+    private $standardhash;
 
     /**
      * Helynev constructor.
@@ -76,7 +77,8 @@ class Helynev
             $br,
             $blm,
             $bt,
-            $nevalkotasiszabaly)
+            $nevalkotasiszabaly,
+            $standardhash)
     {
         $this->standard = $standard;
         $this->telepules = $telepules;
@@ -105,6 +107,7 @@ class Helynev
         $this->blm = $blm;
         $this->bt = $bt;
         $this->nevalkotasiszabaly = $nevalkotasiszabaly;
+        $this->standardhash = $standardhash;
     }
 
 
