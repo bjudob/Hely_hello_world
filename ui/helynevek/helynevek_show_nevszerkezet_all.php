@@ -59,8 +59,8 @@
             INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
             INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
-            ORDER BY TelepulesNev DESC";
-          /*WHERE Is_Active=1";*/
+            ORDER BY Standard_Hash DESC";
+    
     mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
 
@@ -184,8 +184,8 @@
                 var cell12= row.insertCell(11);
 
                 // Add some text to the new cells:
-                cell1.innerHTML = helynevek[i].telepules;
-                cell2.innerHTML = helynevek[i].standard;
+                cell1.innerHTML = helynevek[i].standard;
+                cell2.innerHTML = helynevek[i].telepules;
                 cell3.innerHTML = helynevek[i].helyfajta;
                 cell4.innerHTML = helynevek[i].nevszerkezet;
                 cell5.innerHTML = helynevek[i].r;
@@ -236,8 +236,8 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
-            <th>Település</th>
             <th>Standard</th>
+            <th>Település</th>
             <th>Helyfajta</th>
             <th>Névszerkezet</th>
             <th>Névrész</th>

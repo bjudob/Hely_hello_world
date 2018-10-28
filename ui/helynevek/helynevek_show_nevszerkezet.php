@@ -78,8 +78,9 @@
             INNER JOIN `toldalek` t ON `helynev`.T=t.ID
             INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
             INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
-          /*WHERE Is_Active=1";*/
+            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            ORDER BY Standard_Hash DESC";
+    
     mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
 

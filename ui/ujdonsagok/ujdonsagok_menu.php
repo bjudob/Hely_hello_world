@@ -23,6 +23,12 @@
 		<div id="updatescontainer">
 		<br>      
                         <div id="update">
+				2018.10.28. : 
+				<br>
+				-ábécé sorrend mindenhol
+				<br>
+			</div>
+                        <div id="update">
 				2018.10.27. : 
 				<br>
 				-speciális karakterek berakva 

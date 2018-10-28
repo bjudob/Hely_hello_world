@@ -48,8 +48,9 @@
             Nevvarians
             FROM `helynev` 
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
-          /*WHERE Is_Active=1";*/
+            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            ORDER BY Standard_Hash DESC";
+    
     mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
 
