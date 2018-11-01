@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php
     include("../../config.php");
 
@@ -81,8 +79,8 @@
                 
                 return $value;
             } else{
-                echo "Caught exception for key ($a)";
-                echo '<br>';
+                //echo "Caught exception for key ($a)";
+                //echo '<br>';
                 return "¥";
             }         
         }
@@ -123,8 +121,8 @@
             
             while(true){                                      
                 if($standard===""){
-                    echo "Found hash ($hash) for key ($str)";
-                    echo '<br>';
+                    //echo "Found hash ($hash) for key ($str)";
+                    //echo '<br>';
                     return $hash;
                 }
 

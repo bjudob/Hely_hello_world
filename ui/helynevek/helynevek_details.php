@@ -1,11 +1,11 @@
 <?php
-    include("../../config.php");
-    include("./helynevek_abc_hash_utils.php");
-    require ("../../db/HelynevDatabase.php");
     if(!isset($_SESSION)) 
     { 
         session_start(); 
     } 
+    include("../../config.php");
+    include("./helynevek_abc_hash_utils.php");
+    require ("../../db/HelynevDatabase.php");
     
     if (isset($_POST['update_button'])) {
         if(!isset($_SESSION)) 
