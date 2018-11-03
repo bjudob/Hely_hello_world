@@ -195,7 +195,7 @@
 
                             $bold="none";
 
-                            if (strpos($kod, '.') == false) {
+                            if (strlen($kod) == 2){
                                 $bold="boldoption";
                             }
                             if($helyfajta_option===$helynev->helyfajtaNev){
@@ -332,7 +332,7 @@
                 <label id="smallLabel">LM</label>
                 <select name="lm">
                     <?php
-                        $query = "SELECT * FROM `lexikalis`";
+                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -419,7 +419,7 @@
                 <label id="smallLabel">ALM</label>
                 <select name="alm">
                     <?php
-                        $query = "SELECT * FROM `lexikalis`";
+                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -504,7 +504,7 @@
                 <label id="smallLabel">BLM</label>
                 <select name="blm">
                     <?php
-                        $query = "SELECT * FROM `lexikalis`";
+                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 

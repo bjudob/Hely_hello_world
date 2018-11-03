@@ -171,7 +171,7 @@
                                 $kod=$row['Kod'];
                                 $bold="none";
 
-                                if (strpos($kod, '.') == false) {
+                                if (strlen($kod) == 2) {
                                     $bold="boldoption";
                                 }
 
@@ -271,7 +271,7 @@
                 <label>LM</label>
                 <select name="lm">
                     <?php
-                        $query = "SELECT * FROM `lexikalis`";
+                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -343,7 +343,7 @@
                 <label>ALM</label>
                 <select name="alm">
                     <?php
-                        $query = "SELECT * FROM `lexikalis`";
+                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
@@ -413,7 +413,7 @@
                 <label>BLM</label>
                 <select name="blm">
                     <?php
-                        $query = "SELECT * FROM `lexikalis`";
+                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                         
                         $result=mysqli_query($con,$query) or die('hiba');
 
