@@ -6,7 +6,7 @@
 }
 
 body{
-    background-image: url("../img/green_background.jpg");
+    background-image: url("../img/background2.jpg");
     /*background-color: #00FF00;*/
 }
 
@@ -17,7 +17,21 @@ body{
 #container{
 	margin:auto;
 	width:100%;
-	
+}
+
+#menucontainer{
+	margin:auto;
+  width:60%;
+  background-color: rgb(76, 76, 88);
+  border-radius: 150px;
+}
+
+#menuOption{
+	text-decoration: underline;
+	margin:auto;
+	width: 100%;
+	text-align: center;
+	font-size: 150%;
 }
 
 #title{
@@ -29,14 +43,6 @@ body{
 	font-style: normal;
 	font-variant: normal;
 	font-weight: bold;
-}
-
-#menuOption{
-	text-decoration: underline;
-	margin:auto;
-	width: 30%;
-	text-align: center;
-	font-size: 150%;
 }
 
 #yesno{

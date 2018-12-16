@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 </head>
 <body>
-    <div id="container">
+    <div id="menucontainer">
         <div id="title" >Statisztika</div>
         <br><br>
         <h1 style="margin: auto; text-align: center;">

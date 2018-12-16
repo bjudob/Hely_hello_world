@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div id="container">
+	<div id="menucontainer">
 		<br><br>
 		<div id="title">Helynevek kezelése</div>
 
@@ -40,6 +40,7 @@
 		<div id="menuOption">
 		<input id="btn" type="button" value="Új helynév" onclick="window.location.href='./helynevek_add.php'">
 		</div>
+		<br>
 
 		
 	</div>

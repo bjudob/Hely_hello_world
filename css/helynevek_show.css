@@ -26,17 +26,18 @@ table{
     margin:auto;
     font-size: 120%;
     table-layout:fixed;
-    border: 2px solid #17A41C;
+    border: 1px solid black;
     border-collapse: collapse;
     table-layout: fixed;
+    background-color: white;
 }
 
 table tr:hover {
-      background-color: #42f465;
+      background-color: #4cbb62;
 }
 
 table, th, td {
-    border: 3px solid #175203;
+    border: 2px solid #333232;
 }
 
 td{
@@ -55,6 +56,13 @@ thead, tbody tr {
     width: 100%;
     table-layout:fixed;/* even columns width , fix width of table too*/
 }
+
+th{
+    background-color: rgb(76, 76, 88);
+}
+
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
 
 .boldoption{
     font-weight:bold;

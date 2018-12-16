@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div id="container">
+	<div id="menucontainer">
 		<br><br>
 		<div id="title">Települések kezelése</div>
 
