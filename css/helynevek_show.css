@@ -1,16 +1,3 @@
-label {
-  display: inline-block;
-  width: 300px;
-  text-align: right;
-}​
-
-
-
-select{
-  font-size: 40px;
-}
-
-
 #ketreszes , #egyreszes{
     border-style: solid;
     border-width: 1px;
@@ -26,7 +13,7 @@ select{
 table{
     width: 95%;
     margin:auto;
-    font-size: 120%;
+    font-size: 125%;
     table-layout:fixed;
     border: 1px solid black;
     border-collapse: collapse;
@@ -60,7 +47,12 @@ thead, tbody tr {
 }
 
 th{
-    background-color: rgb(76, 76, 88);
+    background-color: #ccc;
+    background-image: -webkit-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: -moz-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: -ms-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: -o-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: linear-gradient(to bottom, #ccc, rgb(76, 76, 88));
 }
 
 tr:nth-child(even) {background: #CCC}

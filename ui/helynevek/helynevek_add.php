@@ -116,8 +116,7 @@
 </head>
 <body>
     <div id="menucontainer">
-        <br>
-        <br>
+        <br><br>
         <div style="text-align:center;">
             <form action = "" method = "post" class="inputform">
                 <br>
@@ -543,7 +542,7 @@
             </form>
         </div>
         <br><br>
-        <div id="menuOption"
+        <div id="menuOption">
             <input id="btn" type="button" value="Vissza"  onclick="window.location.href='./helynevek_menu.php'">
         </div>
     <br>

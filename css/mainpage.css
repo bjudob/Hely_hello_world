@@ -1,17 +1,6 @@
 
-#item{
-    margin:auto;
-    text-align: center;
-    font-size: 150%;
-}
-
 body{
     background-image: url("../img/background2.jpg");
-    /*background-color: #00FF00;*/
-}
-
-#smallLabel{
-  font-size: 22px;
 }
 
 #container{
@@ -21,7 +10,7 @@ body{
 
 #menucontainer{
 	margin:auto;
-  width:60%;
+  width:50%;
   background-color: #ccc;
   background-image: -webkit-linear-gradient(top, #ccc, rgb(76, 76, 88));
   background-image: -moz-linear-gradient(top, #ccc, rgb(76, 76, 88));
@@ -31,12 +20,22 @@ body{
   border-radius: 150px;
 }
 
+#blockcontainer{
+	margin:auto;
+  width:40%;
+  background-color: #ccc;
+  background-image: -webkit-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -moz-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -ms-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -o-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: linear-gradient(to bottom, #ccc, rgb(76, 76, 88));
+}
+
 #menuOption{
 	text-decoration: underline;
 	margin:auto;
 	width: 100%;
 	text-align: center;
-	font-size: 150%;
 }
 
 #title{
@@ -48,6 +47,28 @@ body{
 	font-style: normal;
 	font-variant: normal;
 	font-weight: bold;
+}
+
+.inputrow:hover{
+  background: #1e6b05;
+}
+
+input[type="text"]
+{
+    font-size:22px;
+    width: 30%;
+}
+
+select{
+  font-size: 22px;
+  width: 30%;
+}
+
+.inputlabel{
+  font-size: 27px;
+  text-align: left;
+  width: 200px;
+  display: inline-block;
 }
 
 #yesno{
@@ -79,7 +100,7 @@ body{
   box-shadow: 5px 1px 3px #666666;
   font-family: Georgia;
   color: #000000;
-  font-size: 23px;
+  font-size: 24px;
   text-align: center;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
@@ -93,31 +114,6 @@ body{
   background-image: -o-linear-gradient(top, #175203, #0da815);
   background-image: linear-gradient(to bottom, #175203, #0da815);
   text-decoration: none;
-}
-
-.inputrow:hover{
-  background: #1e6b05;
-}
-
-input[type="text"]
-{
-    font-size:20px;
-    width: 20%;
-}
-
-label{
-  font-size: 29px;
-
-}
-
-.inputlabel{
-  font-size: 29px;
-  text-align: left;
-}
-
-select{
-  font-size: 20px;
-  width: 20%;
 }
 
 /*List*/

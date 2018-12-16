@@ -193,19 +193,21 @@
 </head>
 <body onload='loadTajegysegek()'>
     <div id="container">
-        <div id="title">Helynevek</div>
-        <br>
-        <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
-        <form action = "" method = "post">
-            <label>Tájegység:</label>
-            <select id='tajegysegekSelect' >
-            </select>
+        <div id="blockcontainer">
+            <div id="title">Helynevek</div>
             <br>
-            <label>Település:</label>
-            <select id='telepulesekSelect' >
-            </select>
-            <br>
-        </form>
+            <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
+            <form action = "" method = "post">
+                <label>Tájegység:</label>
+                <select id='tajegysegekSelect' >
+                </select>
+                <br>
+                <label>Település:</label>
+                <select id='telepulesekSelect' >
+                </select>
+                <br>
+            </form>
+            </div>
         </div>
         <br>
         <table id='helynevekTable'>
