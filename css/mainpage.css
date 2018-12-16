@@ -22,7 +22,12 @@ body{
 #menucontainer{
 	margin:auto;
   width:60%;
-  background-color: rgb(76, 76, 88);
+  background-color: #ccc;
+  background-image: -webkit-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -moz-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -ms-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -o-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: linear-gradient(to bottom, #ccc, rgb(76, 76, 88));
   border-radius: 150px;
 }
 
@@ -90,6 +95,10 @@ body{
   text-decoration: none;
 }
 
+.inputrow:hover{
+  background: #1e6b05;
+}
+
 input[type="text"]
 {
     font-size:20px;
@@ -99,6 +108,11 @@ input[type="text"]
 label{
   font-size: 29px;
 
+}
+
+.inputlabel{
+  font-size: 29px;
+  text-align: left;
 }
 
 select{

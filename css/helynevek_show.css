@@ -4,6 +4,8 @@ label {
   text-align: right;
 }​
 
+
+
 select{
   font-size: 40px;
 }
@@ -33,7 +35,7 @@ table{
 }
 
 table tr:hover {
-      background-color: #4cbb62;
+      background-color: #7eaf6d;
 }
 
 table, th, td {

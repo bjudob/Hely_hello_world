@@ -118,54 +118,409 @@
     <div id="menucontainer">
         <br>
         <br>
-        <div id="item">
-            <form action = "" method = "post">
-                <label>Standard: </label><input id="standardInput" type = "text" name = "standard" class="inputfield"/>
+        <div style="text-align:center;">
+            <form action = "" method = "post" class="inputform">
                 <br>
-                <label></label>
-                <input class="charButton" value="¹" type = "button" onclick="addIndex('¹');"></button>
-                <input class="charButton" value="²" type = "button" onclick="addIndex('²');"></button>
-                <input class="charButton" value="³" type = "button" onclick="addIndex('³');"></button>
-                <br>
-                <label>Település:</label>
-                <select name="telepules">
-                    <?php
-                        $query = "SELECT * FROM `telepules`";
-                                    /*WHERE Is_Active=1";*/
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
+                <div class=inputrow>
+                    <label class="inputlabel">Standard: </label>
+                    <input id="standardInput" type = "text" name = "standard" class="inputfield"/>
+                    <br>
+                    <label class="inputlabel"></label>
+                    <input class="charButton" value="¹" type = "button" onclick="addIndex('¹');"></button>
+                    <input class="charButton" value="²" type = "button" onclick="addIndex('²');"></button>
+                    <input class="charButton" value="³" type = "button" onclick="addIndex('³');"></button>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Település:</label>
+                    <select name="telepules">
+                        <?php
+                            $query = "SELECT * FROM `telepules`";
+                                        /*WHERE Is_Active=1";*/
+                            
+                            $result=mysqli_query($con,$query) or die('hiba');
 
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            echo "<option value=".$id.">".$nev."</option>";
-                        }
+                            while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }
 
-                    ?>
-                </select>
-                <br>
-                <label>Ejtés:</label><input id="ejtesInput" type = "text" name = "ejtes" class="inputfield"/>
-                <br>
-                <label></label>
-                <input class="charButton" value="ā" type = "button" onclick="addLetter('ā');"></button>
-                <input class="charButton" value="Ā" type = "button" onclick="addLetter('Ā');"></button>
-                <input class="charButton" value="ȧ" type = "button" onclick="addLetter('ȧ');"></button>
-                <input class="charButton" value="Ȧ" type = "button" onclick="addLetter('Ȧ');"></button>
-                <input class="charButton" value="ä" type = "button" onclick="addLetter('ä');"></button>
-                <input class="charButton" value="Ä" type = "button" onclick="addLetter('Ä');"></button>
-                <input class="charButton" value="ë" type = "button" onclick="addLetter('ë');"></button>
-                <input class="charButton" value="Ë" type = "button" onclick="addLetter('Ë');"></button>
-                <input class="charButton" value="ē" type = "button" onclick="addLetter('ē');"></button>
-                <input class="charButton" value="Ē" type = "button" onclick="addLetter('Ē');"></button>
-                <br>
-                <label>Helyfajta:</label>
-                <select name="helyfajta">
-                    <?php
-                        $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
+                        ?>
+                    </select>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Ejtés:</label><input id="ejtesInput" type = "text" name = "ejtes" class="inputfield"/>              
+                    <br>
+                    <label class="inputlabel"></label>
+                    <input class="charButton" value="ā" type = "button" onclick="addLetter('ā');"></button>
+                    <input class="charButton" value="Ā" type = "button" onclick="addLetter('Ā');"></button>
+                    <input class="charButton" value="ȧ" type = "button" onclick="addLetter('ȧ');"></button>
+                    <input class="charButton" value="Ȧ" type = "button" onclick="addLetter('Ȧ');"></button>
+                    <input class="charButton" value="ä" type = "button" onclick="addLetter('ä');"></button>
+                    <input class="charButton" value="Ä" type = "button" onclick="addLetter('Ä');"></button>
+                    <input class="charButton" value="ë" type = "button" onclick="addLetter('ë');"></button>
+                    <input class="charButton" value="Ë" type = "button" onclick="addLetter('Ë');"></button>
+                    <input class="charButton" value="ē" type = "button" onclick="addLetter('ē');"></button>
+                    <input class="charButton" value="Ē" type = "button" onclick="addLetter('Ē');"></button>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Helyfajta:</label>
+                    <select name="helyfajta">
+                        <?php
+                            $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
+                            
+                            $result=mysqli_query($con,$query) or die('hiba');
 
-                        while($row=mysqli_fetch_array($result)){
+                            while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+
+                        ?>
+                    </select>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield"/>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Helyrag:</label><input type = "text" name = "ragosalak" class="inputfield"/>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Nyelv:</label>
+                    <select name="nyelv">
+                        <?php
+                            $query = "SELECT * FROM `nyelv`";
+                            
+                            $result=mysqli_query($con,$query) or die('hiba');
+
+                            while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }            
+                        ?>
+                    </select>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Forrásadat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Forrásadat éve:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Forrás és éve:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" />
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Név info:</label><input type = "text" name = "helyinfo" class="inputfield"/>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Névváltozatok:</label><input type = "text" name = "nevvaltozatok"/>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Természetes:</label>
+                    <select name="termeszetes">
+                        <option value=1>Természetes</option>
+                        <option value=0>Mesterséges</option>
+                    </select>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Mikro/makro:</label>
+                    <select name="mikro">
+                        <option value=1>Mikronév</option>
+                        <option value=0>Makronév</option>
+                    </select>
+                    <br>
+                </div>
+                <div class=inputrow>
+                    <label class="inputlabel">Névszerkezettípus:</label>
+                    <select name="nevszerkezet" id="nevszerkezet">
+                        <?php
+                            $query = "SELECT * FROM `nevszerkezettipus`";
+                            
+                            $result=mysqli_query($con,$query) or die('hiba');
+
+                            while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+                                $egyreszes=$row['Egyreszes'];
+
+                                echo "<option value=".$id.">".$nev."</option>";
+                            }
+                            
+                        ?>
+                    </select>
+                    <br>
+                </div>
+                <div id="egyreszes" >
+                    <div class=inputrow>
+                        <label class="inputlabel">FSZ</label>
+                        <select name="r">
+                            <?php
+                                $query = "SELECT * FROM `nevresz`";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+
+                                    //echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">LM</label>
+                        <select name="lm">
+                            <?php
+                                $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">Toldalék</label>
+                        <select name="t">
+                            <?php
+                                $query = "SELECT * FROM `toldalek`"
+                                        . "ORDER BY Sorszam";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+                <div id="ketreszes" >
+                    <div class=inputrow>
+                        <label class="inputlabel">Alaprész:</label>
+                        <select name="ar">
+                            <?php
+                                $query = "SELECT * FROM `nevresz`";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">ALM</label>
+                        <select name="alm">
+                            <?php
+                                $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">AT</label>
+                        <select name="at">
+                            <?php
+                                $query = "SELECT * FROM `toldalek`"
+                                        . "ORDER BY Sorszam";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">Bővítményrész:</label>
+                        <select name="br">
+                            <?php
+                                $query = "SELECT * FROM `nevresz`";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">BLM</label>
+                        <select name="blm">
+                            <?php
+                                $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                    <div class=inputrow>
+                        <label class="inputlabel">BT</label>
+                        <select name="bt">                    
+                            <?php
+                                $query = "SELECT * FROM `toldalek`"
+                                        . "ORDER BY Sorszam";
+                                
+                                $result=mysqli_query($con,$query) or die('hiba');
+
+                                while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
+                                }
+                                
+                            ?>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+                <br>
+                <div class=inputrow>
+                    <label class="inputlabel">Névalkotási szabály:</label>
+                    <select name="nevalkotasiszabaly">
+                        <?php
+                            $query = "SELECT * FROM `nevalkotasszabaly`";
+                            
+                            $result=mysqli_query($con,$query) or die('hiba');
+
+                            while($row=mysqli_fetch_array($result)){
                                 $id=$row['ID'];
                                 $nev=$row['Nev'];
                                 $kod=$row['Kod'];
@@ -174,315 +529,14 @@
                                 if (strlen($kod) == 2) {
                                     $bold="boldoption";
                                 }
-
+                                
                                 echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
                             }
-
-                    ?>
-                </select>
-                <br>
-                <label>Térképszám:</label><input type = "text" name = "terkepszam" class="inputfield"/>
-                <br>
-                <label>Helyrag:</label><input type = "text" name = "ragosalak" class="inputfield"/>
-                <br>
-                <label>Nyelv:</label>
-                <select name="nyelv">
-                    <?php
-                        $query = "SELECT * FROM `nyelv`";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-
-                            echo "<option value=".$id.">".$nev."</option>";
-                        }            
-                    ?>
-                </select>
-                <br>
-                <label>Forrásadat:</label><input type = "text" name = "forrasmunkaadat" class="inputfield"/>
-                <br>
-                <label>Forrásadat éve:</label><input type = "text" name = "forrasmunkaev" class="inputfield"/>
-                <br>
-                <label>Forrás és éve:</label><input type = "text" name = "forrasmunkatipus" class="inputfield" />
-                <br>
-                <label>Objektum info:</label><input type = "text" name = "objektuminfo" class="inputfield" />
-                <br>
-                <label>Név info:</label><input type = "text" name = "helyinfo" class="inputfield"/>
-                <br>
-                <label>Névváltozatok:</label><input type = "text" name = "nevvaltozatok"/>
-                <br>
-                <label>Természetes:</label>
-                <select name="termeszetes">
-                    <option value=1>Természetes</option>
-                    <option value=0>Mesterséges</option>
-                </select>
-                <br>
-                <label>Mikro/makro:</label>
-                <select name="mikro">
-                    <option value=1>Mikronév</option>
-                    <option value=0>Makronév</option>
-                </select>
-                <br>
-                <label>Névszerkezettípus:</label>
-                <select name="nevszerkezet" id="nevszerkezet">
-                    <?php
-                        $query = "SELECT * FROM `nevszerkezettipus`";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $egyreszes=$row['Egyreszes'];
-
-                            echo "<option value=".$id.">".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <div id="egyreszes" >
-                <label>FSZ</label>
-                <select name="r">
-                    <?php
-                        $query = "SELECT * FROM `nevresz`";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-
-                            //echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>LM</label>
-                <select name="lm">
-                    <?php
-                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
                             
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>Toldalék</label>
-                <select name="t">
-                    <?php
-                        $query = "SELECT * FROM `toldalek`"
-                                . "ORDER BY Sorszam";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
+                        ?>
+                    </select>
+                    <br>
                 </div>
-                <div id="ketreszes" >
-                <label>Alaprész:</label>
-                <select name="ar">
-                    <?php
-                        $query = "SELECT * FROM `nevresz`";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>ALM</label>
-                <select name="alm">
-                    <?php
-                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>AT</label>
-                <select name="at">
-                    <?php
-                        $query = "SELECT * FROM `toldalek`"
-                                . "ORDER BY Sorszam";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>Bővítményrész:</label>
-                <select name="br">
-                    <?php
-                        $query = "SELECT * FROM `nevresz`";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>BLM</label>
-                <select name="blm">
-                    <?php
-                        $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                           
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                <label>BT</label>
-                <select name="bt">                    
-                    <?php
-                        $query = "SELECT * FROM `toldalek`"
-                                . "ORDER BY Sorszam";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
-                </div>
-                <br>
-                <label>Névalkotási szabály:</label>
-                <select name="nevalkotasiszabaly">
-                    <?php
-                        $query = "SELECT * FROM `nevalkotasszabaly`";
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
-
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                        }
-                        
-                    ?>
-                </select>
-                <br>
                 <br>
                 <input id="btn" type = "submit" value = " Hozzáad "/>
                 <br>

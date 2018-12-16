@@ -22,13 +22,14 @@
 		<br><br><br>
 		<div id="updatescontainer">
 		<br>      
-                        <div id="update">
+            <div id="update">
 				2018.10.28. : 
 				<br>
 				-ábécé sorrend mindenhol
 				<br>
 			</div>
-                        <div id="update">
+			<br>
+            <div id="update">
 				2018.10.27. : 
 				<br>
 				-speciális karakterek berakva 
@@ -36,6 +37,7 @@
 				-indexek berakva
 				<br>
 			</div>
+			<br>
 			<div id="update">
 				2018.10.13. : 
 				<br>
@@ -44,14 +46,14 @@
 				-összes helynév megtekintése névszerkezet szerint
 				<br>
 			</div>
-                        <br>
-                        <div id="update">
+			<br>
+			<div id="update">
 				2018.10.10. : 
 				<br>
 				-toldaléktípusok hozzáadva
 				<br>				
 			</div>
-                        <br>
+            <br>
 			<div id="update">
 				2018.09.23. : 
 				<br>
@@ -62,7 +64,7 @@
 				-helynevek megtekintése névszerkezet szerint
 				<br>
 			</div>
-                        <br>
+            <br>
 			<div id="update">
 				2017.12.27. :
 				<br> 
