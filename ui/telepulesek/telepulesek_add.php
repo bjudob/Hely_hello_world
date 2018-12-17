@@ -29,94 +29,104 @@
 
 </head>
 <body>
-	<div id="container">
+	<div id="menucontainer">
 		<br>
 		<br>
-		<div id="item">
+		<div style="text-align:center;">
 			<form action = "" method = "post" accept-charset="UTF-8">
-		      <label>Név:</label><input type = "text" name = "nev"/>
-			  <br>
-			    
-			  <label>Megye:</label>
-			  	<select name="megye">
-			  	<?php
-					$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-				    mysqli_set_charset($con,"UTF8");
+				<div class="inputrow">
+					<label class="inputlabel">Név:</label><input type = "text" name = "nev"/>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Megye:</label>
+					<select name="megye">
+					<?php
+						$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+						mysqli_set_charset($con,"UTF8");
 
-				    $query = "SELECT * FROM `megye`";
-				      		/*WHERE Is_Active=1";*/
-					$result=mysqli_query($con,$query) or die('hiba');
+						$query = "SELECT * FROM `megye`";
+								/*WHERE Is_Active=1";*/
+						$result=mysqli_query($con,$query) or die('hiba');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye=$row['Nev'];
+						while($row=mysqli_fetch_array($result)){
+							$id=$row['ID'];
+							$megye=$row['Nev'];
 
-						
-						echo $id.$megye;
-						echo "<option value=".$id.">".$megye."</option>";
-					}
+							
+							echo $id.$megye;
+							echo "<option value=".$id.">".$megye."</option>";
+						}
 
-				?>
-				</select>
-			  <br>
-			  <label>Tájegység:</label>
-			  <select name="tajegyseg">
-			  	<?php
-				    $query = "SELECT * FROM `tajegyseg`";
-				      		/*WHERE Is_Active=1";*/
-					$result=mysqli_query($con,$query) or die('hiba');
+					?>
+					</select>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Tájegység:</label>
+					<select name="tajegyseg">
+						<?php
+							$query = "SELECT * FROM `tajegyseg`";
+									/*WHERE Is_Active=1";*/
+							$result=mysqli_query($con,$query) or die('hiba');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye=$row['Nev'];
+							while($row=mysqli_fetch_array($result)){
+								$id=$row['ID'];
+								$megye=$row['Nev'];
 
-						
-						echo $id.$megye;
-						echo "<option value=".$id.">".$megye."</option>";
-					}
+								
+								echo $id.$megye;
+								echo "<option value=".$id.">".$megye."</option>";
+							}
 
-				?>
-				</select>
-			  <br>
-			  <label>Típus:</label>
-			  <select name="tipus">
-			  	<?php
-				    $query = "SELECT * FROM `telepulestipus`";
-				      		/*WHERE Is_Active=1";*/
-					$result=mysqli_query($con,$query) or die('hiba');
+						?>
+						</select>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Típus:</label>
+					<select name="tipus">
+						<?php
+							$query = "SELECT * FROM `telepulestipus`";
+									/*WHERE Is_Active=1";*/
+							$result=mysqli_query($con,$query) or die('hiba');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye=$row['Nev'];
+							while($row=mysqli_fetch_array($result)){
+								$id=$row['ID'];
+								$megye=$row['Nev'];
 
-						
-						echo $id.$megye;
-						echo "<option value=".$id.">".$megye."</option>";
-					}
-				?>
-				</select>
-			  <br>
-			  <label>Nyelv:</label>
-			  <select name="nyelv">
-			  	<?php
-				    $query = "SELECT * FROM `nyelv`";
-				      		/*WHERE Is_Active=1";*/
-					$result=mysqli_query($con,$query) or die('hiba');
+								
+								echo $id.$megye;
+								echo "<option value=".$id.">".$megye."</option>";
+							}
+						?>
+						</select>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Nyelv:</label>
+					<select name="nyelv">
+						<?php
+							$query = "SELECT * FROM `nyelv`";
+									/*WHERE Is_Active=1";*/
+							$result=mysqli_query($con,$query) or die('hiba');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye=$row['Nev'];
+							while($row=mysqli_fetch_array($result)){
+								$id=$row['ID'];
+								$megye=$row['Nev'];
 
-						
-						echo $id.$megye;
-						echo "<option value=".$id.">".$megye."</option>";
-					}
+								
+								echo $id.$megye;
+								echo "<option value=".$id.">".$megye."</option>";
+							}
 
-            		mysqli_close($con);
+							mysqli_close($con);
 
-				?>
-				</select>
-			  <br><br>
+						?>
+						</select>
+					<br>
+				</div>
+				<br>
 		      <input id="btn" type = "submit" value = " Hozzáad "/>
 			  <br>
 		   </form>

@@ -20,19 +20,21 @@
 ?>
 <head>
 	<title>Tájegységek</title>
-	<link rel="stylesheet" type="text/css" href="../../css/tajegysegek.css">
+	<link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
 	<link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 
 </head>
 <body>
-	<div id="container">
+	<div id="menucontainer">
 		<br>
 		<br>
-		<div id="item">
+		<div style="text-align:center;">
 			<form action = "" method = "post" accept-charset="UTF-8">
-		      <label>Tájegység neve:</label><input type = "text" name = "nev"/>
-		      <input type = "submit" value = " Hozzáad "/>
-			  <br>
+			   	<div class="inputrow">
+					<label class="inputlabel">Tájegység neve:</label><input type = "text" name = "nev"/>
+					<input id="btn" type = "submit" value = " Hozzáad "/>
+					<br>
+			  	</div>
 		   </form>
 	   </div>
 	   <br><br>
