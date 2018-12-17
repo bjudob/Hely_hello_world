@@ -1,21 +1,21 @@
 <?php
-   include("../../config.php");
+	require ("../../db/HelynevDatabase.php");
+   	include("../../config.php");
    
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      $myname = mysqli_real_escape_string($con,$_POST['nev']);
-	  $mymegye = mysqli_real_escape_string($con,$_POST['megye']);
-	  $mytajegyseg = mysqli_real_escape_string($con,$_POST['tajegyseg']);
-	  $mytipus = mysqli_real_escape_string($con,$_POST['tipus']);
-	  $mynyelv = mysqli_real_escape_string($con,$_POST['nyelv']);
+   	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		$myname = mysqli_real_escape_string($con,$_POST['nev']);
+		$mymegye = mysqli_real_escape_string($con,$_POST['megye']);
+		$mytajegyseg = mysqli_real_escape_string($con,$_POST['tajegyseg']);
+		$mytipus = mysqli_real_escape_string($con,$_POST['tipus']);
+		$mynyelv = mysqli_real_escape_string($con,$_POST['nyelv']);
 
-      $query = "INSERT INTO telepules(`Nev`,`Megye`,`Tajegyseg`,`Telepules_Tipus`,`Nyelv`) VALUES ('$myname','$mymegye','$mytajegyseg','$mytipus','$mynyelv')";
-	  mysqli_query($con, $query);
-	  
-	  mysqli_close($con);
+		$query = "INSERT INTO telepules(`Nev`,`Megye`,`Tajegyseg`,`Telepules_Tipus`,`Nyelv`) VALUES ('$myname','$mymegye','$mytajegyseg','$mytipus','$mynyelv')";
+		mysqli_query($con, $query);
+		
+		mysqli_close($con);
 
-	  header("location: telepulesek_show.php");
-
-   }
+		header("location: telepulesek_show.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>

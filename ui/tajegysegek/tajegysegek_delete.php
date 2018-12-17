@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html>
 <?php
+    require ("../../db/HelynevDatabase.php");
+    include("../../config.php");
     include('../../navbar_lvl1.php');
 ?>
 <head>
 	<title>Tájegységek</title>
-    <link rel="stylesheet" type="text/css" href="../../css/tajegysegek.css">
+    <link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 </head>
 <body>
@@ -23,7 +25,6 @@
         </thead>
         <tbody>
             <?php
-    		require ("../../db/HelynevDatabase.php");
                 
                 $db=new HelynevDatabase();
                 
