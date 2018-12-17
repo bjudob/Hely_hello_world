@@ -24,10 +24,6 @@
 		<input id="btn" type="button" value="Adatmennyiségek megtekintése" onclick="window.location.href='./statisztika_show.php'">
 		</div>
 		<br>
-		<div id="menuOption">
-		<input id="btn" type="button" value="Adatmennyiség tájegységek szerint" onclick="window.location.href='./statisztika_adatok_tajegysegenkent.php'">
-		</div>
-		<br>
 	</div>
 
 </body>

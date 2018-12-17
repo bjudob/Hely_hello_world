@@ -19,7 +19,7 @@
 		<br><br>
 		<div id="title">Újdonságok</div>
 
-		<br><br><br>
+		<br><br>
 		<div id="updatescontainer">
 		<br>      
             <div id="update">

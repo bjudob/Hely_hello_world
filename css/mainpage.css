@@ -24,11 +24,12 @@ body{
 	margin:auto;
   width:40%;
   background-color: #ccc;
-  background-image: -webkit-linear-gradient(top, #ccc, rgb(76, 76, 88));
+  background-image: -webkit-linear-gradient(top, #ccc, rgb(79, 79, 83));
   background-image: -moz-linear-gradient(top, #ccc, rgb(76, 76, 88));
   background-image: -ms-linear-gradient(top, #ccc, rgb(76, 76, 88));
   background-image: -o-linear-gradient(top, #ccc, rgb(76, 76, 88));
   background-image: linear-gradient(to bottom, #ccc, rgb(76, 76, 88));
+  border-radius: 10px;
 }
 
 #menuOption{
