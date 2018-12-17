@@ -1,4 +1,5 @@
 <?php
+	require ("../../db/HelynevDatabase.php");
 	include("../../config.php");
 
 	if (isset($_POST['update_button'])) {
@@ -75,108 +76,118 @@
 <head>
 	<title>Törlés</title>
 	<link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
-	<link rel="stylesheet" type="text/css" href="./helynevek_show.css">
+	<link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
 </head>
 <body>
-	<div id="container">
-		<br><br>
-		<div id="item">
-		<form action = "" method = "post">
-			  <br>
-			  <label id="smallLabel">Név:</label><input type = "text" name = "nev" class="inputfield" value="<?php if(isset($nev)) echo $nev; ?>"/>
-			  <br>
-			  <label id="smallLabel">Megye:</label>
-			  <select name="megye">
-			  	<?php
-				    $query = "SELECT * FROM `megye`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba2');
+	<div id="menucontainer">
+			<br><br>
+			<div style="text-align:center;">
+			<form action = "" method = "post">
+			  	<br>
+			  	<div class="inputrow">
+					<label class="inputlabel">Név:</label><input type = "text" name = "nev" class="inputfield" value="<?php if(isset($nev)) echo $nev; ?>"/>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Megye:</label>
+					<select name="megye">
+					<?php
+						$query = "SELECT * FROM `megye`";
+								/*WHERE Is_Active=1";*/
+						mysqli_query($con, $query);
+						$result=mysqli_query($con,$query) or die('hiba2');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $megye_option=$row['Nev'];
+						while($row=mysqli_fetch_array($result)){
+							$id=$row['ID'];
+							$megye_option=$row['Nev'];
 
-						if($megye_option==$megyeNev){
-		                	echo "<option selected='selected' value=".$id.">".$megye_option."</option>";
-		                }
-		                else{
-							echo "<option value=".$id.">".$megye_option."</option>";
+							if($megye_option==$megyeNev){
+								echo "<option selected='selected' value=".$id.">".$megye_option."</option>";
+							}
+							else{
+								echo "<option value=".$id.">".$megye_option."</option>";
+							}
 						}
-					}
 
-				?>
-				</select>
-			  <br>
-			  <label id="smallLabel">Tájegység:</label>
-			  <select name="tajegyseg">
-			  	<?php
-				    $query = "SELECT * FROM `tajegyseg`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba2');
+					?>
+					</select>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Tájegység:</label>
+					<select name="tajegyseg">
+						<?php
+							$query = "SELECT * FROM `tajegyseg`";
+									/*WHERE Is_Active=1";*/
+							mysqli_query($con, $query);
+							$result=mysqli_query($con,$query) or die('hiba2');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $tajegyseg_option=$row['Nev'];
+							while($row=mysqli_fetch_array($result)){
+								$id=$row['ID'];
+								$tajegyseg_option=$row['Nev'];
 
-						if($tajegyseg_option==$tajegysegNev){
-		                	echo "<option selected='selected' value=".$id.">".$tajegyseg_option."</option>";
-		                }
-		                else{
-							echo "<option value=".$id.">".$tajegyseg_option."</option>";
-						}
-					}
+								if($tajegyseg_option==$tajegysegNev){
+									echo "<option selected='selected' value=".$id.">".$tajegyseg_option."</option>";
+								}
+								else{
+									echo "<option value=".$id.">".$tajegyseg_option."</option>";
+								}
+							}
 
-				?>
-				</select>
-			  <br>
-			  <label id="smallLabel">Típus:</label>
-			  <select name="telepulestipus">
-			  	<?php
-				    $query = "SELECT * FROM `telepulestipus`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba2');
+						?>
+						</select>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Típus:</label>
+					<select name="telepulestipus">
+						<?php
+							$query = "SELECT * FROM `telepulestipus`";
+									/*WHERE Is_Active=1";*/
+							mysqli_query($con, $query);
+							$result=mysqli_query($con,$query) or die('hiba2');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $telepulestipus_option=$row['Nev'];
+							while($row=mysqli_fetch_array($result)){
+								$id=$row['ID'];
+								$telepulestipus_option=$row['Nev'];
 
-						if($telepulestipus_option==$tipusNev){
-		                	echo "<option selected='selected' value=".$id.">".$telepulestipus_option."</option>";
-		                }
-		                else{
-							echo "<option value=".$id.">".$telepulestipus_option."</option>";
-						}
-					}
+								if($telepulestipus_option==$tipusNev){
+									echo "<option selected='selected' value=".$id.">".$telepulestipus_option."</option>";
+								}
+								else{
+									echo "<option value=".$id.">".$telepulestipus_option."</option>";
+								}
+							}
 
-				?>
-				</select>
-			  <br>
-			  <label id="smallLabel">Nyelv:</label>
-			  <select name="nyelv">
-			  	<?php
-				    $query = "SELECT * FROM `nyelv`";
-				      		/*WHERE Is_Active=1";*/
-					mysqli_query($con, $query);
-					$result=mysqli_query($con,$query) or die('hiba2');
+						?>
+						</select>
+					<br>
+				</div>
+				<div class="inputrow">
+					<label class="inputlabel">Nyelv:</label>
+					<select name="nyelv">
+						<?php
+							$query = "SELECT * FROM `nyelv`";
+									/*WHERE Is_Active=1";*/
+							mysqli_query($con, $query);
+							$result=mysqli_query($con,$query) or die('hiba2');
 
-					while($row=mysqli_fetch_array($result)){
-					    $id=$row['ID'];
-		                $nyelv_option=$row['Nev'];
+							while($row=mysqli_fetch_array($result)){
+								$id=$row['ID'];
+								$nyelv_option=$row['Nev'];
 
-						if($nyelv_option==$nyelvNev){
-		                	echo "<option selected='selected' value=".$id.">".$nyelv_option."</option>";
-		                }
-		                else{
-							echo "<option value=".$id.">".$nyelv_option."</option>";
-						}
-					}
+								if($nyelv_option==$nyelvNev){
+									echo "<option selected='selected' value=".$id.">".$nyelv_option."</option>";
+								}
+								else{
+									echo "<option value=".$id.">".$nyelv_option."</option>";
+								}
+							}
 
-				?>
-				</select>
-			  <br>
+						?>
+						</select>
+					<br>
+				</div>
 			 
 
 			  <br>

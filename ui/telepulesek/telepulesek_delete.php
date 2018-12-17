@@ -3,12 +3,14 @@
 <html>
 
 <?php
+    require ("../../db/HelynevDatabase.php");
+    include("../../config.php");
     include('../../navbar_lvl1.php');
 ?>
 
 <head>
     <title>Települések</title>
-    <link rel="stylesheet" type="text/css" href="../../css/telepulesek.css">
+    <link rel="stylesheet" type="text/css" href="../../css/helynevek_show.css">
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 </head>
 <body>
@@ -25,8 +27,6 @@
         </thead>
         <tbody>
             <?php
-                require ("../../db/HelynevDatabase.php");
-                
                 $db=new HelynevDatabase();
                 
                 $telepulesek = $db->getAllTelepules();

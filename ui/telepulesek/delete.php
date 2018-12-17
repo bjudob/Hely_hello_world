@@ -37,8 +37,8 @@
 		<br>
 		<div id="yesno">
 			<form action = "" method = "post">
-		      <input type = "submit" name="yes_button" value = " Igen "/>
-		      <input type = "submit" name="no_button" value = " Nem "/>
+		      <input id="btn" type = "submit" name="yes_button" value = " Igen "/>
+		      <input id="btn" type = "submit" name="no_button" value = " Nem "/>
 			  <br>
 		   </form>
 	   </div>
