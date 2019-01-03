@@ -164,11 +164,12 @@
             table.deleteRow(1);
         }
 
+        sorszam=1;
         for(var i = 0; i < helynevek.length; i++){
             if(helynevek[i].nevszerkezet===selectedNevszerkezet){
                 
                 // Create an empty <tr> element and add it to the 1st position of the table:
-                var row = table.insertRow(1);
+                var row = table.insertRow();
 
                 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                 var cell1 = row.insertCell(0);
@@ -183,20 +184,24 @@
                 var cell10 = row.insertCell(9);
                 var cell11= row.insertCell(10);
                 var cell12= row.insertCell(11);
+                var cell13= row.insertCell(12);
 
                 // Add some text to the new cells:
-                cell1.innerHTML = helynevek[i].standard;
-                cell2.innerHTML = helynevek[i].telepules;
-                cell3.innerHTML = helynevek[i].helyfajta;
-                cell4.innerHTML = helynevek[i].nevszerkezet;
-                cell5.innerHTML = helynevek[i].r;
-                cell6.innerHTML = helynevek[i].lm;
-                cell7.innerHTML = helynevek[i].ar;
-                cell8.innerHTML = helynevek[i].alm;
-                cell9.innerHTML = helynevek[i].br;
-                cell10.innerHTML = helynevek[i].blm;
-                cell11.innerHTML = helynevek[i].nevalkotasiszabaly;
-                cell12.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
+                cell1.innerHTML = sorszam;
+                cell2.innerHTML = helynevek[i].standard;
+                cell3.innerHTML = helynevek[i].telepules;
+                cell4.innerHTML = helynevek[i].helyfajta;
+                cell5.innerHTML = helynevek[i].nevszerkezet;
+                cell6.innerHTML = helynevek[i].r;
+                cell7.innerHTML = helynevek[i].lm;
+                cell8.innerHTML = helynevek[i].ar;
+                cell9.innerHTML = helynevek[i].alm;
+                cell10.innerHTML = helynevek[i].br;
+                cell11.innerHTML = helynevek[i].blm;
+                cell12.innerHTML = helynevek[i].nevalkotasiszabaly;
+                cell13.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
+            
+                sorszam++;
             }
         }
     }
@@ -237,6 +242,7 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
+            <th>Sorszám</th>
             <th>Standard</th>
             <th>Település</th>
             <th>Helyfajta</th>

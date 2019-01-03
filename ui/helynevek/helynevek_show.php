@@ -155,7 +155,7 @@
             var nevvarians=helynevek[id][i].nevvarians;
 
             // Create an empty <tr> element and add it to the 1st position of the table:
-            var row = table.insertRow(1);
+            var row = table.insertRow();
 
             // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
             var cell1 = row.insertCell(0);
@@ -173,7 +173,7 @@
             //var cell13 = row.insertCell(12);
 
             // Add some text to the new cells:
-            cell1.innerHTML = helynevek[id].length-i;
+            cell1.innerHTML = i+1;
             cell2.innerHTML = standard;
             cell3.innerHTML = ejtes;
             cell4.innerHTML = helyfajta;

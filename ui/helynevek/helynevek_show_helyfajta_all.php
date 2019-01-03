@@ -101,6 +101,7 @@
             table.deleteRow(1);
         }
 
+        var sorszam=1;
         for(var i = 0; i < helynevek.length; i++){
             if(helynevek[i].helyfajtaKod.startsWith(selectedHelyfajta)){
                 var hely_id=helynevek[i].id;
@@ -118,7 +119,7 @@
                 var nevvarians=helynevek[i].nevvarians;
 
                 // Create an empty <tr> element and add it to the 1st position of the table:
-                var row = table.insertRow(1);
+                var row = table.insertRow();
 
                 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                 var cell1 = row.insertCell(0);
@@ -134,21 +135,26 @@
                 var cell11= row.insertCell(10);
                 var cell12 = row.insertCell(11);
                 var cell13 = row.insertCell(12);
+                var cell14 = row.insertCell(13);
+
 
                 // Add some text to the new cells:
-                cell1.innerHTML = standard;
-                cell2.innerHTML = telepules;
-                cell3.innerHTML = ejtes;
-                cell4.innerHTML = helyfajta;
-                cell5.innerHTML = ragos_alak;
-                cell6.innerHTML = nyelv;
-                cell7.innerHTML = forras_adat;
-                cell8.innerHTML = forras_ev;
-                cell9.innerHTML = forras_tipus;
-                cell10.innerHTML = objektum_info;
-                cell11.innerHTML = nev_info;
-                cell12.innerHTML = nevvarians;
-                cell13.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                cell1.innerHTML = sorszam;
+                cell2.innerHTML = standard;
+                cell3.innerHTML = telepules;
+                cell4.innerHTML = ejtes;
+                cell5.innerHTML = helyfajta;
+                cell6.innerHTML = ragos_alak;
+                cell7.innerHTML = nyelv;
+                cell8.innerHTML = forras_adat;
+                cell9.innerHTML = forras_ev;
+                cell10.innerHTML = forras_tipus;
+                cell11.innerHTML = objektum_info;
+                cell12.innerHTML = nev_info;
+                cell13.innerHTML = nevvarians;
+                cell14.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+
+                sorszam++;
             }
         }
     }
@@ -194,6 +200,7 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
+            <th>Sorszám</th>
             <th>Standard</th>
             <th>Település</th>           
             <th>Ejtés</th>

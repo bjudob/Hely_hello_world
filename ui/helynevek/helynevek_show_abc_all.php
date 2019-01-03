@@ -151,6 +151,7 @@
             table.deleteRow(1);
         }
         
+        var sorszam=1;
         for(var i = 0; i < helynevek.length; i++){
             var show=false; 
             if(firstLetter(helynevek[i].standard)===selectedAbc){                    
@@ -164,7 +165,7 @@
                 var nevvaltozatok=helynevek[i].nevvarians;
                                
                 // Create an empty <tr> element and add it to the 1st position of the table:
-                var row = table.insertRow(1);
+                var row = table.insertRow();
 
                 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                 var cell1 = row.insertCell(0);
@@ -172,14 +173,17 @@
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
                 var cell5 = row.insertCell(4);
+                var cell6 = row.insertCell(5);
                 
                 // Add some text to the new cells:
-                cell1.innerHTML = '<b>'+standard+'</b>';
-                cell2.innerHTML = telepules;
-                cell3.innerHTML = helyfajta;
-                cell4.innerHTML = nevvaltozatok;
-                cell5.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                cell1.innerHTML = sorszam;
+                cell2.innerHTML = '<b>'+standard+'</b>';
+                cell3.innerHTML = telepules;
+                cell4.innerHTML = helyfajta;
+                cell5.innerHTML = nevvaltozatok;
+                cell6.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
                 
+                sorszam++;
             }
         }
     }
@@ -245,6 +249,7 @@
         <table id='helynevekTable'>
         <thead>
         <tr>
+            <th>Sorszám</th>
             <th>Standard</th>
             <th>Település</th>
             <th>Helyfajta</th>          
