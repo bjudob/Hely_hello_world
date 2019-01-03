@@ -65,7 +65,7 @@
             blm.Nev as BLM,
             blm.Kod as BLMkod,
             bt.Rovidites as BT,
-            `Nevalkotasi Szabaly` as nevalkotasiszabaly	
+            `nevalkotasszabaly`.Nev as nevalkotasiszabaly	
             FROM `helynev` 
             INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
@@ -79,6 +79,7 @@
             INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
             INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            INNER JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
             ORDER BY Standard_Hash DESC";
     
     mysqli_query($con, $query);
