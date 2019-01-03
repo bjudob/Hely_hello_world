@@ -21,7 +21,14 @@
 
 		<br><br>
 		<div id="updatescontainer">
-		<br>      
+		<br>    
+			<div id="update">
+				2018.12.17. : 
+				<br>
+				-2.0. verzió, minden újracsinálva
+				<br>
+			</div>
+			<br>  
             <div id="update">
 				2018.10.28. : 
 				<br>
