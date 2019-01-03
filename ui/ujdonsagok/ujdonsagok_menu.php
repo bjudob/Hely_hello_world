@@ -23,6 +23,13 @@
 		<div id="updatescontainer">
 		<br>    
 			<div id="update">
+				2019.01.3. : 
+				<br>
+				-minden táblázat sorszámozva
+				<br>
+			</div>
+			<br>  
+			<div id="update">
 				2018.12.17. : 
 				<br>
 				-2.0. verzió, minden újracsinálva
