@@ -232,7 +232,7 @@
                             $kod=$row['Kod'];
                             $bold="none";
 
-                            if (strpos($kod, '.') == false) {
+                            if (strlen($kod) == 2) {
                                 $bold="boldoption";
                             }
                             
