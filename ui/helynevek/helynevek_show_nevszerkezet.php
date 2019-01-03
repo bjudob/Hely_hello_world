@@ -80,7 +80,7 @@
             INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
             INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
             INNER JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
-            ORDER BY Standard_Hash DESC";
+            ORDER BY Standard_Hash";
     
     mysqli_query($con, $query);
     $result=mysqli_query($con,$query) or die('hiba');
