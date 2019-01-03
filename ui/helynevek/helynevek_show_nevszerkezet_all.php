@@ -188,7 +188,7 @@
 
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
-                cell2.innerHTML = helynevek[i].standard;
+                cell2.innerHTML = '<b>'+helynevek[i].standard+'</b>';
                 cell3.innerHTML = helynevek[i].telepules;
                 cell4.innerHTML = helynevek[i].helyfajta;
                 cell5.innerHTML = helynevek[i].nevszerkezet;

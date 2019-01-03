@@ -140,7 +140,7 @@
 
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
-                cell2.innerHTML = standard;
+                cell2.innerHTML = '<b>'+standard+'</b>';
                 cell3.innerHTML = telepules;
                 cell4.innerHTML = ejtes;
                 cell5.innerHTML = helyfajta;

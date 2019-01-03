@@ -174,7 +174,7 @@
 
             // Add some text to the new cells:
             cell1.innerHTML = i+1;
-            cell2.innerHTML = standard;
+            cell2.innerHTML = '<b>'+standard+'</b>';
             cell3.innerHTML = ejtes;
             cell4.innerHTML = helyfajta;
             cell5.innerHTML = terkepszam;
