@@ -207,6 +207,10 @@
                 </select>
                 <br>
             </form>
+            <br>
+            <form method="post" action="export.php">
+                <input type="submit" name="export" id="btn" value="Excel letöltése" />
+            </form>
             </div>
         </div>
         <br>
