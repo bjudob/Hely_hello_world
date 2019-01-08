@@ -33,16 +33,19 @@ if(isset($_POST["export"]))
         lm.Nev as LM,
         lm.Kod as LMkod,
         t.Nev as T,
+        t.Kod as Tkod,
         nar.Nev as AR,
         nar.Kod as ARkod,
         alm.Nev as ALM,
         alm.Kod as ALMkod,
-        at.Rovidites as AT,
+        at.Nev as AT,
+        at.Kod as ATkod,
         nbr.Nev as BR,
         nbr.Kod as BRkod,
         blm.Nev as BLM,
         blm.Kod as BLMkod,
-        bt.Rovidites as BT,
+        bt.Nev as BT,
+        bt.Kod as BTkod,
         `nevalkotasszabaly`.Nev as nevalkotasiszabaly	
         FROM `helynev` 
         INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
@@ -105,7 +108,7 @@ if(isset($_POST["export"]))
                     <td>'.$row["telepulesNev"].'</td>  
                     <td>'.$row["tajegysegNev"].'</td>  
                     <td>'.$row["Ejtes"].'</td>  
-                    <td>'.$row["helyfajtaNev"].'</td>  
+                    <td>'.$row["helyfajtaKod"]." ".$row["helyfajtaNev"].'</td>  
                     <td>'.$row["Terkepszam"].'</td>
                     <td>'.$row["Ragos_Alak"].'</td>
                     <td>'.$row["nyelvNev"].'</td>
@@ -124,17 +127,33 @@ if(isset($_POST["export"]))
                 $output .= '<td>Mikro</td>';
             else
                 $output .= '<td>Makro</td>';
-            $output .= '<td>'.$row["nevszerkezetNev"].'</td>
-                        <td>'.$row["R"].'</td>
-                        <td>'.$row["LM"].'</td>
-                        <td>'.$row["T"].'</td>
-                        <td>'.$row["AR"].'</td>
-                        <td>'.$row["ALM"].'</td>
-                        <td>'.$row["AT"].'</td>
-                        <td>'.$row["BR"].'</td>
-                        <td>'.$row["BLM"].'</td>
-                        <td>'.$row["BT"].'</td>
+
+            if($row["egyreszes"]==1){
+                $output .= '<td>'.$row["nevszerkezetNev"].'</td>
+                        <td>'.$row["Rkod"]." ".$row["R"].'</td>
+                        <td>'.$row["LMkod"]." ".$row["LM"].'</td>
+                        <td>'.$row["Tkod"]." ".$row["T"].'</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>'.$row["nevalkotasiszabaly"].'</td>';
+            }
+            else{
+                $output .= '<td>'.$row["nevszerkezetNev"].'</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>'.$row["ARkod"]." ".$row["AR"].'</td>
+                        <td>'.$row["ALMkod"]." ".$row["ALM"].'</td>
+                        <td>'.$row["ATkod"]." ".$row["AT"].'</td>
+                        <td>'.$row["BRkod"]." ".$row["BR"].'</td>
+                        <td>'.$row["BLMkod"]." ".$row["BLM"].'</td>
+                        <td>'.$row["BTkod"]." ".$row["BT"].'</td>
+                        <td>'.$row["nevalkotasiszabaly"].'</td>';
+            }
 
             $output .= '</tr>';
         }
