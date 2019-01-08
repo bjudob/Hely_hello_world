@@ -21,7 +21,14 @@
 
 		<br><br>
 		<div id="updatescontainer">
-		<br>    
+		<br>   
+			<div id="update">
+				2019.01.6. : 
+				<br>
+				-első Excel letöltés
+				<br>
+			</div> 
+			<br>
 			<div id="update">
 				2019.01.3. : 
 				<br>
