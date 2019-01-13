@@ -157,7 +157,7 @@
         <br><br>
         <div style="text-align:center;">
             <form action = "" method = "post" class="inputform">
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Standard:</label>
                     <input id="standardInput" type = "text" name = "standard" class="inputfield" value="<?php echo $helynev->standard; ?>"/>
                     <br>
@@ -167,12 +167,12 @@
                     <input class="charButton" value="³" type = "button" onclick="addIndex('³');"></button>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Település:</label>
                     <input type = "text" name = "telepules" class="inputfield" value="<?php echo $helynev->telepules; ?>" disabled/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Ejtés:</label>
                     <input id="ejtesInput" type = "text" name = "ejtes" class="inputfield" value="<?php echo $helynev->ejtes; ?>"/>
                     <br>
@@ -189,7 +189,7 @@
                     <input class="charButton" value="Ē" type = "button" onclick="addLetter('Ē');"></button>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Helyfajta:</label>
                     <select name="helyfajta">
                         <?php
@@ -219,17 +219,17 @@
                     </select>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Térképszám:</label>
                     <input type = "text" name = "terkepszam" class="inputfield" value="<?php echo $helynev->terkepszam; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Helyrag:</label>
                     <input type = "text" name = "ragosalak" class="inputfield" value="<?php echo $helynev->ragosalak; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Nyelv:</label>
                     <select name="nyelv">
                         <?php
@@ -254,37 +254,37 @@
                     </select>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Forrásadat:</label>
                     <input type = "text" name = "forrasmunkaadat" class="inputfield" value="<?php echo $helynev->forrasmunkaadat; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Forrásadat éve:</label>
                     <input type = "text" name = "forrasmunkaev" class="inputfield" value="<?php  echo $helynev->forrasmunkaev; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Forrás és éve:</label>
                     <input type = "text" name = "forrasmunkatipus" class="inputfield" value="<?php  echo $helynev->forrasmunkatipus; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Objektum info:</label>
                     <input type = "text" name = "objektuminfo" class="inputfield" value="<?php  echo $helynev->objektuminfo; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Név info:</label>
                     <input type = "text" name = "helyinfo" class="inputfield" value="<?php  echo $helynev->helyinfo; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Névváltozatok:</label>
                     <input type = "text" name = "nevvaltozatok" value="<?php  echo $helynev->nevvaltozatok; ?>"/>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Természetes:</label>
                     <select name="termeszetes">
                         <?php
@@ -300,7 +300,7 @@
                     </select>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Mikro/makro:</label>
                     <select name="mikro">
                         <?php
@@ -317,7 +317,7 @@
                     </select>
                     <br>
                 </div>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Névszerkezettípus:</label>
                     <select name="nevszerkezet" id="nevszerkezet">
                         <?php
@@ -344,7 +344,7 @@
                     <br>
                 </div>
                 <div id="egyreszes" >
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">FSZ</label>
                         <select name="r">
                             <?php
@@ -374,7 +374,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">LM</label>
                         <select name="lm">
                             <?php
@@ -404,7 +404,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">Toldalék</label>
                         <select name="t">
                             <?php
@@ -437,7 +437,7 @@
                     </div>
                 </div>
                 <div id="ketreszes" >
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">Alaprész:</label>
                         <select name="ar">
                             <?php
@@ -467,7 +467,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">ALM</label>
                         <select name="alm">
                             <?php
@@ -497,7 +497,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">AT</label>
                         <select name="at">
                             <?php
@@ -528,7 +528,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">Bővítményrész:</label>
                         <select name="br">
                             <?php
@@ -558,7 +558,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">BLM</label>
                         <select name="blm">
                             <?php
@@ -589,7 +589,7 @@
                         </select>
                         <br>
                     </div>
-                    <div class=inputrow>
+                    <div class="inputrow">
                         <label class="inputlabel">BT</label>
                         <select name="bt">
                             <?php
@@ -621,7 +621,7 @@
                     </div>
                 </div>
                 <br>
-                <div class=inputrow>
+                <div class="inputrow">
                     <label class="inputlabel">Névalkotási szabály:</label>
                     <select name="nevalkotasiszabaly">
                         <?php
