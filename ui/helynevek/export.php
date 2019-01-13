@@ -46,23 +46,24 @@ if(isset($_POST["export"]))
         blm.Kod as BLMkod,
         bt.Nev as BT,
         bt.Kod as BTkod,
-        `nevalkotasszabaly`.Nev as nevalkotasiszabaly	
+        `nevalkotasszabaly`.Nev as nevalkotasiszabaly,	
+        `nevalkotasszabaly`.Kod as nevalkotasiszabalyKod	
         FROM `helynev` 
-        INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
-        INNER JOIN `tajegyseg` ON `telepules`.Tajegyseg=`tajegyseg`.ID
-        INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
-        INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-        INNER JOIN `nevresz` nr ON `helynev`.R=nr.ID
-        INNER JOIN `nevresz` nar ON `helynev`.AR=nar.ID
-        INNER JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
-        INNER JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
-        INNER JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
-        INNER JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
-        INNER JOIN `toldalek` t ON `helynev`.T=t.ID
-        INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
-        INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
-        INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
-        INNER JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
+        LEFT JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
+        LEFT JOIN `tajegyseg` ON `telepules`.Tajegyseg=`tajegyseg`.ID
+        LEFT JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
+        LEFT JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+        LEFT JOIN `nevresz` nr ON `helynev`.R=nr.ID
+        LEFT JOIN `nevresz` nar ON `helynev`.AR=nar.ID
+        LEFT JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
+        LEFT JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
+        LEFT JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
+        LEFT JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
+        LEFT JOIN `toldalek` t ON `helynev`.T=t.ID
+        LEFT JOIN `toldalek` at ON `helynev`.AT=at.ID
+        LEFT JOIN `toldalek` bt ON `helynev`.BT=bt.ID
+        LEFT JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+        LEFT JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
         ORDER BY Standard_Hash";
 
     $result = mysqli_query($con, $query);
@@ -152,14 +153,14 @@ if(isset($_POST["export"]))
                         <td>'.$row["BRkod"]." ".$row["BR"].'</td>
                         <td>'.$row["BLMkod"]." ".$row["BLM"].'</td>
                         <td>'.$row["BTkod"]." ".$row["BT"].'</td>
-                        <td>'.$row["nevalkotasiszabaly"].'</td>';
+                        <td>'.$row["nevalkotasiszabalyKod"]." ".$row["nevalkotasiszabaly"].'</td>';
             }
 
             $output .= '</tr>';
         }
         $output .= '</table>';
         header('Content-Type: application/xls');
-        header('Content-Disposition: attachment; filename=download.xls');
+        header('Content-Disposition: attachment; filename=helynevek.xls');
         echo $output;
     }
 }
