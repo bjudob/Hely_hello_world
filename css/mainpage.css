@@ -50,6 +50,18 @@ body{
 	font-weight: bold;
 }
 
+#subtitle{
+	margin:auto;
+	text-align: center;
+	color: black;
+	font-size: 180%;
+	font-family: Georgia;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+}
+
+
 .inputrow:hover{
   background: #1e6b05;
 }

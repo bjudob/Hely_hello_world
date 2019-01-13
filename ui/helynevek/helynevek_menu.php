@@ -17,12 +17,22 @@
 <body>
 	<div id="menucontainer">
 		<br><br>
-		<div id="title">Helynevek kezelése</div>
-
-		<br><br><br><br>
-
+		<div id="title">Helynevek</div>
+		<br>
 		<div id="menuOption">
-		<input id="btn" type="button" value="Helynevek megtekintése" onclick="window.location.href='./helynevek_show.php'">
+		<input id="btn" type="button" value="Új helynév" onclick="window.location.href='./helynevek_add.php'">
+		</div>
+		<br>
+		<div id="menuOption">
+		<form method="post" action="export.php">
+                	<input type="submit" name="export" id="btn" value="Összes letöltése" />
+            	</form>
+		</div>
+		<br><br>
+		<div id="subtitle">Helynevek megtekintése</div>
+		<br>
+		<div id="menuOption">
+		<input id="btn" type="button" value="Település szerint" onclick="window.location.href='./helynevek_show.php'">
 		</div>
                 <br>
                 <div id="menuOption">
@@ -34,13 +44,9 @@
 		</div>
                 <br>
                 <div id="menuOption">
-		<input id="btn" type="button" value="Ábécé szerint" onclick="window.location.href='./helynevek_menu_abc.php'">
+		<input id="btn" type="button" value="Ábécé szerint" onclick="window.location.href='./helynevek_show_abc_all.php'">
 		</div>
                 <br>
-		<div id="menuOption">
-		<input id="btn" type="button" value="Új helynév" onclick="window.location.href='./helynevek_add.php'">
-		</div>
-		<br>
 
 		
 	</div>
