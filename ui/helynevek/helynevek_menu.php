@@ -25,8 +25,8 @@
 		<br>
 		<div id="menuOption">
 		<form method="post" action="export.php">
-                	<input type="submit" name="export" id="btn" value="Összes letöltése" />
-            	</form>
+			<input type="submit" name="export" id="btn" value="Összes letöltése" />
+		</form>
 		</div>
 		<br><br>
 		<div id="subtitle">Helynevek megtekintése</div>
