@@ -270,28 +270,23 @@
             </select>
             <div class="inputrow">
                     <label class="inputlabel">Névszerkezettípus:</label>
-                    <select name="nevszerkezet" id="nevszerkezet">
-                        <?php
-                            $query = "SELECT * FROM `nevszerkezettipus`";
-                            
-                            $result=mysqli_query($con,$query) or die('hiba');
+                    <select id='nevszerkezetSelect' >
+                <?php
+                        $query = "SELECT * FROM `nevszerkezettipus`";
+                                    /*WHERE Is_Active=1";*/
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
 
-                            while($row=mysqli_fetch_array($result)){
-                                $id=$row['ID'];
-                                $nev=$row['Nev'];
-                                $egyreszes=$row['Egyreszes'];
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $egyreszes=$row['Egyreszes'];
 
-
-                                if($id===$helynev->nevszerkezet){
-                                        echo "<option selected='selected' value=".$id.">".$nev."</option>";
-                                }
-                                else{
-                                    echo "<option value=".$id.">".$nev."</option>";
-                                }
-                            }
-                            
-                        ?>
-                    </select>
+                            echo "<option value=".$nev.">".$nev."</option>";
+                        }
+                        
+                    ?>
+            </select>
                     <br>
                 </div>
                 <div id="egyreszes" >

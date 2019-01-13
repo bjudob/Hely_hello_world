@@ -26,9 +26,9 @@
             Nev_Info,
             Nevvarians
             FROM `helynev` 
-            INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
-            INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            LEFT JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
+            LEFT JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+            LEFT JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
             ORDER BY Standard_Hash";
           /*WHERE Is_Active=1";*/
     mysqli_query($con, $query);
