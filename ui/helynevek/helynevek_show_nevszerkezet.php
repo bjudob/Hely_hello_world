@@ -55,17 +55,21 @@
             lm.Nev as LM,
             lm.Kod as LMkod,
             t.Rovidites as T,
+            t.Kod as Tkod,
             nar.Nev as AR,
             nar.Kod as ARkod,
             alm.Nev as ALM,
             alm.Kod as ALMkod,
             at.Rovidites as AT,
+            at.Kod as ATkod,
             nbr.Nev as BR,
             nbr.Kod as BRkod,
             blm.Nev as BLM,
             blm.Kod as BLMkod,
             bt.Rovidites as BT,
-            `nevalkotasszabaly`.Nev as nevalkotasiszabaly	
+            bt.Kod as BTkod,
+            `nevalkotasszabaly`.Nev as nevalkotasiszabaly,
+            `nevalkotasszabaly`.Kod as nevalkotasiszabalyKod
             FROM `helynev` 
             INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
             INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
@@ -105,22 +109,41 @@
         $nevszerkezet=$row['nevszerkezet'];
         $egyreszes=$row['egyreszes'];
         $r=$row['Rkod'].$row['R'];
+        $rKod=$row['Rkod'];
         $lm=$row['LMkod'].$row['LM']."-".$row['T'];
+        $lmKod=$row['LMkod'];
+        $tKod=$row['Tkod'];
         $ar=$row['ARkod'].$row['AR'];
+        $arKod=$row['ARkod'];
         $alm=$row['ALMkod'].$row['ALM']."-".$row['AT'];
+        $almKod=$row['ALMkod'];
+        $atKod=$row['ATkod'];
         $br=$row['BRkod'].$row['BR'];
+        $brKod=$row['BRkod'];
         $blm=$row['BLMkod'].$row['BLM']."-".$row['BT'];
-        $nevalkotasiszabaly=$row['nevalkotasiszabaly'];
+        $blmKod=$row['BLMkod'];
+        $btKod=$row['BTkod'];
+        $nevalkotasiszabaly=$row['nevalkotasiszabalyKod'].$row['nevalkotasiszabaly'];
+        $nevalkotasiszabalyKod=$row['nevalkotasiszabalyKod'];
         
         if($egyreszes==1){
             $ar="-";
+            $arKod="-";
             $alm="-";
+            $almKod="-";
+            $atKod="-";
             $br="-";
+            $brKod="-";
             $blm="-";
+            $blmKod="-";
+            $btKod="-";
         }
         else{
             $r="-";
+            $rKod="-";
             $lm="-";
+            $lmKod="-";
+            $tKod="-";
         }
 
         $helynevek[$row['Telepules']][]=array(
@@ -142,12 +165,22 @@
             "nevvarians"=>$nevvarians,
             "nevszerkezet"=>$nevszerkezet,
             "r"=>$r,
+            "rKod"=>$rKod,
             "lm"=>$lm,
+            "lmKod"=>$lmKod,
+            "tKod"=>$tKod,
             "ar"=>$ar,
+            "arKod"=>$arKod,
             "alm"=>$alm,
+            "almKod"=>$almKod,
+            "atKod"=>$atKod,
             "br"=>$br,
+            "brKod"=>$brKod,
             "blm"=>$blm,
+            "blmKod"=>$blmKod,
+            "btKod"=>$btKod,
             "nevalkotasiszabaly"=>$nevalkotasiszabaly,
+            "nevalkotasiszabalyKod"=>$nevalkotasiszabalyKod,
           );
     }
   
@@ -169,6 +202,42 @@
     <link rel="stylesheet" type="text/css" href="../../css/mainpage.css">
 
     <script src="jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script> 
+        $(document).ready(function(){
+            $("#ketreszes").hide();
+            
+            $('#nevszerkezetSelect').on('change', function() {
+                if ( this.options[this.selectedIndex].text.includes("+"))
+                //.....................^.......
+                {
+                    $("#ketreszes").show();
+                    $("#egyreszes").hide();
+
+                    $("#rSelect").val("all");
+                    $("#lmSelect").val("all");
+                    $("#tSelect").val("all");
+
+                    $("#nevalkotasiszabalySelect").val("all");
+                }
+                else
+                {
+                    $("#ketreszes").hide();
+                    $("#egyreszes").show();
+
+                    $("#arSelect").val("all");
+                    $("#almSelect").val("all");
+                    $("#atSelect").val("all");
+
+                    $("#brSelect").val("all");
+                    $("#blmSelect").val("all");
+                    $("#btSelect").val("all");
+
+                    $("#nevalkotasiszabalySelect").val("all");
+                }
+            });
+        });
+    </script>
     <script type='text/javascript'>
       <?php
         echo "var tajegysegek = $jsonTajegysegek; \n";
@@ -194,12 +263,43 @@
         }
         updateHelynevek();
       }
+
       function updateHelynevek(){
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
+        var rSelect = document.getElementById("rSelect");
+        var lmSelect = document.getElementById("lmSelect");
+        var tSelect = document.getElementById("tSelect");
+        var arSelect = document.getElementById("arSelect");
+        var almSelect = document.getElementById("almSelect");
+        var atSelect = document.getElementById("atSelect");
+        var brSelect = document.getElementById("brSelect");
+        var blmSelect = document.getElementById("blmSelect");
+        var btSelect = document.getElementById("btSelect");
+        var szabalySelect = document.getElementById("nevalkotasiszabalySelect");
         nevszerkezetSelect.onchange = updateHelynevek;
+        rSelect.onchange = updateHelynevek;
+        lmSelect.onchange = updateHelynevek;
+        tSelect.onchange = updateHelynevek;
+        arSelect.onchange = updateHelynevek;
+        almSelect.onchange = updateHelynevek;
+        atSelect.onchange = updateHelynevek;
+        brSelect.onchange = updateHelynevek;
+        blmSelect.onchange = updateHelynevek;
+        btSelect.onchange = updateHelynevek;
+        szabalySelect.onchange = updateHelynevek;
         var id = telepulesekSelect.value;
         var selectedNevszerkezet=nevszerkezetSelect.value;
+        var selectedR=rSelect.value;
+        var selectedLM=lmSelect.value;
+        var selectedT=tSelect.value;
+        var selectedAR=arSelect.value;
+        var selectedALM=almSelect.value;
+        var selectedAT=atSelect.value;
+        var selectedBR=brSelect.value;
+        var selectedBLM=blmSelect.value;
+        var selectedBT=btSelect.value;
+        var selectedSzabaly=szabalySelect.value;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
@@ -210,8 +310,25 @@
         
         var sorszam=1;
         for(var i = 0; i < helynevek[id].length; i++){
-            //helynevek[id][i].nevszerkezet===selectedNevszerkezet
-            if(helynevek[id][i].nevszerkezet===selectedNevszerkezet){
+            $matching=true;
+            if(!(selectedNevszerkezet==="all" || helynevek[id][i].nevszerkezet==selectedNevszerkezet)) $matching=false;
+
+            if(!( selectedR==="all" || helynevek[id][i].rKod.startsWith(selectedR))) $matching=false;
+            if(!( selectedLM==="all" || helynevek[id][i].lmKod.startsWith(selectedLM))) $matching=false;
+            if(!( selectedT==="all" || helynevek[id][i].tKod.startsWith(selectedT))) $matching=false;
+
+            if(!( selectedAR==="all" || helynevek[id][i].arKod.startsWith(selectedAR))) $matching=false;
+            if(!( selectedALM==="all" || helynevek[id][i].almKod.startsWith(selectedALM))) $matching=false;
+            if(!( selectedAT==="all" || helynevek[id][i].atKod.startsWith(selectedAT))) $matching=false;
+
+            if(!( selectedBR==="all" || helynevek[id][i].brKod.startsWith(selectedBR))) $matching=false;
+            if(!( selectedBLM==="all" || helynevek[id][i].blmKod.startsWith(selectedBLM))) $matching=false;
+            if(!( selectedBT==="all" || helynevek[id][i].btKod.startsWith(selectedBT))) $matching=false;
+
+            if(!( selectedSzabaly==="all" || helynevek[id][i].nevalkotasiszabalyKod.startsWith(selectedSzabaly))) $matching=false;
+            
+
+            if( $matching ){
                 
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow();
@@ -271,32 +388,34 @@
             <div class="inputrow">
                     <label class="inputlabel">Névszerkezettípus:</label>
                     <select id='nevszerkezetSelect' >
-                <?php
-                        $query = "SELECT * FROM `nevszerkezettipus`";
-                                    /*WHERE Is_Active=1";*/
-                        
-                        $result=mysqli_query($con,$query) or die('hiba');
+                        <?php
+                            $query = "SELECT * FROM `nevszerkezettipus`";
+                            
+                            $result=mysqli_query($con,$query) or die('hiba');
 
-                        while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $egyreszes=$row['Egyreszes'];
+                            echo "<option class='boldoption' value='all'>Összes</option>";
 
-                            echo "<option value=".$nev.">".$nev."</option>";
-                        }
-                        
-                    ?>
+                            while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+                                $egyreszes=$row['Egyreszes'];
+
+                                echo "<option value=".$nev.">".$nev."</option>";
+                            }                     
+                        ?>
             </select>
                     <br>
                 </div>
                 <div id="egyreszes" >
                     <div class="inputrow">
                         <label class="inputlabel">FSZ</label>
-                        <select name="r">
+                        <select id="rSelect">
                             <?php
                                 $query = "SELECT * FROM `nevresz`";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -308,12 +427,8 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->r){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
+
                                 }
                                 
                             ?>
@@ -322,11 +437,13 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">LM</label>
-                        <select name="lm">
+                        <select id="lmSelect">
                             <?php
                                 $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -338,12 +455,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->lm){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -352,12 +464,14 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">Toldalék</label>
-                        <select name="t">
+                        <select id="tSelect">
                             <?php
                                 $query = "SELECT * FROM `toldalek`"
                                         . "ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -369,12 +483,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->t){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    } 
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -385,11 +494,13 @@
                 <div id="ketreszes" >
                     <div class="inputrow">
                         <label class="inputlabel">Alaprész:</label>
-                        <select name="ar">
+                        <select id="arSelect">
                             <?php
                                 $query = "SELECT * FROM `nevresz`";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -401,12 +512,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->ar){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -415,11 +521,13 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">ALM</label>
-                        <select name="alm">
+                        <select id="almSelect">
                             <?php
                                 $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -431,12 +539,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->alm){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -445,12 +548,14 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">AT</label>
-                        <select name="at">
+                        <select id="atSelect">
                             <?php
                                 $query = "SELECT * FROM `toldalek`"
                                         . "ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -462,12 +567,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->at){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -476,11 +576,13 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">Bővítményrész:</label>
-                        <select name="br">
+                        <select id="brSelect">
                             <?php
                                 $query = "SELECT * FROM `nevresz`";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -492,12 +594,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->br){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -506,11 +603,13 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">BLM</label>
-                        <select name="blm">
+                        <select id="blmSelect">
                             <?php
                                 $query = "SELECT * FROM `lexikalis` ORDER BY Kod";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -522,13 +621,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->blm){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -537,12 +630,14 @@
                     </div>
                     <div class="inputrow">
                         <label class="inputlabel">BT</label>
-                        <select name="bt">
+                        <select id="btSelect">
                             <?php
                                 $query = "SELECT * FROM `toldalek`"
                                         . "ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
+
+                                echo "<option class='boldoption' value='all'>Összes</option>";
 
                                 while($row=mysqli_fetch_array($result)){
                                     $id=$row['ID'];
@@ -554,12 +649,7 @@
                                         $bold="boldoption";
                                     }
                                     
-                                    if($id===$helynev->bt){
-                                        echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
-                                    else{
-                                        echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                    }
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                                 }
                                 
                             ?>
@@ -569,11 +659,13 @@
                 <br>
                 <div class="inputrow">
                     <label class="inputlabel">Névalkotási szabály:</label>
-                    <select name="nevalkotasiszabaly">
+                    <select id="nevalkotasiszabalySelect">
                         <?php
                             $query = "SELECT * FROM `nevalkotasszabaly`";
                             
                             $result=mysqli_query($con,$query) or die('hiba');
+
+                            echo "<option class='boldoption' value='all'>Összes</option>";
 
                             while($row=mysqli_fetch_array($result)){
                                 $id=$row['ID'];
@@ -585,12 +677,7 @@
                                     $bold="boldoption";
                                 }
                                 
-                                if($id===$helynev->nevalkotasiszabaly){
-                                    echo "<option class='$bold' selected='selected' value=".$id.">".$kod." ".$nev."</option>";
-                                }
-                                else{
-                                    echo "<option class='$bold' value=".$id.">".$kod." ".$nev."</option>";
-                                }
+                                echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                             }
                             
                         ?>
