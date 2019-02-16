@@ -5,6 +5,9 @@ $output='';
 
 if(isset($_POST["export"]))
 {
+    if(isset($_POST["nevszerkezet"])){
+        $nevszerkezetFilter=$_POST["nevszerkezet"];
+    }
     $db=new HelynevDatabase();
 
     $helynevek = $db->getAllHelynev();
@@ -43,46 +46,48 @@ if(isset($_POST["export"]))
     ';
     
     foreach ($helynevek as $helynev){
-        $output .= '
-            <tr>  
-                <td>'.$helynev["standard"].'</td>  
-                <td>'.$helynev["telepulesNev"].'</td>  
-                <td>'.$helynev["tajegysegNev"].'</td>  
-                <td>'.$helynev["ejtes"].'</td>  
-                <td>'.$helynev["helyfajtaKod"]." ".$helynev["helyfajtaNev"].'</td>  
-                <td>'.$helynev["terkepszam"].'</td>
-                <td>'.$helynev["ragos_alak"].'</td>
-                <td>'.$helynev["nyelv"].'</td>
-                <td>'.$helynev["forras_adat"].'</td>
-                <td>'.$helynev["forras_ev"].'</td>
-                <td>'.$helynev["forras_tipus"].'</td>
-                <td>'.$helynev["objektum_info"].'</td>
-                <td>'.$helynev["nev_info"].'</td>
-                <td>'.$helynev["nevvarians"].'</td>';
-        if($helynev["termeszetes"]==1)
-            $output .= '<td>Természetes</td>';
-        else
-            $output .= '<td>Mesterséges</td>';
+        if(!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])){
+            $output .= '
+                <tr>  
+                    <td>'.$helynev["standard"].'</td>  
+                    <td>'.$helynev["telepulesNev"].'</td>  
+                    <td>'.$helynev["tajegysegNev"].'</td>  
+                    <td>'.$helynev["ejtes"].'</td>  
+                    <td>'.$helynev["helyfajtaKod"]." ".$helynev["helyfajtaNev"].'</td>  
+                    <td>'.$helynev["terkepszam"].'</td>
+                    <td>'.$helynev["ragos_alak"].'</td>
+                    <td>'.$helynev["nyelv"].'</td>
+                    <td>'.$helynev["forras_adat"].'</td>
+                    <td>'.$helynev["forras_ev"].'</td>
+                    <td>'.$helynev["forras_tipus"].'</td>
+                    <td>'.$helynev["objektum_info"].'</td>
+                    <td>'.$helynev["nev_info"].'</td>
+                    <td>'.$helynev["nevvarians"].'</td>';
+            if($helynev["termeszetes"]==1)
+                $output .= '<td>Természetes</td>';
+            else
+                $output .= '<td>Mesterséges</td>';
 
-        if($helynev["mikro"]==1)
-            $output .= '<td>Mikro</td>';
-        else
-            $output .= '<td>Makro</td>';
+            if($helynev["mikro"]==1)
+                $output .= '<td>Mikro</td>';
+            else
+                $output .= '<td>Makro</td>';
 
-        $output .= '<td>'.$helynev["nevszerkezetNev"].'</td>
-                <td>'.$helynev["rKod"]." ".$helynev["r"].'</td>
-                <td>'.$helynev["lmKod"]." ".$helynev["lm"].'</td>
-                <td>'.$helynev["tKod"]." ".$helynev["t"].'</td> 
-                <td>'.$helynev["arKod"]." ".$helynev["ar"].'</td>
-                <td>'.$helynev["almKod"]." ".$helynev["alm"].'</td>
-                <td>'.$helynev["atKod"]." ".$helynev["at"].'</td>
-                <td>'.$helynev["brKod"]." ".$helynev["br"].'</td>
-                <td>'.$helynev["blmKod"]." ".$helynev["blm"].'</td>
-                <td>'.$helynev["btKod"]." ".$helynev["bt"].'</td>
-                <td>'.$helynev["nevalkotasiszabalyKod"]." ".$helynev["nevalkotasiszabaly"].'</td>';
-        
+            $output .= '<td>'.$helynev["nevszerkezetNev"].'</td>
+                    <td>'.$helynev["rKod"]." ".$helynev["r"].'</td>
+                    <td>'.$helynev["lmKod"]." ".$helynev["lm"].'</td>
+                    <td>'.$helynev["tKod"]." ".$helynev["t"].'</td> 
+                    <td>'.$helynev["arKod"]." ".$helynev["ar"].'</td>
+                    <td>'.$helynev["almKod"]." ".$helynev["alm"].'</td>
+                    <td>'.$helynev["atKod"]." ".$helynev["at"].'</td>
+                    <td>'.$helynev["brKod"]." ".$helynev["br"].'</td>
+                    <td>'.$helynev["blmKod"]." ".$helynev["blm"].'</td>
+                    <td>'.$helynev["btKod"]." ".$helynev["bt"].'</td>
+                    <td>'.$helynev["nevalkotasiszabalyKod"]." ".$helynev["nevalkotasiszabaly"].'</td>';
+            
 
-        $output .= '</tr>';
+            $output .= '</tr>';
+        }
     }
     $output .= '</table>';
     header('Content-Type: application/xls');
