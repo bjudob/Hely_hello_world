@@ -24,7 +24,7 @@ class HelynevDatabase
         if (!defined('DB_SERVER')) define('DB_SERVER', 'localhost');
         if (!defined('DB_USERNAME')) define('DB_USERNAME', 'root');
         if (!defined('DB_PASSWORD')) define('DB_PASSWORD', '');
-        if (!defined('DB_DATABASE')) define('DB_DATABASE', 'helynevek_db_2');
+        if (!defined('DB_DATABASE')) define('DB_DATABASE', 'id2643544_training_db');
         $this->con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
         if(!$this->con){
             die('Az adatbázis nem elérhető!');
@@ -39,21 +39,21 @@ class HelynevDatabase
 
     //HELYNEVEK
     public function getAllHelynev(){
-        $helynevek = array();
-        //$array[$key] = "item"
-
         $this->connect();
-        
+
         $query = "SELECT
             helynev.ID, 
             Standard,
-            telepules.Nev as telepules,
+            telepules.ID as telepulesId,
+            telepules.nev as telepulesNev,
+            tajegyseg.ID as tajegysegId,
+            tajegyseg.Nev as tajegysegNev,
             Ejtes,
             helyfajta.Nev as helyfajtaNev,
             helyfajta.Kod as helyfajtaKod,
             Terkepszam,
             Ragos_Alak,
-            nyelv.Nev as joinNyelv,
+            nyelv.Nev as nyelvNev,
             Forras_Adat,
             Forras_Ev,
             Forras_Tipus,
@@ -62,83 +62,97 @@ class HelynevDatabase
             Nevvarians,
             Termeszetes,
             Mikro,
-            Nevszerkezettipus,
-            R,
-            LM,
-            AR,
-            ALM,
-            BR,
-            BLM,
-            `Nevalkotasi Szabaly` as nevalkotasiszabaly	
+            nevszerkezettipus.Nev as nevszerkezetNev,
+            nevszerkezettipus.Egyreszes as nevszerkezetEgyreszes,
+            nr.Nev as R,
+            nr.Kod as Rkod,
+            lm.Nev as LM,
+            lm.Kod as LMkod,
+            t.Nev as T,
+            t.Kod as Tkod,
+            nar.Nev as AR,
+            nar.Kod as ARkod,
+            alm.Nev as ALM,
+            alm.Kod as ALMkod,
+            at.Nev as AT,
+            at.Kod as ATkod,
+            nbr.Nev as BR,
+            nbr.Kod as BRkod,
+            blm.Nev as BLM,
+            blm.Kod as BLMkod,
+            bt.Nev as BT,
+            bt.Kod as BTkod,
+            `nevalkotasszabaly`.Nev as nevalkotasiszabaly,	
+            `nevalkotasszabaly`.Kod as nevalkotasiszabalyKod	
             FROM `helynev` 
-            INNER JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
-            INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID";
-        $result=mysqli_query($this->con,$query) or die('Hiba tortent');
-        
-        while($row=mysqli_fetch_array($result)){
-            $id=$row['ID'];
-            $standard=$row['Standard'];
-            $ejtes=$row['Ejtes'];
-            $telepules=$row['telepules'];
-            $helyfajtaNev=$row['helyfajtaNev'];
-            $helyfajtaKod=$row['helyfajtaKod'];
-            $terkepszam=$row['Terkepszam'];
-            $ragosalak=$row['Ragos_Alak'];
-            $nyelv=$row['joinNyelv'];
-            $forrasmunkaadat=$row['Forras_Adat'];
-            $forrasmunkaev=$row['Forras_Ev'];
-            $forrasmunkatipus=$row['Forras_Tipus'];
-            $objektuminfo=$row['Objektum_Info'];
-            $helyinfo=$row['Nev_Info'];
-            $nevvaltozatok=$row['Nevvarians'];
-            $termeszetes=$row['Termeszetes'];
-            $mikro=$row['Mikro'];
-            $nevszerkezet=$row['Nevszerkezettipus'];
-            $r=$row['R'];
-            $lm=$row['LM'];
-            $ar=$row['AR'];
-            $alm=$row['ALM'];
-            $br=$row['BR'];
-            $blm=$row['BLM'];
-            $nevalkotasiszabaly=$row["nevalkotasiszabaly"];
-            
+            LEFT JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
+            LEFT JOIN `tajegyseg` ON `telepules`.Tajegyseg=`tajegyseg`.ID
+            LEFT JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
+            LEFT JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+            LEFT JOIN `nevresz` nr ON `helynev`.R=nr.ID
+            LEFT JOIN `nevresz` nar ON `helynev`.AR=nar.ID
+            LEFT JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
+            LEFT JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
+            LEFT JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
+            LEFT JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
+            LEFT JOIN `toldalek` t ON `helynev`.T=t.ID
+            LEFT JOIN `toldalek` at ON `helynev`.AT=at.ID
+            LEFT JOIN `toldalek` bt ON `helynev`.BT=bt.ID
+            LEFT JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            LEFT JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
+            ORDER BY Standard_Hash";
 
-            $helynev=new Helynev();
-            $helynev->setValues(
-                    $standard, 
-                    $telepules,
-                    $ejtes, 
-                    $helyfajtaNev, 
-                    $helyfajtaKod, 
-                    $terkepszam, 
-                    $ragosalak, 
-                    $nyelv, 
-                    $forrasmunkaadat, 
-                    $forrasmunkaev, 
-                    $forrasmunkatipus, 
-                    $objektuminfo, 
-                    $helyinfo, 
-                    $nevvaltozatok, 
-                    $termeszetes,
-                    $mikro,
-                    $nevszerkezet,
-                    $r,
-                    $lm,
-                    $ar,
-                    $alm,
-                    $br,
-                    $blm,
-                    $nevalkotasiszabaly
+        $result=mysqli_query($this->con,$query) or die('hiba');
+
+        while($row = mysqli_fetch_array($result)){
+            $helynevek[]=array(
+                "id"=>$row["ID"],
+                "telepulesId"=>$row['telepulesId'],
+                "telepulesNev"=>$row['telepulesNev'],
+                "tajegysegId"=>$row['tajegysegId'],
+                "tajegysegNev"=>$row['tajegysegNev'],
+                "standard"=>$row["Standard"],
+                "ejtes"=>$row["Ejtes"],
+                "helyfajtaNev"=>$row["helyfajtaNev"],
+                "helyfajtaKod"=>$row["helyfajtaKod"],
+                "terkepszam"=>$row["Terkepszam"],
+                "ragos_alak"=>$row["Ragos_Alak"],
+                "nyelv"=>$row["nyelvNev"],
+                "forras_adat"=>$row["Forras_Adat"],
+                "forras_ev"=>$row["Forras_Ev"],
+                "forras_tipus"=>$row["Forras_Tipus"],
+                "objektum_info"=>$row["Objektum_Info"],
+                "nev_info"=>$row["Nev_Info"],
+                "nevvarians"=>$row["Nevvarians"],
+                "termeszetes"=>$row["Termeszetes"],
+                "mikro"=>$row["Mikro"],
+                "nevszerkezetNev"=>$row["nevszerkezetNev"],
+                "nevszerkezetEgyreszes"=>$row["nevszerkezetEgyreszes"],
+                "r"=>$row["R"],
+                "rKod"=>$row["Rkod"],
+                "lm"=>$row["LM"],
+                "lmKod"=>$row["LMkod"],
+                "t"=>$row["T"],
+                "tKod"=>$row["Tkod"],
+                "ar"=>$row["AR"],
+                "arKod"=>$row["ARkod"],
+                "alm"=>$row["ALM"],
+                "almKod"=>$row["ALMkod"],
+                "at"=>$row["AT"],
+                "atKod"=>$row["ATkod"],
+                "br"=>$row["BR"],
+                "brKod"=>$row["BRkod"],
+                "blm"=>$row["BLM"],
+                "blmKod"=>$row["BLMkod"],
+                "bt"=>$row["BT"],
+                "btKod"=>$row["BTkod"],
+                "nevalkotasiszabaly"=>$row["nevalkotasiszabaly"],
+                "nevalkotasiszabalyKod"=>$row["nevalkotasiszabalyKod"]
                 );
-            
-            $helynev->setId($id);
-            
-            $helynevek[] = $helynev;
-
         }
 
         $this->disconnect();
+
         return $helynevek;
     }
     
