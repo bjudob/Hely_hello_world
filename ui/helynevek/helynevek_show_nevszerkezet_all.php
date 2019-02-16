@@ -60,15 +60,15 @@
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
                 cell2.innerHTML = '<b>'+helynevek[i].standard+'</b>';
-                cell3.innerHTML = helynevek[i].telepules;
-                cell4.innerHTML = helynevek[i].helyfajta;
+                cell3.innerHTML = helynevek[i].telepulesNev;
+                cell4.innerHTML = helynevek[i].helyfajtaNev;
                 cell5.innerHTML = helynevek[i].nevszerkezetNev;
-                cell6.innerHTML = helynevek[i].r;
-                cell7.innerHTML = helynevek[i].lm;
-                cell8.innerHTML = helynevek[i].ar;
-                cell9.innerHTML = helynevek[i].alm;
-                cell10.innerHTML = helynevek[i].br;
-                cell11.innerHTML = helynevek[i].blm;
+                cell6.innerHTML =  helynevek[i].rKod+helynevek[i].r;
+                cell7.innerHTML = helynevek[i].lmKod+helynevek[i].lm;
+                cell8.innerHTML = helynevek[i].arKod+helynevek[i].ar;
+                cell9.innerHTML = helynevek[i].almKod+helynevek[i].alm;
+                cell10.innerHTML = helynevek[i].brKod+helynevek[i].br;
+                cell11.innerHTML = helynevek[i].blmKod+helynevek[i].blm;
                 cell12.innerHTML = helynevek[i].nevalkotasiszabaly;
                 cell13.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
             
