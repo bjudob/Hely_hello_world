@@ -69,32 +69,18 @@ if(isset($_POST["export"]))
         else
             $output .= '<td>Makro</td>';
 
-        if($helynev["nevszerkezetEgyreszes"]==1){
-            $output .= '<td>'.$helynev["nevszerkezetNev"].'</td>
-                    <td>'.$helynev["rKod"]." ".$helynev["r"].'</td>
-                    <td>'.$helynev["lmKod"]." ".$helynev["lm"].'</td>
-                    <td>'.$helynev["tKod"]." ".$helynev["t"].'</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>'.$helynev["nevalkotasiszabaly"].'</td>';
-        }
-        else{
-            $output .= '<td>'.$helynev["nevszerkezetNev"].'</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>'.$helynev["arKod"]." ".$helynev["ar"].'</td>
-                    <td>'.$helynev["almKod"]." ".$helynev["alm"].'</td>
-                    <td>'.$helynev["atKod"]." ".$helynev["at"].'</td>
-                    <td>'.$helynev["brKod"]." ".$helynev["br"].'</td>
-                    <td>'.$helynev["blmKod"]." ".$helynev["blm"].'</td>
-                    <td>'.$helynev["btKod"]." ".$helynev["bt"].'</td>
-                    <td>'.$helynev["nevalkotasiszabalyKod"]." ".$helynev["nevalkotasiszabaly"].'</td>';
-        }
+        $output .= '<td>'.$helynev["nevszerkezetNev"].'</td>
+                <td>'.$helynev["rKod"]." ".$helynev["r"].'</td>
+                <td>'.$helynev["lmKod"]." ".$helynev["lm"].'</td>
+                <td>'.$helynev["tKod"]." ".$helynev["t"].'</td> 
+                <td>'.$helynev["arKod"]." ".$helynev["ar"].'</td>
+                <td>'.$helynev["almKod"]." ".$helynev["alm"].'</td>
+                <td>'.$helynev["atKod"]." ".$helynev["at"].'</td>
+                <td>'.$helynev["brKod"]." ".$helynev["br"].'</td>
+                <td>'.$helynev["blmKod"]." ".$helynev["blm"].'</td>
+                <td>'.$helynev["btKod"]." ".$helynev["bt"].'</td>
+                <td>'.$helynev["nevalkotasiszabalyKod"]." ".$helynev["nevalkotasiszabaly"].'</td>';
+        
 
         $output .= '</tr>';
     }
