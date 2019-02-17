@@ -134,9 +134,13 @@
       function updateHelynevek(){
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var helyfajtaSelect = document.getElementById("helyfajtaSelect");
+        var helyfajtaFilter = document.getElementById("helyfajtaFilter");
+        var telepulesFilter = document.getElementById("telepulesFilter");
         helyfajtaSelect.onchange = updateHelynevek;
         var id = telepulesekSelect.value;
+        telepulesFilter.value=id;
         var selectedHelyfajta=helyfajtaSelect.value;
+        helyfajtaFilter.value=selectedHelyfajta;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
@@ -206,43 +210,51 @@
 </head>
 <body onload='loadTajegysegek()'>
     <div id="container">
-        <div id="title">Helynevek</div>
-        <br>
-        <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
-        <form action = "" method = "post">
-            <label>Tájegység:</label>
-            <select id='tajegysegekSelect' >
-            </select>
+        <div id="blockcontainer">
+            <div id="title">Helynevek</div>
             <br>
-            <label>Település:</label>
-            <select id='telepulesekSelect' >
-            </select>
-            <br>
-            <label>Helyfajta:</label>
-            <select id='helyfajtaSelect' >
-                <?php
-                    $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
-                                /*WHERE Is_Active=1";*/
+            <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
+            <form action = "" method = "post">
+                <label>Tájegység:</label>
+                <select id='tajegysegekSelect' >
+                </select>
+                <br>
+                <label>Település:</label>
+                <select id='telepulesekSelect' >
+                </select>
+                <br>
+                <label>Helyfajta:</label>
+                <select id='helyfajtaSelect' >
+                    <?php
+                        $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
+                                    /*WHERE Is_Active=1";*/
 
-                    $result=mysqli_query($con,$query) or die('hiba');
+                        $result=mysqli_query($con,$query) or die('hiba');
 
-                    while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
+                        while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+                                $kod=$row['Kod'];
+                                $bold="none";
 
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
+                                if (strlen($kod) == 2) {
+                                    $bold="boldoption";
+                                }
+                                
+                                echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
                             }
-                            
-                            echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
-                        }
 
-                ?>
-            </select>
+                    ?>
+                </select>
+                <br>
+            </form>
             <br>
-        </form>
+            <form method="post" action="export.php">
+                <input type="submit" name="export" id="btn" value="Excel letöltése" />
+                <input type="hidden" id="helyfajtaFilter" name="helyfajta" value=""/>
+                <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
+            </form>
+            </div>
         </div>
         <br>
         <table id='helynevekTable'>
