@@ -130,7 +130,9 @@
       }
       function updateHelynevek(){
         var telepulesekSelect = document.getElementById("telepulesekSelect");
+        var telepulesFilter = document.getElementById("telepulesFilter");
         var id = telepulesekSelect.value;
+        telepulesFilter.value=id;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
@@ -209,7 +211,8 @@
             </form>
             <br>
             <form method="post" action="export.php">
-                <input type="submit" name="export" id="btn" value="Excel letöltése" />
+              <input type="submit" name="export" id="btn" value="Excel letöltése" />
+              <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
             </form>
             </div>
         </div>

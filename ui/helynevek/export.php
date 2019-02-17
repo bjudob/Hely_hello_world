@@ -8,6 +8,9 @@ if(isset($_POST["export"]))
     if(isset($_POST["nevszerkezet"])){
         $nevszerkezetFilter=$_POST["nevszerkezet"];
     }
+    if(isset($_POST["telepules"])){
+        $telepulesFilter=$_POST["telepules"];
+    }
     $db=new HelynevDatabase();
 
     $helynevek = $db->getAllHelynev();
@@ -46,7 +49,10 @@ if(isset($_POST["export"]))
     ';
     
     foreach ($helynevek as $helynev){
-        if(!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])){
+        if(
+            (!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])) &&
+            (!isset($telepulesFilter) || (isset($telepulesFilter) && $telepulesFilter==$helynev["telepulesId"]))
+        ){
             $output .= '
                 <tr>  
                     <td>'.$helynev["standard"].'</td>  

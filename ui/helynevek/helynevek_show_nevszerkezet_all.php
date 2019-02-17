@@ -115,7 +115,6 @@
                     <input type="submit" name="export" id="btn" value="Excel letöltése" />
                     <input type="hidden" id="nevszerkezetFilter" name="nevszerkezet" value=""/>
                 </form>
-                <br>
             </div>
         </div>
         <br>
