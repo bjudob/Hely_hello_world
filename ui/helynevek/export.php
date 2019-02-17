@@ -11,6 +11,9 @@ if(isset($_POST["export"]))
     if(isset($_POST["telepules"])){
         $telepulesFilter=$_POST["telepules"];
     }
+    if(isset($_POST["firstLetter"]) && $_POST["firstLetter"] != 'all'){
+        $firstLetterFilter=$_POST["firstLetter"];
+    }
     $db=new HelynevDatabase();
 
     $helynevek = $db->getAllHelynev();
@@ -48,10 +51,29 @@ if(isset($_POST["export"]))
             </tr>
     ';
     
-    foreach ($helynevek as $helynev){
+    foreach ($helynevek as $helynev){  
+        $a=mb_strtolower($helynev["standard"]);
+        if(mb_substr($a,0,3)==="dzs"){
+            $firstLetter = mb_substr($a,0,3);
+        }
+        else if(  mb_substr($a,0,2)=="cs"
+        ||mb_substr($a,0,2)=="dz"
+        ||mb_substr($a,0,2)=="gy"
+        ||mb_substr($a,0,2)=="ly"
+        ||mb_substr($a,0,2)=="ny"
+        ||mb_substr($a,0,2)=="sz"
+        ||mb_substr($a,0,2)=="ty"
+        ||mb_substr($a,0,2)=="zs"){
+            $firstLetter = mb_substr($a,0,2);
+        }
+        else{
+            $firstLetter = mb_substr($a,0,1);
+        }
+
         if(
             (!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])) &&
-            (!isset($telepulesFilter) || (isset($telepulesFilter) && $telepulesFilter==$helynev["telepulesId"]))
+            (!isset($telepulesFilter) || (isset($telepulesFilter) && $telepulesFilter==$helynev["telepulesId"])) &&
+            (!isset($firstLetterFilter) || (isset($firstLetterFilter) && $firstLetterFilter===$firstLetter))
         ){
             $output .= '
                 <tr>  
@@ -100,4 +122,5 @@ if(isset($_POST["export"]))
     header('Content-Disposition: attachment; filename=helynevek.xls');
     echo $output;
 }
+
 ?>

@@ -141,8 +141,10 @@
     
     function updateHelynevek(){
         var abcSelect = document.getElementById("abcSelect");
+        var firstLetterFilter = document.getElementById("firstLetterFilter");
         abcSelect.onchange = updateHelynevek;
         var selectedAbc=abcSelect.value;
+        firstLetterFilter.value=selectedAbc;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
@@ -192,58 +194,63 @@
 </head>
 <body onload='updateHelynevek()'>
     <div id="container">
-        <div id="title">Helynevek ábécé sorrendben</div>
-        <br>
-        <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
-            <select id='abcSelect' >
-                <option class="boldoption" value="all">Összes</option>
-                <option value="a">A</option>
-                <option value="á">Á</option>
-                <option value="b">B</option>
-                <option value="c">C</option>
-                <option value="cs">CS</option>
-                <option value="d">D</option>
-                <option value="dz">DZ</option>
-                <option value="dzs">DZS</option>
-                <option value="e">E</option>
-                <option value="é">É</option>
-                <option value="f">F</option>
-                <option value="g">G</option>
-                <option value="gy">GY</option>
-                <option value="h">H</option>
-                <option value="i">I</option>
-                <option value="í">Í</option>
-                <option value="j">J</option>
-                <option value="k">K</option>
-                <option value="l">L</option>
-                <option value="ly">LY</option>
-                <option value="m">M</option>
-                <option value="n">N</option>
-                <option value="ny">NY</option>
-                <option value="o">O</option>
-                <option value="ó">Ó</option>
-                <option value="ö">Ö</option>
-                <option value="ő">Ő</option>
-                <option value="p">P</option>
-                <option value="q">Q</option>
-                <option value="r">R</option>
-                <option value="s">S</option>
-                <option value="sz">SZ</option>
-                <option value="t">T</option>
-                <option value="ty">TY</option>
-                <option value="u">U</option>
-                <option value="ú">Ú</option>
-                <option value="ü">Ü</option>
-                <option value="ű">Ű</option>
-                <option value="v">V</option>
-                <option value="w">W</option>
-                <option value="x">X</option>
-                <option value="y">Y</option>
-                <option value="z">Z</option>
-                <option value="zs">ZS</option>
-            </select>
+        <div id="blockcontainer">
+            <div id="title">Helynevek ábécé sorrendben</div>
             <br>
-        </form>
+            <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
+                <select id='abcSelect' >
+                    <option class="boldoption" value="all">Összes</option>
+                    <option value="a">A</option>
+                    <option value="á">Á</option>
+                    <option value="b">B</option>
+                    <option value="c">C</option>
+                    <option value="cs">CS</option>
+                    <option value="d">D</option>
+                    <option value="dz">DZ</option>
+                    <option value="dzs">DZS</option>
+                    <option value="e">E</option>
+                    <option value="é">É</option>
+                    <option value="f">F</option>
+                    <option value="g">G</option>
+                    <option value="gy">GY</option>
+                    <option value="h">H</option>
+                    <option value="i">I</option>
+                    <option value="í">Í</option>
+                    <option value="j">J</option>
+                    <option value="k">K</option>
+                    <option value="l">L</option>
+                    <option value="ly">LY</option>
+                    <option value="m">M</option>
+                    <option value="n">N</option>
+                    <option value="ny">NY</option>
+                    <option value="o">O</option>
+                    <option value="ó">Ó</option>
+                    <option value="ö">Ö</option>
+                    <option value="ő">Ő</option>
+                    <option value="p">P</option>
+                    <option value="q">Q</option>
+                    <option value="r">R</option>
+                    <option value="s">S</option>
+                    <option value="sz">SZ</option>
+                    <option value="t">T</option>
+                    <option value="ty">TY</option>
+                    <option value="u">U</option>
+                    <option value="ú">Ú</option>
+                    <option value="ü">Ü</option>
+                    <option value="ű">Ű</option>
+                    <option value="v">V</option>
+                    <option value="w">W</option>
+                    <option value="x">X</option>
+                    <option value="y">Y</option>
+                    <option value="z">Z</option>
+                    <option value="zs">ZS</option>
+                </select>
+                <br>
+                <form method="post" action="export.php">
+                    <input type="submit" name="export" id="btn" value="Excel letöltése" />
+                    <input type="hidden" id="firstLetterFilter" name="firstLetter" value=""/>
+                </form>
+            </div>
         </div>
         <br>
         <table id='helynevekTable'>
