@@ -115,8 +115,9 @@
       function loadTajegysegek(){
         var select = document.getElementById("tajegysegekSelect");
         select.onchange = updateTelepulesek;
+        select.options[0] = new Option("Összes","all");
         for(var i = 0; i < tajegysegek.length; i++){
-          select.options[i] = new Option(tajegysegek[i].val,tajegysegek[i].id);          
+          select.options[i+1] = new Option(tajegysegek[i].val,tajegysegek[i].id);          
         }
         updateTelepulesek();
       }
@@ -126,8 +127,9 @@
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         telepulesekSelect.onchange = updateHelynevek;
         telepulesekSelect.options.length = 0; //delete all options if any present
+        telepulesekSelect.options[0] = new Option("Összes","all");
         for(var i = 0; i < telepulesek[id].length; i++){
-          telepulesekSelect.options[i] = new Option(telepulesek[id][i].val,telepulesek[id][i].id);
+          telepulesekSelect.options[i+1] = new Option(telepulesek[id][i].val,telepulesek[id][i].id);
         }
         updateHelynevek();
       }
