@@ -34,19 +34,19 @@
 		<div id="menuOption">
 		<input id="btn" type="button" value="Település szerint" onclick="window.location.href='./helynevek_show.php'">
 		</div>
-                <br>
-                <div id="menuOption">
-		<input id="btn" type="button" value="Névszerkezettípus szerint" onclick="window.location.href='./helynevek_menu_nevszerkezet.php'">
+		<br>
+		<div id="menuOption">
+		<input id="btn" type="button" value="Névszerkezettípus szerint" onclick="window.location.href='./helynevek_show_nevszerkezet.php'">
 		</div>
 		<br>
 		<div id="menuOption">
-		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_menu_helyfajta.php'">
+		<input id="btn" type="button" value="Helyfajta szerint" onclick="window.location.href='./helynevek_show_helyfajta.php'">
 		</div>
-                <br>
-                <div id="menuOption">
+		<br>
+		<div id="menuOption">
 		<input id="btn" type="button" value="Ábécé szerint" onclick="window.location.href='./helynevek_show_abc_all.php'">
 		</div>
-                <br>
+		<br>
 
 		
 	</div>
