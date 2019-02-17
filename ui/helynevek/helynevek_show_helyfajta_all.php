@@ -91,8 +91,10 @@
       ?>
       function updateHelynevek(){
         var helyfajtaSelect = document.getElementById("helyfajtaSelect");
+        var helyfajtaFilter = document.getElementById("helyfajtaFilter");
         helyfajtaSelect.onchange = updateHelynevek;
         var selectedHelyfajta=helyfajtaSelect.value;
+        helyfajtaFilter.value=selectedHelyfajta;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
@@ -166,35 +168,42 @@
 </head>
 <body onload='updateHelynevek()'>
     <div id="container">
-        <div id="title">Helynevek</div>
-        <br>
-        <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
-        <form action = "" method = "post">
-            <label>Helyfajta:</label>
-            <select id='helyfajtaSelect' >
-                <?php
-                    $query = "SELECT * FROM `helyfajta`  ORDER BY Kod";
-                                /*WHERE Is_Active=1";*/
-
-                    $result=mysqli_query($con,$query) or die('hiba');
-
-                    while($row=mysqli_fetch_array($result)){
-                            $id=$row['ID'];
-                            $nev=$row['Nev'];
-                            $kod=$row['Kod'];
-                            $bold="none";
-
-                            if (strlen($kod) == 2) {
-                                $bold="boldoption";
-                            }
-                            
-                            echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
-                        }
-
-                ?>
-            </select>
+        <div id="blockcontainer">
+            <div id="title">Helynevek</div>
             <br>
-        </form>
+            <div id="telepules_select" style="margin: auto; text-align: center;font-size: 200%">
+                <form action = "" method = "post">
+                    <label>Helyfajta:</label>
+                    <select id='helyfajtaSelect' >
+                        <?php
+                            $query = "SELECT * FROM `helyfajta`  ORDER BY Kod";
+                                        /*WHERE Is_Active=1";*/
+
+                            $result=mysqli_query($con,$query) or die('hiba');
+
+                            while($row=mysqli_fetch_array($result)){
+                                    $id=$row['ID'];
+                                    $nev=$row['Nev'];
+                                    $kod=$row['Kod'];
+                                    $bold="none";
+
+                                    if (strlen($kod) == 2) {
+                                        $bold="boldoption";
+                                    }
+                                    
+                                    echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
+                                }
+
+                        ?>
+                    </select>
+                    <br>
+                </form>
+                <br>
+                <form method="post" action="export.php">
+                    <input type="submit" name="export" id="btn" value="Excel letöltése" />
+                    <input type="hidden" id="helyfajtaFilter" name="helyfajta" value=""/>
+                </form>
+            </div>
         </div>
         <br>
         <table id='helynevekTable'>

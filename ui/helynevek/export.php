@@ -14,6 +14,9 @@ if(isset($_POST["export"]))
     if(isset($_POST["firstLetter"]) && $_POST["firstLetter"] != 'all'){
         $firstLetterFilter=$_POST["firstLetter"];
     }
+    if(isset($_POST["helyfajta"])){
+        $helyfajtaFilter=$_POST["helyfajta"];
+    }
     $db=new HelynevDatabase();
 
     $helynevek = $db->getAllHelynev();
@@ -73,6 +76,7 @@ if(isset($_POST["export"]))
         if(
             (!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])) &&
             (!isset($telepulesFilter) || (isset($telepulesFilter) && $telepulesFilter==$helynev["telepulesId"])) &&
+            (!isset($helyfajtaFilter) || (isset($helyfajtaFilter) && mb_substr( $helynev["helyfajtaKod"], 0, strlen($helyfajtaFilter) ) === $helyfajtaFilter)) &&
             (!isset($firstLetterFilter) || (isset($firstLetterFilter) && $firstLetterFilter===$firstLetter))
         ){
             $output .= '
