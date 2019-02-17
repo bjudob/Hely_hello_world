@@ -28,66 +28,7 @@
 
     $db=new HelynevDatabase();
 
-    //$telepulesek = $db->getAllTelepules();
-
-    $query = "SELECT
-            helynev.ID, 
-            Standard,
-            Telepules,
-            Ejtes,
-            helyfajta.Nev as joinHelyfajta,
-            helyfajta.Kod as helyfajtaKod,
-            Terkepszam,
-            Ragos_Alak,
-            nyelv.Nev as joinNyelv,
-            Forras_Adat,
-            Forras_Ev,
-            Forras_Tipus,
-            Objektum_Info,
-            Nev_Info,
-            Nevvarians
-            FROM `helynev` 
-            INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
-            ORDER BY Standard_Hash";
-    
-    mysqli_query($con, $query);
-    $result=mysqli_query($con,$query) or die('hiba');
-
-    while($row=mysqli_fetch_array($result)){
-        $id=$row['ID'];
-        $standard=$row['Standard'];
-        $ejtes=$row['Ejtes'];
-        $helyfajta=$row['helyfajtaKod']." ".$row['joinHelyfajta'];
-        $helyfajtaKod=$row['helyfajtaKod'];
-        $terkepszam=$row['Terkepszam'];
-        $ragos_alak=$row['Ragos_Alak'];
-        $nyelv=$row['joinNyelv'];
-        $forras_adat=$row['Forras_Adat'];
-        $forras_ev=$row['Forras_Ev'];
-        $forras_tipus=$row['Forras_Tipus'];
-        $objektum_info=$row['Objektum_Info'];
-        $nev_info=$row['Nev_Info'];
-        $nevvarians=$row['Nevvarians'];
-
-        $helynevek[$row['Telepules']][]=array(
-          "id"=>$id,
-          "standard"=>$standard,
-          "ejtes"=>$ejtes,
-          "helyfajta"=>$helyfajta,
-          "helyfajtaKod"=>$helyfajtaKod,
-          "terkepszam"=>$terkepszam,
-          "ragos_alak"=>$ragos_alak,
-          "nyelv"=>$nyelv,
-          "forras_adat"=>$forras_adat,
-          "forras_ev"=>$forras_ev,
-          "forras_tipus"=>$forras_tipus,
-          "objektum_info"=>$objektum_info,
-          "nev_info"=>$nev_info,
-          "nevvarians"=>$nevvarians
-          );
-  }
-  
+    $helynevek = $db->getAllHelynev();
 
     $jsonTajegysegek = json_encode($tajegysegek);
     $jsonTelepulesek = json_encode($telepulesek);
@@ -123,26 +64,32 @@
       }
       function updateTelepulesek(){
         var tajegysegekSelect = document.getElementById("tajegysegekSelect");
-        var id = tajegysegekSelect.value;
+        var selectedTajegyseg = tajegysegekSelect.value;
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         telepulesekSelect.onchange = updateHelynevek;
         telepulesekSelect.options.length = 0; //delete all options if any present
         telepulesekSelect.options[0] = new Option("Összes","all");
-        for(var i = 0; i < telepulesek[id].length; i++){
-          telepulesekSelect.options[i+1] = new Option(telepulesek[id][i].val,telepulesek[id][i].id);
+        if(selectedTajegyseg != 'all'){
+            for(var i = 0; i < telepulesek[selectedTajegyseg].length; i++){
+            telepulesekSelect.options[i+1] = new Option(telepulesek[selectedTajegyseg][i].val,telepulesek[selectedTajegyseg][i].id);
+            }
         }
         updateHelynevek();
       }
       function updateHelynevek(){
+        var tajegysegekSelect = document.getElementById("tajegysegekSelect");
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var helyfajtaSelect = document.getElementById("helyfajtaSelect");
         var helyfajtaFilter = document.getElementById("helyfajtaFilter");
         var telepulesFilter = document.getElementById("telepulesFilter");
+        var tajegysegFilter = document.getElementById("tajegysegFilter");
         helyfajtaSelect.onchange = updateHelynevek;
-        var id = telepulesekSelect.value;
-        telepulesFilter.value=id;
+        var selectedTelepules = telepulesekSelect.value;
+        var selectedTajegyseg = tajegysegekSelect.value;
         var selectedHelyfajta=helyfajtaSelect.value;
+        telepulesFilter.value=selectedTelepules;
         helyfajtaFilter.value=selectedHelyfajta;
+        tajegysegFilter.value=selectedTajegyseg;
 
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
@@ -152,21 +99,17 @@
         }
 
         var sorszam=1;
-        for(var i = 0; i < helynevek[id].length; i++){
-            if(helynevek[id][i].helyfajtaKod.startsWith(selectedHelyfajta)){
-                var hely_id=helynevek[id][i].id;
-                var standard=helynevek[id][i].standard;
-                var ejtes=helynevek[id][i].ejtes;
-                var helyfajta=helynevek[id][i].helyfajta;
-                var ragos_alak=helynevek[id][i].ragos_alak;
-                var nyelv=helynevek[id][i].nyelv;
-                var forras_adat=helynevek[id][i].forras_adat;
-                var forras_ev=helynevek[id][i].forras_ev;
-                var forras_tipus=helynevek[id][i].forras_tipus;
-                var objektum_info=helynevek[id][i].objektum_info;
-                var nev_info=helynevek[id][i].nev_info;
-                var nevvarians=helynevek[id][i].nevvarians;
-
+        for(var i = 0; i < helynevek.length; i++){
+            if( (selectedTajegyseg==='all' || (
+                    helynevek[i].tajegysegId==selectedTajegyseg && (
+                        selectedTelepules==='all' || 
+                        helynevek[i].telepulesId==selectedTelepules
+                        )
+                    )
+                )
+                && helynevek[i].helyfajtaKod != null
+                && helynevek[i].helyfajtaKod.startsWith(selectedHelyfajta)
+            ){
                 // Create an empty <tr> element and add it to the 1st position of the table:
                 var row = table.insertRow();
 
@@ -184,29 +127,27 @@
                 var cell11= row.insertCell(10);
                 var cell12 = row.insertCell(11);
                 var cell13 = row.insertCell(12);
+                var cell14 = row.insertCell(13);
 
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
-                cell2.innerHTML = '<b>'+standard+'</b>';
-                cell3.innerHTML = ejtes;
-                cell4.innerHTML = helyfajta;
-                cell5.innerHTML = ragos_alak;
-                cell6.innerHTML = nyelv;
-                cell7.innerHTML = forras_adat;
-                cell8.innerHTML = forras_ev;
-                cell9.innerHTML = forras_tipus;
-                cell10.innerHTML = objektum_info;
-                cell11.innerHTML = nev_info;
-                cell11.innerHTML = nevvarians;
-                cell13.innerHTML = "<a href='helynevek_details.php?id="+hely_id+"'>Adatok</a>";
+                cell2.innerHTML = '<b>'+helynevek[i].standard+'</b>';
+                cell3.innerHTML = helynevek[i].telepulesNev;
+                cell4.innerHTML = helynevek[i].ejtes;
+                cell5.innerHTML = helynevek[i].helyfajtaKod+helynevek[i].helyfajtaNev;
+                cell6.innerHTML = helynevek[i].ragos_alak;
+                cell7.innerHTML = helynevek[i].nyelv;
+                cell8.innerHTML = helynevek[i].forras_adat;
+                cell9.innerHTML = helynevek[i].forras_ev;
+                cell10.innerHTML = helynevek[i].forras_tipus;
+                cell11.innerHTML = helynevek[i].objektum_info;
+                cell12.innerHTML = helynevek[i].nev_info;
+                cell13.innerHTML = helynevek[i].nevvarians;
+                cell14.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
 
                 sorszam++;
             }
         }
-    }
-      
-    function updateHelyfajta(){
-
     }
     </script>
 </head>
@@ -255,6 +196,7 @@
                 <input type="submit" name="export" id="btn" value="Excel letöltése" />
                 <input type="hidden" id="helyfajtaFilter" name="helyfajta" value=""/>
                 <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
+                <input type="hidden" id="tajegysegFilter" name="tajegyseg" value=""/>
             </form>
             </div>
         </div>
@@ -264,6 +206,7 @@
         <tr>
             <th>Sorszám</th>
             <th>Standard</th>
+            <th>Település</th>
             <th>Ejtés</th>
             <th>Helyfajta</th>
             <th>Helyrag</th>

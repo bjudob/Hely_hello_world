@@ -8,7 +8,10 @@ if(isset($_POST["export"]))
     if(isset($_POST["nevszerkezet"])){
         $nevszerkezetFilter=$_POST["nevszerkezet"];
     }
-    if(isset($_POST["telepules"])){
+    if(isset($_POST["tajegyseg"]) && $_POST["tajegyseg"] != 'all'){
+        $tajegysegFilter=$_POST["tajegyseg"];
+    }
+    if(isset($_POST["telepules"]) && $_POST["telepules"] != 'all'){
         $telepulesFilter=$_POST["telepules"];
     }
     if(isset($_POST["firstLetter"]) && $_POST["firstLetter"] != 'all'){
@@ -75,6 +78,7 @@ if(isset($_POST["export"]))
 
         if(
             (!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])) &&
+            (!isset($tajegysegFilter) || (isset($tajegysegFilter) && $tajegysegFilter==$helynev["tajegysegId"])) &&
             (!isset($telepulesFilter) || (isset($telepulesFilter) && $telepulesFilter==$helynev["telepulesId"])) &&
             (!isset($helyfajtaFilter) || (isset($helyfajtaFilter) && mb_substr( $helynev["helyfajtaKod"], 0, strlen($helyfajtaFilter) ) === $helyfajtaFilter)) &&
             (!isset($firstLetterFilter) || (isset($firstLetterFilter) && $firstLetterFilter===$firstLetter))
