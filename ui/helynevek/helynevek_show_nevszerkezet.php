@@ -146,6 +146,19 @@
             $tKod="-";
         }
 
+        if($row["Termeszetes"]==1){
+            $termeszetesNev='Természetes';
+        }
+        else{
+            $termeszetesNev='Mesterséges';
+        }
+        if($row["Mikro"]==1){
+            $mikroNev='Mikro';
+        }
+        else{
+            $mikroNev='Makro';
+        }
+
         $helynevek[$row['Telepules']][]=array(
             "id"=>$id,
             "standard"=>$standard,
@@ -161,7 +174,9 @@
             "objektum_info"=>$objektum_info,
             "nev_info"=>$nev_info,
             "termeszetes"=>$termeszetes,
+            "termeszetesNev"=>$termeszetesNev,
             "mikro"=>$mikro,
+            "mikroNev"=>$mikroNev,
             "nevvarians"=>$nevvarians,
             "nevszerkezet"=>$nevszerkezet,
             "r"=>$r,
@@ -387,20 +402,24 @@
                 var cell10 = row.insertCell(9);
                 var cell11= row.insertCell(10);
                 var cell12 = row.insertCell(11);
+                var cell13 = row.insertCell(12);
+                var cell14 = row.insertCell(13);
 
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
                 cell2.innerHTML = '<b>'+helynevek[id][i].standard+'</b>';
                 cell3.innerHTML = helynevek[id][i].helyfajta;
                 cell4.innerHTML = helynevek[id][i].nevszerkezet;
-                cell5.innerHTML = helynevek[id][i].r;
-                cell6.innerHTML = helynevek[id][i].lm;
-                cell7.innerHTML = helynevek[id][i].ar;
-                cell8.innerHTML = helynevek[id][i].alm;
-                cell9.innerHTML = helynevek[id][i].br;
-                cell10.innerHTML = helynevek[id][i].blm;
-                cell11.innerHTML = helynevek[id][i].nevalkotasiszabaly;
-                cell12.innerHTML = "<a href='helynevek_details.php?id="+helynevek[id][i].id+"'>Adatok</a>";
+                cell5.innerHTML = helynevek[id][i].termeszetesNev;
+                cell6.innerHTML = helynevek[id][i].mikroNev;
+                cell7.innerHTML = helynevek[id][i].r;
+                cell8.innerHTML = helynevek[id][i].lm;
+                cell9.innerHTML = helynevek[id][i].ar;
+                cell10.innerHTML = helynevek[id][i].alm;
+                cell11.innerHTML = helynevek[id][i].br;
+                cell12.innerHTML = helynevek[id][i].blm;
+                cell13.innerHTML = helynevek[id][i].nevalkotasiszabaly;
+                cell14.innerHTML = "<a href='helynevek_details.php?id="+helynevek[id][i].id+"'>Adatok</a>";
 
                 sorszam++;
             }
@@ -770,12 +789,14 @@
             <th>Sorszám</th>
             <th>Standard</th>
             <th>Helyfajta</th>
-            <th>Névszerkezet</th>
+            <th>Névszerk.</th>
+            <th>Természetes</th>
+            <th>Mikro</th>
             <th>Névrész</th>
             <th>LM</th>
             <th>Alaprész</th>
             <th>ALM</th>
-            <th>Bővítményrész</th>
+            <th>Bővítmény rész</th>
             <th>BLM</th>
             <th>Névalkotási szabály</th>
             <th></th>

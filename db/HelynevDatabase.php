@@ -145,6 +145,18 @@ class HelynevDatabase
                 $bt=$row["BT"];
                 $btKod=$row["BTkod"];
             }
+            if($row["Termeszetes"]==1){
+                $termeszetesNev='Természetes';
+            }
+            else{
+                $termeszetesNev='Mesterséges';
+            }
+            if($row["Mikro"]==1){
+                $mikroNev='Mikro';
+            }
+            else{
+                $mikroNev='Makro';
+            }
             $helynevek[]=array(
                 "id"=>$row["ID"],
                 "telepulesId"=>$row['telepulesId'],
@@ -165,7 +177,9 @@ class HelynevDatabase
                 "nev_info"=>$row["Nev_Info"],
                 "nevvarians"=>$row["Nevvarians"],
                 "termeszetes"=>$row["Termeszetes"],
+                "termeszetesNev"=>$termeszetesNev,
                 "mikro"=>$row["Mikro"],
+                "mikroNev"=>$mikroNev,
                 "nevszerkezetNev"=>$row["nevszerkezetNev"],
                 "nevszerkezetEgyreszes"=>$row["nevszerkezetEgyreszes"],
                 "r"=>$r,
