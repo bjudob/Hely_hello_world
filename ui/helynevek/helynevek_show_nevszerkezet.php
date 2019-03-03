@@ -280,7 +280,7 @@
       }
 
       function updateHelynevek(){
-          //form
+        //form
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
         var termeszetesSelect = document.getElementById("termeszetesSelect");
@@ -299,6 +299,8 @@
         //filters
         var telepulesFilter = document.getElementById("telepulesFilter");
         var nevszerkezetFilter = document.getElementById("nevszerkezetFilter");
+        var termeszetesFilter = document.getElementById("termeszetesFilter");
+        var mikroFilter = document.getElementById("mikroFilter");
         var rFilter = document.getElementById("rFilter");
         var lmFilter = document.getElementById("lmFilter");
         var tFilter = document.getElementById("tFilter");
@@ -342,6 +344,8 @@
         //set filters
         telepulesFilter.value=id;
         nevszerkezetFilter.value=selectedNevszerkezet;
+        termeszetesFilter.value=selectedTermeszetes;
+        mikroFilter.value=selectedMikro;
         rFilter.value=selectedR;
         lmFilter.value=selectedLM;
         tFilter.value=selectedT;
@@ -768,6 +772,8 @@
             <input type="submit" name="export" id="btn" value="Excel letöltése" />
             <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
             <input type="hidden" id="nevszerkezetFilter" name="nevszerkezet" value=""/>
+            <input type="hidden" id="termeszetesFilter" name="termeszetes" value=""/>
+            <input type="hidden" id="mikroFilter" name="mikro" value=""/>
             <input type="hidden" id="rFilter" name="r" value=""/>
             <input type="hidden" id="lmFilter" name="lm" value=""/>
             <input type="hidden" id="tFilter" name="t" value=""/>
