@@ -291,6 +291,7 @@
         var brFilter = document.getElementById("brFilter");
         var blmFilter = document.getElementById("blmFilter");
         var btFilter = document.getElementById("btFilter");
+        var szabalyFilter = document.getElementById("nevalkotasiszabalyFilter");
 
         //set
         nevszerkezetSelect.onchange = updateHelynevek;
@@ -329,6 +330,7 @@
         brFilter.value=selectedBR;
         blmFilter.value=selectedBLM;
         btFilter.value=selectedBT;
+        szabalyFilter.value=selectedSzabaly;
 
         //reload table
         var table = document.getElementById("helynevekTable");
@@ -729,6 +731,8 @@
             <input type="hidden" id="brFilter" name="br" value=""/>
             <input type="hidden" id="blmFilter" name="blm" value=""/>
             <input type="hidden" id="btFilter" name="bt" value=""/>
+            <input type="hidden" id="nevalkotasiszabalyFilter" name="nevalkotasiszabaly" value=""/>
+            
         </form>
         </div>
         </div>

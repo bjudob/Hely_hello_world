@@ -54,6 +54,10 @@ if(isset($_POST["export"]))
     if(isset($_POST["bt"]) && $_POST["bt"] != 'all'){
         $btFilter=$_POST["bt"];
     }
+    if(isset($_POST["nevalkotasiszabaly"]) && $_POST["nevalkotasiszabaly"] != 'all'){
+        $nevalkotasiszabalyFilter=$_POST["nevalkotasiszabaly"];
+    }
+    
     $db=new HelynevDatabase();
 
     $helynevek = $db->getAllHelynev();
@@ -124,7 +128,8 @@ if(isset($_POST["export"]))
             (!isset($atFilter) || checkStarts($atFilter,$helynev,"atKod")) &&
             (!isset($brFilter) || checkStarts($brFilter,$helynev,"brKod")) &&
             (!isset($blmFilter) || checkStarts($blmFilter,$helynev,"blmKod")) &&
-            (!isset($btFilter) ||  checkStarts($btFilter,$helynev,"btKod"))
+            (!isset($btFilter) ||  checkStarts($btFilter,$helynev,"btKod")) &&
+            (!isset($nevalkotasiszabalyFilter) ||  checkStarts($nevalkotasiszabalyFilter,$helynev,"nevalkotasiszabalyKod"))
         ){
             $output .= '
                 <tr>  
