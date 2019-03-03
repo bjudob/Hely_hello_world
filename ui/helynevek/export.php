@@ -2,10 +2,17 @@
 //export.php  
 require ("../../db/HelynevDatabase.php");
 $output='';
+function checkStarts($filter, $helynev, $attribute) {
+    if (!isset($filter) || (isset($filter) && mb_substr( $helynev[$attribute], 0, strlen($filter) ) === $filter)) {
+       return true;
+    } else {
+       return false;
+    }
+}
 
 if(isset($_POST["export"]))
 {
-    if(isset($_POST["nevszerkezet"])){
+    if(isset($_POST["nevszerkezet"]) && $_POST["nevszerkezet"] != 'all'){
         $nevszerkezetFilter=$_POST["nevszerkezet"];
     }
     if(isset($_POST["tajegyseg"]) && $_POST["tajegyseg"] != 'all'){
@@ -17,8 +24,35 @@ if(isset($_POST["export"]))
     if(isset($_POST["firstLetter"]) && $_POST["firstLetter"] != 'all'){
         $firstLetterFilter=$_POST["firstLetter"];
     }
-    if(isset($_POST["helyfajta"])){
+    if(isset($_POST["helyfajta"]) && $_POST["helyfajta"] != 'all'){
         $helyfajtaFilter=$_POST["helyfajta"];
+    }
+    if(isset($_POST["r"]) && $_POST["r"] != 'all'){
+        $rFilter=$_POST["r"];
+    }
+    if(isset($_POST["lm"]) && $_POST["lm"] != 'all'){
+        $lmFilter=$_POST["lm"];
+    }
+    if(isset($_POST["t"]) && $_POST["t"] != 'all'){
+        $tFilter=$_POST["t"];
+    }
+    if(isset($_POST["ar"]) && $_POST["ar"] != 'all'){
+        $arFilter=$_POST["ar"];
+    }
+    if(isset($_POST["alm"]) && $_POST["alm"] != 'all'){
+        $almFilter=$_POST["alm"];
+    }
+    if(isset($_POST["at"]) && $_POST["at"] != 'all'){
+        $atFilter=$_POST["at"];
+    }
+    if(isset($_POST["br"]) && $_POST["br"] != 'all'){
+        $brFilter=$_POST["br"];
+    }
+    if(isset($_POST["blm"]) && $_POST["blm"] != 'all'){
+        $blmFilter=$_POST["blm"];
+    }
+    if(isset($_POST["bt"]) && $_POST["bt"] != 'all'){
+        $btFilter=$_POST["bt"];
     }
     $db=new HelynevDatabase();
 
@@ -80,8 +114,17 @@ if(isset($_POST["export"]))
             (!isset($nevszerkezetFilter) || (isset($nevszerkezetFilter) && $nevszerkezetFilter==$helynev["nevszerkezetNev"])) &&
             (!isset($tajegysegFilter) || (isset($tajegysegFilter) && $tajegysegFilter==$helynev["tajegysegId"])) &&
             (!isset($telepulesFilter) || (isset($telepulesFilter) && $telepulesFilter==$helynev["telepulesId"])) &&
-            (!isset($helyfajtaFilter) || (isset($helyfajtaFilter) && mb_substr( $helynev["helyfajtaKod"], 0, strlen($helyfajtaFilter) ) === $helyfajtaFilter)) &&
-            (!isset($firstLetterFilter) || (isset($firstLetterFilter) && $firstLetterFilter===$firstLetter))
+            (!isset($helyfajtaFilter) || checkStarts($helyfajtaFilter,$helynev,"helyfajtaKod")) &&
+            (!isset($firstLetterFilter) || (isset($firstLetterFilter) && $firstLetterFilter===$firstLetter)) &&
+            (!isset($rFilter) || checkStarts($rFilter,$helynev,"rKod")) &&
+            (!isset($lmFilter) || checkStarts($lmFilter,$helynev,"lmKod")) &&
+            (!isset($tFilter) || checkStarts($tFilter,$helynev,"tKod")) &&
+            (!isset($arFilter) || checkStarts($arFilter,$helynev,"arKod")) &&
+            (!isset($almFilter) || checkStarts($almFilter,$helynev,"almKod")) &&
+            (!isset($atFilter) || checkStarts($atFilter,$helynev,"atKod")) &&
+            (!isset($brFilter) || checkStarts($brFilter,$helynev,"brKod")) &&
+            (!isset($blmFilter) || checkStarts($blmFilter,$helynev,"blmKod")) &&
+            (!isset($btFilter) ||  checkStarts($btFilter,$helynev,"btKod"))
         ){
             $output .= '
                 <tr>  

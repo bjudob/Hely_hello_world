@@ -265,6 +265,7 @@
       }
 
       function updateHelynevek(){
+          //form
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
         var rSelect = document.getElementById("rSelect");
@@ -277,6 +278,21 @@
         var blmSelect = document.getElementById("blmSelect");
         var btSelect = document.getElementById("btSelect");
         var szabalySelect = document.getElementById("nevalkotasiszabalySelect");
+
+        //filters
+        var telepulesFilter = document.getElementById("telepulesFilter");
+        var nevszerkezetFilter = document.getElementById("nevszerkezetFilter");
+        var rFilter = document.getElementById("rFilter");
+        var lmFilter = document.getElementById("lmFilter");
+        var tFilter = document.getElementById("tFilter");
+        var arFilter = document.getElementById("arFilter");
+        var almFilter = document.getElementById("almFilter");
+        var atFilter = document.getElementById("atFilter");
+        var brFilter = document.getElementById("brFilter");
+        var blmFilter = document.getElementById("blmFilter");
+        var btFilter = document.getElementById("btFilter");
+
+        //set
         nevszerkezetSelect.onchange = updateHelynevek;
         rSelect.onchange = updateHelynevek;
         lmSelect.onchange = updateHelynevek;
@@ -301,6 +317,20 @@
         var selectedBT=btSelect.value;
         var selectedSzabaly=szabalySelect.value;
 
+        //set filters
+        telepulesFilter.value=id;
+        nevszerkezetFilter.value=selectedNevszerkezet;
+        rFilter.value=selectedR;
+        lmFilter.value=selectedLM;
+        tFilter.value=selectedT;
+        arFilter.value=selectedAR;
+        almFilter.value=selectedALM;
+        atFilter.value=selectedAT;
+        brFilter.value=selectedBR;
+        blmFilter.value=selectedBLM;
+        btFilter.value=selectedBT;
+
+        //reload table
         var table = document.getElementById("helynevekTable");
         var rows = table.rows.length;
 
@@ -684,7 +714,21 @@
                     </select>
                     <br>             
                 </div>
-                <br>
+        </form>
+        <br>
+        <form method="post" action="export.php">
+            <input type="submit" name="export" id="btn" value="Excel letöltése" />
+            <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
+            <input type="hidden" id="nevszerkezetFilter" name="nevszerkezet" value=""/>
+            <input type="hidden" id="rFilter" name="r" value=""/>
+            <input type="hidden" id="lmFilter" name="lm" value=""/>
+            <input type="hidden" id="tFilter" name="t" value=""/>
+            <input type="hidden" id="arFilter" name="ar" value=""/>
+            <input type="hidden" id="almFilter" name="alm" value=""/>
+            <input type="hidden" id="atFilter" name="at" value=""/>
+            <input type="hidden" id="brFilter" name="br" value=""/>
+            <input type="hidden" id="blmFilter" name="blm" value=""/>
+            <input type="hidden" id="btFilter" name="bt" value=""/>
         </form>
         </div>
         </div>
