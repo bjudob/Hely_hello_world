@@ -268,6 +268,8 @@
           //form
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
+        var termeszetesSelect = document.getElementById("termeszetesSelect");
+        var mikroSelect = document.getElementById("mikroSelect");
         var rSelect = document.getElementById("rSelect");
         var lmSelect = document.getElementById("lmSelect");
         var tSelect = document.getElementById("tSelect");
@@ -295,6 +297,8 @@
 
         //set
         nevszerkezetSelect.onchange = updateHelynevek;
+        termeszetesSelect.onchange=updateHelynevek;
+        mikroSelect.onchange=updateHelynevek;
         rSelect.onchange = updateHelynevek;
         lmSelect.onchange = updateHelynevek;
         tSelect.onchange = updateHelynevek;
@@ -307,6 +311,8 @@
         szabalySelect.onchange = updateHelynevek;
         var id = telepulesekSelect.value;
         var selectedNevszerkezet=nevszerkezetSelect.value;
+        var selectedTermeszetes=termeszetesSelect.value;
+        var selectedMikro=mikroSelect.value;
         var selectedR=rSelect.value;
         var selectedLM=lmSelect.value;
         var selectedT=tSelect.value;
@@ -344,6 +350,9 @@
         for(var i = 0; i < helynevek[id].length; i++){
             $matching=true;
             if(!(selectedNevszerkezet==="all" || helynevek[id][i].nevszerkezet==selectedNevszerkezet)) $matching=false;
+
+            if(!(selectedTermeszetes==="all" || helynevek[id][i].termeszetes==selectedTermeszetes)) $matching=false;
+            if(!(selectedMikro==="all" || helynevek[id][i].mikro==selectedMikro)) $matching=false;
 
             if(!( selectedR==="all" || helynevek[id][i].rKod.startsWith(selectedR))) $matching=false;
             if(!( selectedLM==="all" || helynevek[id][i].lmKod.startsWith(selectedLM))) $matching=false;
@@ -418,23 +427,41 @@
             <select id='telepulesekSelect' >
             </select>
             <div class="inputrow">
-                    <label class="inputlabel">Névszerkezettípus:</label>
-                    <select id='nevszerkezetSelect' >
-                        <?php
-                            $query = "SELECT * FROM `nevszerkezettipus`";
-                            
-                            $result=mysqli_query($con,$query) or die('hiba');
+                <label class="inputlabel">Természetes:</label>
+                <select id="termeszetesSelect">
+                    <option class='boldoption' value='all'>Összes</option>
+                    <option value=1>Természetes</option>
+                    <option value=0>Mesterséges</option>
+                </select>
+                <br>
+            </div>
+            <div class="inputrow">
+                <label class="inputlabel">Mikro/makro:</label>
+                <select  id='mikroSelect'>
+                    <option class='boldoption' value='all'>Összes</option>
+                    <option value=1>Mikronév</option>
+                    <option value=0>Makronév</option>
+                </select>
+                <br>
+            </div>
+            <div class="inputrow">
+                <label class="inputlabel">Névszerkezettípus:</label>
+                <select id='nevszerkezetSelect' >
+                    <?php
+                        $query = "SELECT * FROM `nevszerkezettipus`";
+                        
+                        $result=mysqli_query($con,$query) or die('hiba');
 
-                            echo "<option class='boldoption' value='all'>Összes</option>";
+                        echo "<option class='boldoption' value='all'>Összes</option>";
 
-                            while($row=mysqli_fetch_array($result)){
-                                $id=$row['ID'];
-                                $nev=$row['Nev'];
-                                $egyreszes=$row['Egyreszes'];
+                        while($row=mysqli_fetch_array($result)){
+                            $id=$row['ID'];
+                            $nev=$row['Nev'];
+                            $egyreszes=$row['Egyreszes'];
 
-                                echo "<option value=".$nev.">".$nev."</option>";
-                            }                     
-                        ?>
+                            echo "<option value=".$nev.">".$nev."</option>";
+                        }                     
+                    ?>
             </select>
                     <br>
                 </div>
