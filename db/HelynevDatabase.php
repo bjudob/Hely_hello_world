@@ -349,7 +349,7 @@ class HelynevDatabase
             `BT`,
             `Nevalkotasi Szabaly`,
             `Standard_Hash`) 
-	  VALUES (".
+	    VALUES (".
             "'$helynev->standard',".
             "'$helynev->telepules',".
             "'$helynev->ejtes',".
@@ -378,7 +378,7 @@ class HelynevDatabase
             "'$helynev->nevalkotasiszabaly',".
             "'$helynev->standardhash')";
 
-	$result=mysqli_query($this->con,$query) or die('hiba');
+	    $result=mysqli_query($this->con,$query) or die('hiba');
 
         $this->disconnect();
     }

@@ -796,8 +796,8 @@
             <th>Standard</th>
             <th>Helyfajta</th>
             <th>Névszerk.</th>
-            <th>Természetes</th>
-            <th>Mikro</th>
+            <th>Term./ Mest.</th>
+            <th>Mikro/ Makro</th>
             <th>Névrész</th>
             <th>LM</th>
             <th>Alaprész</th>

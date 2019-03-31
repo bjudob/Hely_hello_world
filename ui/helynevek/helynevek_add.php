@@ -14,59 +14,59 @@
 	$forrasmunkaadat = mysqli_real_escape_string($con,$_POST['forrasmunkaadat']);
 	$forrasmunkaev = mysqli_real_escape_string($con,$_POST['forrasmunkaev']);
 	$forrasmunkatipus = mysqli_real_escape_string($con,$_POST['forrasmunkatipus']);
-        $objektuminfo = mysqli_real_escape_string($con,$_POST['objektuminfo']);
-        $helyinfo = mysqli_real_escape_string($con,$_POST['helyinfo']);
-        $nevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
-        $termeszetes = mysqli_real_escape_string($con,$_POST['termeszetes']);
-        $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
-        $nevszerkezet = mysqli_real_escape_string($con,$_POST['nevszerkezet']);
-        $r = mysqli_real_escape_string($con,$_POST['r']);
-        $r = mysqli_real_escape_string($con,$_POST['r']);
-        $lm = mysqli_real_escape_string($con,$_POST['lm']);
-        $t = mysqli_real_escape_string($con,$_POST['t']);
-        $ar = mysqli_real_escape_string($con,$_POST['ar']);
-        $alm = mysqli_real_escape_string($con,$_POST['alm']);
-        $at= mysqli_real_escape_string($con,$_POST['at']);
-        $br = mysqli_real_escape_string($con,$_POST['br']);
-        $blm = mysqli_real_escape_string($con,$_POST['blm']);
-        $bt = mysqli_real_escape_string($con,$_POST['bt']);
-        $nevalkotasiszabaly = mysqli_real_escape_string($con,$_POST['nevalkotasiszabaly']);
-        $standardhash=abcHash($standard);
-        
-        $helynev= new Helynev();
-        $helynev->setValues(
-                $standard, 
-                $telepules, 
-                $ejtes, 
-                "", 
-                $helyfajtaKod, 
-                $terkepszam, 
-                $ragosalak, 
-                $nyelv, 
-                $forrasmunkaadat,
-                $forrasmunkaev, 
-                $forrasmunkatipus, 
-                $objektuminfo, 
-                $helyinfo, 
-                $nevvaltozatok, 
-                $termeszetes, 
-                $mikro,
-                $nevszerkezet,
-                $r,
-                $lm,
-                $t,
-                $ar,
-                $alm,
-                $at,
-                $br,
-                $blm,
-                $bt,
-                $nevalkotasiszabaly,
-                $standardhash);
-                
-        $db=new HelynevDatabase();
-                
-        $db->addHelynev($helynev);
+    $objektuminfo = mysqli_real_escape_string($con,$_POST['objektuminfo']);
+    $helyinfo = mysqli_real_escape_string($con,$_POST['helyinfo']);
+    $nevvaltozatok = mysqli_real_escape_string($con,$_POST['nevvaltozatok']);
+    $termeszetes = mysqli_real_escape_string($con,$_POST['termeszetes']);
+    $mikro = mysqli_real_escape_string($con,$_POST['mikro']);
+    $nevszerkezet = mysqli_real_escape_string($con,$_POST['nevszerkezet']);
+    $r = mysqli_real_escape_string($con,$_POST['r']);
+    $r = mysqli_real_escape_string($con,$_POST['r']);
+    $lm = mysqli_real_escape_string($con,$_POST['lm']);
+    $t = mysqli_real_escape_string($con,$_POST['t']);
+    $ar = mysqli_real_escape_string($con,$_POST['ar']);
+    $alm = mysqli_real_escape_string($con,$_POST['alm']);
+    $at= mysqli_real_escape_string($con,$_POST['at']);
+    $br = mysqli_real_escape_string($con,$_POST['br']);
+    $blm = mysqli_real_escape_string($con,$_POST['blm']);
+    $bt = mysqli_real_escape_string($con,$_POST['bt']);
+    $nevalkotasiszabaly = mysqli_real_escape_string($con,$_POST['nevalkotasiszabaly']);
+    $standardhash=abcHash($standard);
+    
+    $helynev= new Helynev();
+    $helynev->setValues(
+            $standard, 
+            $telepules, 
+            $ejtes, 
+            "", 
+            $helyfajtaKod, 
+            $terkepszam, 
+            $ragosalak, 
+            $nyelv, 
+            $forrasmunkaadat,
+            $forrasmunkaev, 
+            $forrasmunkatipus, 
+            $objektuminfo, 
+            $helyinfo, 
+            $nevvaltozatok, 
+            $termeszetes, 
+            $mikro,
+            $nevszerkezet,
+            $r,
+            $lm,
+            $t,
+            $ar,
+            $alm,
+            $at,
+            $br,
+            $blm,
+            $bt,
+            $nevalkotasiszabaly,
+            $standardhash);
+            
+    $db=new HelynevDatabase();
+            
+    $db->addHelynev($helynev);
           
 	header("location: helynevek_add.php");
 
@@ -241,7 +241,7 @@
                     <br>
                 </div>
                 <div class="inputrow">
-                    <label class="inputlabel">Természetes:</label>
+                    <label class="inputlabel">Term./ Mest.:</label>
                     <select name="termeszetes">
                         <option value=1>Természetes</option>
                         <option value=0>Mesterséges</option>
@@ -249,7 +249,7 @@
                     <br>
                 </div>
                 <div class="inputrow">
-                    <label class="inputlabel">Mikro/makro:</label>
+                    <label class="inputlabel">Mikro/ Makro:</label>
                     <select name="mikro">
                         <option value=1>Mikronév</option>
                         <option value=0>Makronév</option>

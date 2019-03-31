@@ -285,7 +285,7 @@
                     <br>
                 </div>
                 <div class="inputrow">
-                    <label class="inputlabel">Természetes:</label>
+                    <label class="inputlabel">Term./ Mest.:</label>
                     <select name="termeszetes">
                         <?php
                             if($helynev->termeszetes!=0){
@@ -301,7 +301,7 @@
                     <br>
                 </div>
                 <div class="inputrow">
-                    <label class="inputlabel">Mikro/makro:</label>
+                    <label class="inputlabel">Mikro/Makro:</label>
                     <select name="mikro">
                         <?php
                             if($helynev->mikro!=0){
