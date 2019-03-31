@@ -1,7 +1,6 @@
 <?php
     include("../../config.php");
     include("./helynevek_abc_hash_utils.php");
-    require ("../../db/HelynevDatabase.php");
         
     if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$telepules = mysqli_real_escape_string($con,$_POST['telepules']);
@@ -32,41 +31,69 @@
     $bt = mysqli_real_escape_string($con,$_POST['bt']);
     $nevalkotasiszabaly = mysqli_real_escape_string($con,$_POST['nevalkotasiszabaly']);
     $standardhash=abcHash($standard);
+
+    if ($terkepszam==''){$terkepszam=0;}
+    if ($forrasmunkaev==''){$forrasmunkaev=0;}
+            
+    $query = "INSERT INTO helynev(
+        `Standard`,
+        `Telepules`,
+        `Ejtes`,
+        `Helyfajta`,
+        `Terkepszam`,
+        `Ragos_Alak`,
+        `Nyelv`,
+        `Forras_Adat`,
+        `Forras_Ev`,
+        `Forras_Tipus`,
+        `Objektum_Info`,
+        `Nev_Info`,
+        `Nevvarians`,
+        `Termeszetes`,
+        `Mikro`,
+        `Nevszerkezettipus`,
+        `R`,
+        `LM`,
+        `T`,
+        `AR`,
+        `ALM`,
+        `AT`,
+        `BR`,
+        `BLM`,
+        `BT`,
+        `Nevalkotasi Szabaly`,
+        `Standard_Hash`) 
+    VALUES (".
+        "'$standard',".
+        "'$telepules',".
+        "'$ejtes',".
+        "'$helyfajtaKod',".
+        "'$terkepszam',".
+        "'$ragosalak',".
+        "'$nyelv',".
+        "'$forrasmunkaadat',".
+        "'$forrasmunkaev',".
+        "'$forrasmunkatipus',".
+        "'$objektuminfo',".
+        "'$helyinfo',".
+        "'$nevvaltozatok',".
+        "'$termeszetes',".
+        "'$mikro',".
+        "'$nevszerkezet',".   
+        "'$r',".
+        "'$lm',".
+        "'$t',".
+        "'$ar',".
+        "'$alm',".
+        "'$at',".
+        "'$br',".
+        "'$blm',".
+        "'$bt',".
+        "'$nevalkotasiszabaly',".
+        "'$standardhash')";
+
+    mysqli_query($con, $query) or die($query);
     
-    $helynev= new Helynev();
-    $helynev->setValues(
-            $standard, 
-            $telepules, 
-            $ejtes, 
-            "", 
-            $helyfajtaKod, 
-            $terkepszam, 
-            $ragosalak, 
-            $nyelv, 
-            $forrasmunkaadat,
-            $forrasmunkaev, 
-            $forrasmunkatipus, 
-            $objektuminfo, 
-            $helyinfo, 
-            $nevvaltozatok, 
-            $termeszetes, 
-            $mikro,
-            $nevszerkezet,
-            $r,
-            $lm,
-            $t,
-            $ar,
-            $alm,
-            $at,
-            $br,
-            $blm,
-            $bt,
-            $nevalkotasiszabaly,
-            $standardhash);
-            
-    $db=new HelynevDatabase();
-            
-    $db->addHelynev($helynev);
           
 	header("location: helynevek_add.php");
 
