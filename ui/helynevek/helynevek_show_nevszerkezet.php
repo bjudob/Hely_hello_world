@@ -373,7 +373,7 @@
         var sorszam=1;
         for(var i = 0; i < helynevek.length; i++){
             $matching=true;
-            if(!(id==="all" || helynevek[i].telepules==selectedNevszerkezet)) $matching=false;
+            if(!(id==="all" || helynevek[i].telepules==id)) $matching=false;
             if(!(selectedNevszerkezet==="all" || helynevek[i].nevszerkezet==selectedNevszerkezet)) $matching=false;
 
             if(!(selectedTermeszetes==="all" || helynevek[i].termeszetes==selectedTermeszetes)) $matching=false;
@@ -429,7 +429,7 @@
                 cell11.innerHTML = helynevek[i].br;
                 cell12.innerHTML = helynevek[i].blm;
                 cell13.innerHTML = helynevek[i].nevalkotasiszabaly;
-                cell14.innerHTML = "<a href='helynevek_details.php?id="+helynevek[id][i].id+"'>Adatok</a>";
+                cell14.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
 
                 sorszam++;
             }
