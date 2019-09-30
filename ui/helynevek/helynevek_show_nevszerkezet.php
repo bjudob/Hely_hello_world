@@ -159,7 +159,8 @@
             $mikroNev='Makro';
         }
 
-        $helynevek[$row['Telepules']][]=array(
+        $helynevek[]=array(
+            "telepules"=>$row['Telepules'],
             "id"=>$id,
             "standard"=>$standard,
             "ejtes"=>$ejtes,
@@ -262,19 +263,23 @@
       function loadTajegysegek(){
         var select = document.getElementById("tajegysegekSelect");
         select.onchange = updateTelepulesek;
+        select.options[0] = new Option("Összes","all");
         for(var i = 0; i < tajegysegek.length; i++){
-          select.options[i] = new Option(tajegysegek[i].val,tajegysegek[i].id);          
+          select.options[i+1] = new Option(tajegysegek[i].val,tajegysegek[i].id);          
         }
         updateTelepulesek();
       }
       function updateTelepulesek(){
         var tajegysegekSelect = document.getElementById("tajegysegekSelect");
-        var id = tajegysegekSelect.value;
+        var selectedTajegyseg = tajegysegekSelect.value;
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         telepulesekSelect.onchange = updateHelynevek;
         telepulesekSelect.options.length = 0; //delete all options if any present
-        for(var i = 0; i < telepulesek[id].length; i++){
-          telepulesekSelect.options[i] = new Option(telepulesek[id][i].val,telepulesek[id][i].id);
+        telepulesekSelect.options[0] = new Option("Összes","all");
+        if(selectedTajegyseg != 'all'){
+            for(var i = 0; i < telepulesek[selectedTajegyseg].length; i++){
+            telepulesekSelect.options[i+1] = new Option(telepulesek[selectedTajegyseg][i].val,telepulesek[selectedTajegyseg][i].id);
+            }
         }
         updateHelynevek();
       }
@@ -366,26 +371,27 @@
         }
         
         var sorszam=1;
-        for(var i = 0; i < helynevek[id].length; i++){
+        for(var i = 0; i < helynevek.length; i++){
             $matching=true;
-            if(!(selectedNevszerkezet==="all" || helynevek[id][i].nevszerkezet==selectedNevszerkezet)) $matching=false;
+            if(!(id==="all" || helynevek[i].telepules==selectedNevszerkezet)) $matching=false;
+            if(!(selectedNevszerkezet==="all" || helynevek[i].nevszerkezet==selectedNevszerkezet)) $matching=false;
 
-            if(!(selectedTermeszetes==="all" || helynevek[id][i].termeszetes==selectedTermeszetes)) $matching=false;
-            if(!(selectedMikro==="all" || helynevek[id][i].mikro==selectedMikro)) $matching=false;
+            if(!(selectedTermeszetes==="all" || helynevek[i].termeszetes==selectedTermeszetes)) $matching=false;
+            if(!(selectedMikro==="all" || helynevek[i].mikro==selectedMikro)) $matching=false;
 
-            if(!( selectedR==="all" || helynevek[id][i].rKod.startsWith(selectedR))) $matching=false;
-            if(!( selectedLM==="all" || helynevek[id][i].lmKod.startsWith(selectedLM))) $matching=false;
-            if(!( selectedT==="all" || helynevek[id][i].tKod.startsWith(selectedT))) $matching=false;
+            if(!( selectedR==="all" || helynevek[i].rKod.startsWith(selectedR))) $matching=false;
+            if(!( selectedLM==="all" || helynevek[i].lmKod.startsWith(selectedLM))) $matching=false;
+            if(!( selectedT==="all" || helynevek[i].tKod.startsWith(selectedT))) $matching=false;
 
-            if(!( selectedAR==="all" || helynevek[id][i].arKod.startsWith(selectedAR))) $matching=false;
-            if(!( selectedALM==="all" || helynevek[id][i].almKod.startsWith(selectedALM))) $matching=false;
-            if(!( selectedAT==="all" || helynevek[id][i].atKod.startsWith(selectedAT))) $matching=false;
+            if(!( selectedAR==="all" || helynevek[i].arKod.startsWith(selectedAR))) $matching=false;
+            if(!( selectedALM==="all" || helynevek[i].almKod.startsWith(selectedALM))) $matching=false;
+            if(!( selectedAT==="all" || helynevek[i].atKod.startsWith(selectedAT))) $matching=false;
 
-            if(!( selectedBR==="all" || helynevek[id][i].brKod.startsWith(selectedBR))) $matching=false;
-            if(!( selectedBLM==="all" || helynevek[id][i].blmKod.startsWith(selectedBLM))) $matching=false;
-            if(!( selectedBT==="all" || helynevek[id][i].btKod.startsWith(selectedBT))) $matching=false;
+            if(!( selectedBR==="all" || helynevek[i].brKod.startsWith(selectedBR))) $matching=false;
+            if(!( selectedBLM==="all" || helynevek[i].blmKod.startsWith(selectedBLM))) $matching=false;
+            if(!( selectedBT==="all" || helynevek[i].btKod.startsWith(selectedBT))) $matching=false;
 
-            if(!( selectedSzabaly==="all" || helynevek[id][i].nevalkotasiszabalyKod.startsWith(selectedSzabaly))) $matching=false;
+            if(!( selectedSzabaly==="all" || helynevek[i].nevalkotasiszabalyKod.startsWith(selectedSzabaly))) $matching=false;
             
 
             if( $matching ){
@@ -411,18 +417,18 @@
 
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
-                cell2.innerHTML = '<b>'+helynevek[id][i].standard+'</b>';
-                cell3.innerHTML = helynevek[id][i].helyfajta;
-                cell4.innerHTML = helynevek[id][i].nevszerkezet;
-                cell5.innerHTML = helynevek[id][i].termeszetesNev;
-                cell6.innerHTML = helynevek[id][i].mikroNev;
-                cell7.innerHTML = helynevek[id][i].r;
-                cell8.innerHTML = helynevek[id][i].lm;
-                cell9.innerHTML = helynevek[id][i].ar;
-                cell10.innerHTML = helynevek[id][i].alm;
-                cell11.innerHTML = helynevek[id][i].br;
-                cell12.innerHTML = helynevek[id][i].blm;
-                cell13.innerHTML = helynevek[id][i].nevalkotasiszabaly;
+                cell2.innerHTML = '<b>'+helynevek[i].standard+'</b>';
+                cell3.innerHTML = helynevek[i].helyfajta;
+                cell4.innerHTML = helynevek[i].nevszerkezet;
+                cell5.innerHTML = helynevek[i].termeszetesNev;
+                cell6.innerHTML = helynevek[i].mikroNev;
+                cell7.innerHTML = helynevek[i].r;
+                cell8.innerHTML = helynevek[i].lm;
+                cell9.innerHTML = helynevek[i].ar;
+                cell10.innerHTML = helynevek[i].alm;
+                cell11.innerHTML = helynevek[i].br;
+                cell12.innerHTML = helynevek[i].blm;
+                cell13.innerHTML = helynevek[i].nevalkotasiszabaly;
                 cell14.innerHTML = "<a href='helynevek_details.php?id="+helynevek[id][i].id+"'>Adatok</a>";
 
                 sorszam++;
