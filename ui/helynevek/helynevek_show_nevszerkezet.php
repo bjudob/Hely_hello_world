@@ -33,6 +33,8 @@
     $query = "SELECT
             helynev.ID, 
             Standard,
+            tajegyseg.ID as tajegysegId,
+            tajegyseg.Nev as tajegysegNev,
             telepules.ID as telepulesId,
             telepules.nev as telepulesNev,
             Ejtes,
@@ -71,8 +73,9 @@
             bt.Kod as BTkod,
             `nevalkotasszabaly`.Nev as nevalkotasiszabaly,
             `nevalkotasszabaly`.Kod as nevalkotasiszabalyKod
-            FROM `helynev` 
+            FROM `helynev`
             LEFT JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
+            LEFT JOIN `tajegyseg` ON `telepules`.Tajegyseg=`tajegyseg`.ID 
             LEFT JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
             LEFT JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
             LEFT JOIN `nevresz` nr ON `helynev`.R=nr.ID
@@ -162,6 +165,7 @@
         }
 
         $helynevek[]=array(
+            "tajegyseg"=>$row['tajegysegId'],
             "telepules"=>$row['telepulesId'],
             "telepulesNev"=>$row['telepulesNev'],
             "id"=>$id,
@@ -289,6 +293,7 @@
 
       function updateHelynevek(){
         //form
+        var tajegysegekSelect = document.getElementById("tajegysegekSelect");
         var telepulesekSelect = document.getElementById("telepulesekSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
         var termeszetesSelect = document.getElementById("termeszetesSelect");
@@ -305,6 +310,7 @@
         var szabalySelect = document.getElementById("nevalkotasiszabalySelect");
 
         //filters
+        var tajegysegFilter = document.getElementById("tajegysegFilter");
         var telepulesFilter = document.getElementById("telepulesFilter");
         var nevszerkezetFilter = document.getElementById("nevszerkezetFilter");
         var termeszetesFilter = document.getElementById("termeszetesFilter");
@@ -334,7 +340,8 @@
         blmSelect.onchange = updateHelynevek;
         btSelect.onchange = updateHelynevek;
         szabalySelect.onchange = updateHelynevek;
-        var id = telepulesekSelect.value;
+        var tajegysegId = tajegysegekSelect.value;
+        var telepulesId = telepulesekSelect.value;
         var selectedNevszerkezet=nevszerkezetSelect.value;
         var selectedTermeszetes=termeszetesSelect.value;
         var selectedMikro=mikroSelect.value;
@@ -350,7 +357,8 @@
         var selectedSzabaly=szabalySelect.value;
 
         //set filters
-        telepulesFilter.value=id;
+        tajegysegFilter.value=tajegysegId;
+        telepulesFilter.value=telepulesId;
         nevszerkezetFilter.value=selectedNevszerkezet;
         termeszetesFilter.value=selectedTermeszetes;
         mikroFilter.value=selectedMikro;
@@ -376,7 +384,8 @@
         var sorszam=1;
         for(var i = 0; i < helynevek.length; i++){
             $matching=true;
-            if(!(id==="all" || helynevek[i].telepules==id)) $matching=false;
+            if(!(tajegysegId==="all" || helynevek[i].tajegyseg==tajegysegId)) $matching=false;
+            if(!(telepulesId==="all" || helynevek[i].telepules==telepulesId)) $matching=false;
             if(!(selectedNevszerkezet==="all" || helynevek[i].nevszerkezet==selectedNevszerkezet)) $matching=false;
 
             if(!(selectedTermeszetes==="all" || helynevek[i].termeszetes==selectedTermeszetes)) $matching=false;
@@ -781,6 +790,7 @@
         <br>
         <form method="post" action="export.php">
             <input type="submit" name="export" id="btn" value="Excel letöltése" />
+            <input type="hidden" id="tajegysegFilter" name="tajegyseg" value=""/>
             <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
             <input type="hidden" id="nevszerkezetFilter" name="nevszerkezet" value=""/>
             <input type="hidden" id="termeszetesFilter" name="termeszetes" value=""/>
