@@ -33,7 +33,8 @@
     $query = "SELECT
             helynev.ID, 
             Standard,
-            Telepules,
+            telepules.ID as telepulesId,
+            telepules.nev as telepulesNev,
             Ejtes,
             helyfajta.Nev as joinHelyfajta,
             helyfajta.Kod as helyfajtaKod,
@@ -71,19 +72,20 @@
             `nevalkotasszabaly`.Nev as nevalkotasiszabaly,
             `nevalkotasszabaly`.Kod as nevalkotasiszabalyKod
             FROM `helynev` 
-            INNER JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
-            INNER JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-            INNER JOIN `nevresz` nr ON `helynev`.R=nr.ID
-            INNER JOIN `nevresz` nar ON `helynev`.AR=nar.ID
-            INNER JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
-            INNER JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
-            INNER JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
-            INNER JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
-            INNER JOIN `toldalek` t ON `helynev`.T=t.ID
-            INNER JOIN `toldalek` at ON `helynev`.AT=at.ID
-            INNER JOIN `toldalek` bt ON `helynev`.BT=bt.ID
-            INNER JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
-            INNER JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
+            LEFT JOIN `telepules` ON `helynev`.Telepules=`telepules`.ID
+            LEFT JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
+            LEFT JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
+            LEFT JOIN `nevresz` nr ON `helynev`.R=nr.ID
+            LEFT JOIN `nevresz` nar ON `helynev`.AR=nar.ID
+            LEFT JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
+            LEFT JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
+            LEFT JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
+            LEFT JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
+            LEFT JOIN `toldalek` t ON `helynev`.T=t.ID
+            LEFT JOIN `toldalek` at ON `helynev`.AT=at.ID
+            LEFT JOIN `toldalek` bt ON `helynev`.BT=bt.ID
+            LEFT JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
+            LEFT JOIN `nevalkotasszabaly` ON `helynev`.`Nevalkotasi Szabaly`=`nevalkotasszabaly`.ID
             ORDER BY Standard_Hash";
     
     mysqli_query($con, $query);
@@ -160,7 +162,8 @@
         }
 
         $helynevek[]=array(
-            "telepules"=>$row['Telepules'],
+            "telepules"=>$row['telepulesId'],
+            "telepulesNev"=>$row['telepulesNev'],
             "id"=>$id,
             "standard"=>$standard,
             "ejtes"=>$ejtes,
@@ -414,22 +417,24 @@
                 var cell12 = row.insertCell(11);
                 var cell13 = row.insertCell(12);
                 var cell14 = row.insertCell(13);
+                var cell15 = row.insertCell(14);
 
                 // Add some text to the new cells:
                 cell1.innerHTML = sorszam;
                 cell2.innerHTML = '<b>'+helynevek[i].standard+'</b>';
-                cell3.innerHTML = helynevek[i].helyfajta;
-                cell4.innerHTML = helynevek[i].nevszerkezet;
-                cell5.innerHTML = helynevek[i].termeszetesNev;
-                cell6.innerHTML = helynevek[i].mikroNev;
-                cell7.innerHTML = helynevek[i].r;
-                cell8.innerHTML = helynevek[i].lm;
-                cell9.innerHTML = helynevek[i].ar;
-                cell10.innerHTML = helynevek[i].alm;
-                cell11.innerHTML = helynevek[i].br;
-                cell12.innerHTML = helynevek[i].blm;
-                cell13.innerHTML = helynevek[i].nevalkotasiszabaly;
-                cell14.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
+                cell3.innerHTML = helynevek[i].telepulesNev;
+                cell4.innerHTML = helynevek[i].helyfajta;
+                cell5.innerHTML = helynevek[i].nevszerkezet;
+                cell6.innerHTML = helynevek[i].termeszetesNev;
+                cell7.innerHTML = helynevek[i].mikroNev;
+                cell8.innerHTML = helynevek[i].r;
+                cell9.innerHTML = helynevek[i].lm;
+                cell10.innerHTML = helynevek[i].ar;
+                cell11.innerHTML = helynevek[i].alm;
+                cell12.innerHTML = helynevek[i].br;
+                cell13.innerHTML = helynevek[i].blm;
+                cell14.innerHTML = helynevek[i].nevalkotasiszabaly;
+                cell15.innerHTML = "<a href='helynevek_details.php?id="+helynevek[i].id+"'>Adatok</a>";
 
                 sorszam++;
             }
@@ -800,6 +805,7 @@
         <tr>
             <th>Sorszám</th>
             <th>Standard</th>
+            <th>Település</th>
             <th>Helyfajta</th>
             <th>Névszerk.</th>
             <th>Term./ Mest.</th>
