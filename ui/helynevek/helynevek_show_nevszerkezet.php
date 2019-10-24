@@ -78,13 +78,13 @@
             LEFT JOIN `tajegyseg` ON `telepules`.Tajegyseg=`tajegyseg`.ID 
             LEFT JOIN `nevszerkezettipus` ON `helynev`.Nevszerkezettipus=`nevszerkezettipus`.ID
             LEFT JOIN `helyfajta` ON `helynev`.Helyfajta=`helyfajta`.ID
-            LEFT JOIN `nevresz` nr ON `helynev`.R=nr.ID
+            INNER JOIN `nevresz` nr ON `helynev`.R=nr.ID
             LEFT JOIN `nevresz` nar ON `helynev`.AR=nar.ID
             LEFT JOIN `nevresz` nbr ON `helynev`.BR=nbr.ID
-            LEFT JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
+            INNER JOIN `lexikalis` lm ON `helynev`.LM=lm.ID
             LEFT JOIN `lexikalis` alm ON `helynev`.ALM=alm.ID
             LEFT JOIN `lexikalis` blm ON `helynev`.BLM=blm.ID
-            LEFT JOIN `toldalek` t ON `helynev`.T=t.ID
+            INNER JOIN `toldalek` t ON `helynev`.T=t.ID
             LEFT JOIN `toldalek` at ON `helynev`.AT=at.ID
             LEFT JOIN `toldalek` bt ON `helynev`.BT=bt.ID
             LEFT JOIN `nyelv` ON `helynev`.Nyelv=`nyelv`.ID
@@ -390,15 +390,37 @@
 
             if(!(selectedTermeszetes==="all" || helynevek[i].termeszetes==selectedTermeszetes)) $matching=false;
             if(!(selectedMikro==="all" || helynevek[i].mikro==selectedMikro)) $matching=false;
+            if(selectedNevszerkezet!="all"){
+                if(!( selectedR==="all" || helynevek[i].rKod.startsWith(selectedR))) $matching=false;
+                if(!( selectedLM==="all" || helynevek[i].lmKod.startsWith(selectedLM))) $matching=false;
+                if(!( selectedT==="all" || helynevek[i].tKod.startsWith(selectedT))) $matching=false;
 
-            if(!( selectedR==="all" || helynevek[i].rKod.startsWith(selectedR))) $matching=false;
-            if(!( selectedLM==="all" || helynevek[i].lmKod.startsWith(selectedLM))) $matching=false;
-            if(!( selectedT==="all" || helynevek[i].tKod.startsWith(selectedT))) $matching=false;
-
-            if(!( selectedAR==="all" || helynevek[i].arKod.startsWith(selectedAR))) $matching=false;
-            if(!( selectedALM==="all" || helynevek[i].almKod.startsWith(selectedALM))) $matching=false;
-            if(!( selectedAT==="all" || helynevek[i].atKod.startsWith(selectedAT))) $matching=false;
-
+                if(!( selectedAR==="all" || helynevek[i].arKod.startsWith(selectedAR))) $matching=false;
+                if(!( selectedALM==="all" || helynevek[i].almKod.startsWith(selectedALM))) $matching=false;
+                if(!( selectedAT==="all" || helynevek[i].atKod.startsWith(selectedAT))) $matching=false;
+            }
+            else{
+                //All nevszerkezet
+                if(
+                    !(
+                    (
+                        ( selectedR==="all" || helynevek[i].rKod.startsWith(selectedR)) &&
+                        ( selectedLM==="all" || helynevek[i].lmKod.startsWith(selectedLM)) &&
+                        ( selectedT==="all" || helynevek[i].tKod.startsWith(selectedT))
+                    )||
+                    (
+                        ( selectedR==="all" || helynevek[i].arKod.startsWith(selectedR)) &&
+                        ( selectedLM==="all" || helynevek[i].almKod.startsWith(selectedLM)) &&
+                        ( selectedT==="all" || helynevek[i].atKod.startsWith(selectedT))
+                    )||
+                    (
+                        ( selectedR==="all" || helynevek[i].brKod.startsWith(selectedR)) &&
+                        ( selectedLM==="all" || helynevek[i].blmKod.startsWith(selectedLM)) &&
+                        ( selectedT==="all" || helynevek[i].btKod.startsWith(selectedT))
+                    )
+                    )
+                    ) $matching=false;
+            }
             if(!( selectedBR==="all" || helynevek[i].brKod.startsWith(selectedBR))) $matching=false;
             if(!( selectedBLM==="all" || helynevek[i].blmKod.startsWith(selectedBLM))) $matching=false;
             if(!( selectedBT==="all" || helynevek[i].btKod.startsWith(selectedBT))) $matching=false;
