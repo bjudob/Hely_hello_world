@@ -535,7 +535,7 @@
                         <label class="inputlabel">FSZ</label>
                         <select id="rSelect">
                             <?php
-                                $query = "SELECT * FROM `nevresz`";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
@@ -620,7 +620,7 @@
                         <label class="inputlabel">Alaprész:</label>
                         <select id="arSelect">
                             <?php
-                                $query = "SELECT * FROM `nevresz`";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
@@ -702,7 +702,7 @@
                         <label class="inputlabel">Bővítményrész:</label>
                         <select id="brSelect">
                             <?php
-                                $query = "SELECT * FROM `nevresz`";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
