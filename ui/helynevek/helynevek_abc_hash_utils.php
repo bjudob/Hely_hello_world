@@ -28,8 +28,10 @@
                 "b"=>"8",
                 "c"=>"9",
                 "cs"=>":",
+                "ccs"=>"::",
                 "d"=>"<",
                 "dz"=>"=",
+                "ddz"=>"==",
                 "dzs"=>">",
                 "e"=>"?",
                 "ë"=>"?",
@@ -40,6 +42,7 @@
                 "f"=>"E",
                 "g"=>"F",
                 "gy"=>"G",
+                "ggy"=>"GG",
                 "h"=>"H",
                 "i"=>"I",
                 "í"=>"I",
@@ -47,9 +50,11 @@
                 "k"=>"L",
                 "l"=>"M",
                 "ly"=>"N",
+                "lly"=>"NN",
                 "m"=>"O",
                 "n"=>"P",
                 "ny"=>"Q",
+                "nny"=>"QQ",
                 "o"=>"S",
                 "ó"=>"S",
                 "ö"=>"T",
@@ -59,8 +64,10 @@
                 "r"=>"W",
                 "s"=>"X",
                 "sz"=>"Y",
+                "ssz"=>"YY",
                 "t"=>"Z",
                 "ty"=>"[",
+                "tty"=>"[[",
                 "u"=>"]",
                 "ú"=>"]",
                 "ü"=>"|",
@@ -70,7 +77,9 @@
                 "x"=>"¢",
                 "y"=>"£",
                 "z"=>"¤",
-                "zs"=>"¦");
+                "zs"=>"¦",
+                "zzs"=>"¦¦"
+                );
            
             if(array_key_exists ($a,$utf)){
                 $value=$utf[$a];
@@ -89,7 +98,15 @@
     if (!function_exists('firstLetter'))   {
         function firstLetter($str){            
             $a= mb_strtolower($str);
-            if(mb_substr($str, 0, 3)==="dzs"){
+            if(mb_substr($str, 0, 3)==="dzs"
+                ||mb_substr($str, 0, 3)==="ccs"
+                ||mb_substr($str, 0, 3)==="ddz"
+                ||mb_substr($str, 0, 3)==="ggy"
+                ||mb_substr($str, 0, 3)==="lly"
+                ||mb_substr($str, 0, 3)==="nny"
+                ||mb_substr($str, 0, 3)==="ssz"
+                ||mb_substr($str, 0, 3)==="zzs"
+            ){
                 return mb_substr($str, 0, 3);
             }
             if(  mb_substr($str, 0, 2)=="cs"
