@@ -105,6 +105,7 @@
                 ||mb_substr($str, 0, 3)==="lly"
                 ||mb_substr($str, 0, 3)==="nny"
                 ||mb_substr($str, 0, 3)==="ssz"
+                ||mb_substr($str, 0, 3)==="tty"
                 ||mb_substr($str, 0, 3)==="zzs"
             ){
                 return mb_substr($str, 0, 3);
