@@ -295,6 +295,7 @@
         //form
         var tajegysegekSelect = document.getElementById("tajegysegekSelect");
         var telepulesekSelect = document.getElementById("telepulesekSelect");
+        var helyfajtaSelect = document.getElementById("helyfajtaSelect");
         var nevszerkezetSelect = document.getElementById("nevszerkezetSelect");
         var termeszetesSelect = document.getElementById("termeszetesSelect");
         var mikroSelect = document.getElementById("mikroSelect");
@@ -312,6 +313,7 @@
         //filters
         var tajegysegFilter = document.getElementById("tajegysegFilter");
         var telepulesFilter = document.getElementById("telepulesFilter");
+        var helyfajtaFilter = document.getElementById("helyfajtaFilter");
         var nevszerkezetFilter = document.getElementById("nevszerkezetFilter");
         var termeszetesFilter = document.getElementById("termeszetesFilter");
         var mikroFilter = document.getElementById("mikroFilter");
@@ -327,6 +329,7 @@
         var szabalyFilter = document.getElementById("nevalkotasiszabalyFilter");
 
         //set
+        helyfajtaSelect.onchange = updateHelynevek;
         nevszerkezetSelect.onchange = updateHelynevek;
         termeszetesSelect.onchange=updateHelynevek;
         mikroSelect.onchange=updateHelynevek;
@@ -342,6 +345,7 @@
         szabalySelect.onchange = updateHelynevek;
         var tajegysegId = tajegysegekSelect.value;
         var telepulesId = telepulesekSelect.value;
+        var selectedHelyfajta=helyfajtaSelect.value;
         var selectedNevszerkezet=nevszerkezetSelect.value;
         var selectedTermeszetes=termeszetesSelect.value;
         var selectedMikro=mikroSelect.value;
@@ -359,6 +363,7 @@
         //set filters
         tajegysegFilter.value=tajegysegId;
         telepulesFilter.value=telepulesId;
+        helyfajtaFilter.value=selectedHelyfajta;
         nevszerkezetFilter.value=selectedNevszerkezet;
         termeszetesFilter.value=selectedTermeszetes;
         mikroFilter.value=selectedMikro;
@@ -386,6 +391,7 @@
             $matching=true;
             if(!(tajegysegId==="all" || helynevek[i].tajegyseg==tajegysegId)) $matching=false;
             if(!(telepulesId==="all" || helynevek[i].telepules==telepulesId)) $matching=false;
+            if(!(selectedHelyfajta==="all" || helynevek[i].helyfajtaKod.startsWith(selectedHelyfajta))) $matching=false;
             if(!(selectedNevszerkezet==="all" || helynevek[i].nevszerkezet==selectedNevszerkezet)) $matching=false;
 
             if(!(selectedTermeszetes==="all" || helynevek[i].termeszetes==selectedTermeszetes)) $matching=false;
@@ -491,6 +497,34 @@
             <label>Település:</label>
             <select id='telepulesekSelect' >
             </select>
+            <div class="inputrow">
+                <label class="inputlabel">Helyfajta:</label>
+                <select id='helyfajtaSelect' >
+                    <?php
+                        $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
+                                    /*WHERE Is_Active=1";*/
+
+                        $result=mysqli_query($con,$query) or die('hiba');
+
+                        echo "<option class='boldoption' value='all'>Összes</option>";
+
+                        while($row=mysqli_fetch_array($result)){
+                                $id=$row['ID'];
+                                $nev=$row['Nev'];
+                                $kod=$row['Kod'];
+                                $bold="none";
+
+                                if (strlen($kod) == 2) {
+                                    $bold="boldoption";
+                                }
+                                
+                                echo "<option class='$bold' value=".$kod.">".$kod." ".$nev."</option>";
+                            }
+
+                    ?>
+                </select>
+                <br>
+            </div>
             <div class="inputrow">
                 <label class="inputlabel">Természetes:</label>
                 <select id="termeszetesSelect">
@@ -814,6 +848,7 @@
             <input type="submit" name="export" id="btn" value="Excel letöltése" />
             <input type="hidden" id="tajegysegFilter" name="tajegyseg" value=""/>
             <input type="hidden" id="telepulesFilter" name="telepules" value=""/>
+            <input type="hidden" id="helyfajtaFilter" name="telepules" value=""/>
             <input type="hidden" id="nevszerkezetFilter" name="nevszerkezet" value=""/>
             <input type="hidden" id="termeszetesFilter" name="termeszetes" value=""/>
             <input type="hidden" id="mikroFilter" name="mikro" value=""/>
