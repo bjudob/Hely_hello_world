@@ -51,6 +51,7 @@
             Nevvarians,
             Termeszetes,
             Mikro,
+            nevszerkezettipus.ID as nevszerkezetId,
             nevszerkezettipus.Nev as nevszerkezet,
             nevszerkezettipus.Egyreszes as egyreszes,
             nr.Nev as R,
@@ -186,6 +187,7 @@
             "mikro"=>$mikro,
             "mikroNev"=>$mikroNev,
             "nevvarians"=>$nevvarians,
+            "nevszerkezetId"=>$row['nevszerkezetId'],
             "nevszerkezet"=>$nevszerkezet,
             "r"=>$r,
             "rKod"=>$rKod,
@@ -392,7 +394,7 @@
             if(!(tajegysegId==="all" || helynevek[i].tajegyseg==tajegysegId)) $matching=false;
             if(!(telepulesId==="all" || helynevek[i].telepules==telepulesId)) $matching=false;
             if(!(selectedHelyfajta==="all" || helynevek[i].helyfajtaKod.startsWith(selectedHelyfajta))) $matching=false;
-            if(!(selectedNevszerkezet==="all" || helynevek[i].nevszerkezet==selectedNevszerkezet)) $matching=false;
+            if(!(selectedNevszerkezet==="all" || helynevek[i].nevszerkezetId==selectedNevszerkezet)) $matching=false;
 
             if(!(selectedTermeszetes==="all" || helynevek[i].termeszetes==selectedTermeszetes)) $matching=false;
             if(!(selectedMikro==="all" || helynevek[i].mikro==selectedMikro)) $matching=false;
@@ -558,7 +560,7 @@
                             $nev=$row['Nev'];
                             $egyreszes=$row['Egyreszes'];
 
-                            echo "<option value=".$nev.">".$nev."</option>";
+                            echo "<option value=".$id.">".$nev."</option>";
                         }                     
                     ?>
             </select>
