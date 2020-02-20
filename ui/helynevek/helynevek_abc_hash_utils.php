@@ -135,6 +135,11 @@
                 $standard = mb_substr($standard, 1);
             }
             
+            // kulonleges esetek e.g. csz=c+sz or cs+z
+            if($standard==='piacszer'){
+                return 'UI09Y?W';
+            }
+
             $hash="";
             
             while(true){                                      
