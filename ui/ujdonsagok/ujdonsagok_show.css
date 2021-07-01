@@ -1,0 +1,18 @@
+#container80{
+    width:50%;
+    margin:auto;
+}
+
+#updatescontainer{
+	font-size: 150%;
+}
+
+#update{
+	border-radius: 5px;
+    background-color: #ccc;
+    background-image: -webkit-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: -moz-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: -ms-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: -o-linear-gradient(top, #ccc, rgb(76, 76, 88));
+    background-image: linear-gradient(to bottom, #ccc, rgb(76, 76, 88));
+}
