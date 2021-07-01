@@ -193,7 +193,7 @@
                     <label class="inputlabel">Helyfajta:</label>
                     <select name="helyfajta">
                         <?php
-                            $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
+                            $query = "SELECT * FROM `helyfajta` ORDER BY Sorszam";
                             
                             mysqli_query($con, $query);
                             $result=mysqli_query($con,$query) or die('hiba');
@@ -348,7 +348,7 @@
                         <label class="inputlabel">FSZ</label>
                         <select name="r">
                             <?php
-                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
@@ -441,7 +441,7 @@
                         <label class="inputlabel">Alaprész:</label>
                         <select name="ar">
                             <?php
-                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
@@ -532,7 +532,7 @@
                         <label class="inputlabel">Bővítményrész:</label>
                         <select name="br">
                             <?php
-                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 

@@ -31,10 +31,10 @@
     $bt = mysqli_real_escape_string($con,$_POST['bt']);
     $nevalkotasiszabaly = mysqli_real_escape_string($con,$_POST['nevalkotasiszabaly']);
     $standardhash=abcHash($standard);
-
+            
     if ($terkepszam==''){$terkepszam=0;}
     if ($forrasmunkaev==''){$forrasmunkaev=0;}
-            
+    
     $query = "INSERT INTO helynev(
         `Standard`,
         `Telepules`,
@@ -92,7 +92,7 @@
         "'$nevalkotasiszabaly',".
         "'$standardhash')";
 
-    mysqli_query($con, $query) or die($query);
+    mysqli_query($con, $query) or die('HIBA: '.$query);
     
           
 	header("location: helynevek_add.php");
@@ -196,7 +196,7 @@
                     <label class="inputlabel">Helyfajta:</label>
                     <select name="helyfajta">
                         <?php
-                            $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
+                            $query = "SELECT * FROM `helyfajta` ORDER BY Sorszam";
                             
                             $result=mysqli_query($con,$query) or die('hiba');
 
@@ -308,7 +308,7 @@
                         <label class="inputlabel">FSZ</label>
                         <select name="r">
                             <?php
-                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
@@ -387,7 +387,7 @@
                         <label class="inputlabel">Alaprész:</label>
                         <select name="ar">
                             <?php
-                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
@@ -463,7 +463,7 @@
                         <label class="inputlabel">Bővítményrész:</label>
                         <select name="br">
                             <?php
-                                $query = "SELECT * FROM `nevresz` ORDER BY Kod";
+                                $query = "SELECT * FROM `nevresz` ORDER BY Sorszam";
                                 
                                 $result=mysqli_query($con,$query) or die('hiba');
 
