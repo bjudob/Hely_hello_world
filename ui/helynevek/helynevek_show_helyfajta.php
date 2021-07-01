@@ -169,7 +169,7 @@
                 <label>Helyfajta:</label>
                 <select id='helyfajtaSelect' >
                     <?php
-                        $query = "SELECT * FROM `helyfajta` ORDER BY Kod";
+                        $query = "SELECT * FROM `helyfajta` ORDER BY Sorszam";
                                     /*WHERE Is_Active=1";*/
 
                         $result=mysqli_query($con,$query) or die('hiba');
