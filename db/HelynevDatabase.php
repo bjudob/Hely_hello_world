@@ -9,6 +9,7 @@
 require ("domain/Tajegyseg.php");
 require ("domain/Telepules.php");
 require ("domain/Helynev.php");
+include("../../config.php");
 
 class HelynevDatabase
 {
@@ -21,10 +22,10 @@ class HelynevDatabase
 
     //DATABASE CONNECTION
     private function connect(){
-        if (!defined('DB_SERVER')) define('DB_SERVER', 'localhost');
-        if (!defined('DB_USERNAME')) define('DB_USERNAME', 'root');
-        if (!defined('DB_PASSWORD')) define('DB_PASSWORD', '');
-        if (!defined('DB_DATABASE')) define('DB_DATABASE', 'id2643544_training_db');
+        #if (!defined('DB_SERVER')) define('DB_SERVER', 'localhost');
+        #if (!defined('DB_USERNAME')) define('DB_USERNAME', 'root');
+        #if (!defined('DB_PASSWORD')) define('DB_PASSWORD', '');
+        #if (!defined('DB_DATABASE')) define('DB_DATABASE', 'id2643544_training_db');
         $this->con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
         if(!$this->con){
             die('Az adatbázis nem elérhető!');
