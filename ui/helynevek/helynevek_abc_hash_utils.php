@@ -78,7 +78,13 @@
                 "y"=>"£",
                 "z"=>"¤",
                 "zs"=>"¦",
-                "zzs"=>"¦¦"
+                "zzs"=>"¦¦",
+                "i."=>"&.",
+                "ii."=>"(.",
+                "iii."=>").",
+                "iv."=>"*.",
+                "v."=>"+.",
+                "vi."=>",.",
                 );
            
             if(array_key_exists ($a,$utf)){
@@ -98,6 +104,9 @@
     if (!function_exists('firstLetter'))   {
         function firstLetter($str){            
             $a= mb_strtolower($str);
+            if(mb_substr($str, 0, 4)=="iii."){
+                return mb_substr($str, 0, 4);
+            }
             if(mb_substr($str, 0, 3)==="dzs"
                 ||mb_substr($str, 0, 3)==="ccs"
                 ||mb_substr($str, 0, 3)==="ddz"
@@ -107,6 +116,9 @@
                 ||mb_substr($str, 0, 3)==="ssz"
                 ||mb_substr($str, 0, 3)==="tty"
                 ||mb_substr($str, 0, 3)==="zzs"
+                ||mb_substr($str, 0, 3)==="ii."
+                ||mb_substr($str, 0, 3)==="iv."
+                ||mb_substr($str, 0, 3)==="vi."
             ){
                 return mb_substr($str, 0, 3);
             }
@@ -117,7 +129,9 @@
                ||mb_substr($str, 0, 2)=="ny"
                ||mb_substr($str, 0, 2)=="sz"
                ||mb_substr($str, 0, 2)=="ty"
-               ||mb_substr($str, 0, 2)=="zs"){
+               ||mb_substr($str, 0, 2)=="zs"
+               ||mb_substr($str, 0, 2)=="i."
+               ||mb_substr($str, 0, 2)=="v."){
                 return mb_substr($str, 0, 2);
             }
             return mb_substr($str, 0, 1);

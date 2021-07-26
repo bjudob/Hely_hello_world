@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ui",
+    "\\ui\\helynevek"
   ],
   "PreviewInSolutionExplorer": false
 }
