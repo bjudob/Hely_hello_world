@@ -162,6 +162,7 @@
                     <input id="standardInput" type = "text" name = "standard" class="inputfield" value="<?php echo $helynev->standard; ?>"/>
                     <br>
                     <label class="inputlabel"></label>
+                    <input class="charButton" value="†" type = "button" onclick="addIndex('†');"></button>
                     <input class="charButton" value="¹" type = "button" onclick="addIndex('¹');"></button>
                     <input class="charButton" value="²" type = "button" onclick="addIndex('²');"></button>
                     <input class="charButton" value="³" type = "button" onclick="addIndex('³');"></button>
